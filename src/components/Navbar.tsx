@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
-import { DoorOpen, Menu, Phone, X } from 'lucide-react';
-import { BUSINESS_INFO, NAV_LINKS } from '../data/doorWorldData';
+import { Menu, Phone, Sparkles, X } from 'lucide-react';
+import { NAV_LINKS, SITE_DATA } from '../data/site';
 import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
+import { DoorWorldLogo } from './DoorWorldLogo';
 import { LinkRollText, MagneticButton } from './MagneticButton';
 
 interface NavbarProps {
@@ -10,7 +11,7 @@ interface NavbarProps {
   hasAnnouncement: boolean;
 }
 
-export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
+export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
   const { prefersReducedMotion } = useMotionCapabilities();
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,16 +21,16 @@ export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    setIsScrolled(latest > 48);
+    setIsScrolled(latest > 40);
 
     if (mobileMenuOpen) {
       setIsHidden(false);
       return;
     }
 
-    if (latest > 160 && latest > previous + 5) {
+    if (latest > 160 && latest > previous + 6) {
       setIsHidden(true);
-    } else if (latest < previous - 4 || latest <= 90) {
+    } else if (latest < previous - 4 || latest <= 80) {
       setIsHidden(false);
     }
   });
@@ -48,7 +49,7 @@ export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
           }
         });
       },
-      { rootMargin: '-40% 0px -48% 0px', threshold: 0 }
+      { rootMargin: '-35% 0px -45% 0px', threshold: 0 }
     );
 
     sections.forEach((sec) => observer.observe(sec));
@@ -71,6 +72,9 @@ export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
     onNavigate(href);
   };
 
+  const primaryPhone = SITE_DATA.business.contact.primaryPhone;
+  const primaryPhoneDisplay = SITE_DATA.business.contact.primaryPhoneDisplay;
+
   return (
     <>
       <motion.header
@@ -81,32 +85,25 @@ export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
           hasAnnouncement ? 'top-9' : 'top-0'
         } ${
           isScrolled
-            ? 'bg-[#0E0C0A]/95 lg:bg-[#0E0C0A]/78 lg:backdrop-blur-xl border-b border-[#E6C98B]/20 py-2.5 lg:py-3'
-            : 'bg-transparent py-3.5 lg:py-5'
+            ? 'bg-[#0E0C0A]/95 backdrop-blur-xl border-b border-[#2A241F] py-2.5 shadow-xl'
+            : 'bg-transparent py-4'
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 flex items-center justify-between gap-2 lg:gap-8">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <a
             href="#home"
             onClick={(e) => handleLinkClick(e, '#home')}
-            className="inline-flex items-center gap-2 sm:gap-2.5 text-[#FBF8F3] whitespace-nowrap shrink-0 group min-h-[44px]"
-            aria-label="Door World Home"
+            className="group min-h-[44px] flex items-center shrink-0 cursor-pointer"
+            aria-label="Kumar Kitchen King and Door World Home"
           >
-            <DoorOpen
-              className="w-5 h-5 text-[#E6C98B] transition-transform duration-300 lg:group-hover:scale-110 shrink-0"
-              strokeWidth={1.6}
-              aria-hidden="true"
-            />
-            <span className="font-display text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight">
-              {BUSINESS_INFO.name}
-            </span>
+            <DoorWorldLogo variant="header" theme="dark" showSubtitle={true} />
           </a>
 
-          {/* Navigation Links with Link Roll Hover */}
+          {/* Desktop Navigation Links */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-8 text-[12px] uppercase tracking-[0.22em] font-medium text-[#F1E8DA]"
+            className="hidden xl:flex items-center gap-7 text-[12px] uppercase tracking-[0.18em] font-medium text-[#F7F3EC]"
           >
             {NAV_LINKS.map((item) => {
               const isActive = activeSection === item.sectionId;
@@ -116,15 +113,14 @@ export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
                   href={item.href}
                   onClick={(e) => handleLinkClick(e, item.href)}
                   className={`relative py-1 whitespace-nowrap shrink-0 group transition-colors ${
-                    isActive ? 'text-[#E6C98B]' : 'text-[#F1E8DA] hover:text-[#FBF8F3]'
+                    isActive ? 'text-[#B8793A] font-bold' : 'text-[#8E8275] hover:text-[#FBF8F3]'
                   }`}
                 >
                   <LinkRollText text={item.label} />
                   {isActive && (
                     <motion.span
-                      layoutId="nav-active-line"
-                      aria-hidden="true"
-                      className="absolute left-0 right-0 -bottom-0.5 h-[1px] bg-[#E6C98B]"
+                      layoutId="navUnderline"
+                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#B8793A]"
                     />
                   )}
                 </a>
@@ -132,113 +128,101 @@ export function Navbar({ onNavigate, hasAnnouncement }: NavbarProps) {
             })}
           </nav>
 
-          {/* Primary Action + Mobile Menu Trigger */}
-          <div className="flex items-center gap-2 lg:gap-3 shrink-0">
-            {/* Compact 44px Call Icon Button on Mobile/Tablet */}
+          {/* Header Action Buttons: Call Now & Get Quote */}
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             <a
-              href={BUSINESS_INFO.phoneHref}
-              aria-label={`Call Door World (${BUSINESS_INFO.phoneDisplay})`}
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-[4px] bg-[#B8733B] text-[#FBF8F3] shrink-0"
+              href={`tel:+91${primaryPhone}`}
+              className="min-h-[42px] px-4 py-2 rounded-[4px] border border-[#2A241F] hover:border-[#B8793A] bg-[#171412] text-[#F7F3EC] text-xs uppercase tracking-[0.16em] font-medium inline-flex items-center gap-2 transition-colors whitespace-nowrap"
             >
-              <Phone className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+              <Phone className="w-3.5 h-3.5 text-[#B8793A]" />
+              <span className="hidden md:inline">{primaryPhoneDisplay}</span>
+              <span className="md:hidden">Call</span>
             </a>
 
-            {/* Full Call Now Button on Desktop */}
             <MagneticButton
-              href={BUSINESS_INFO.phoneHref}
-              wrapperClassName="hidden lg:inline-block"
-              className="inline-flex items-center gap-2 bg-[#B8733B] hover:bg-[#E6C98B] text-[#FBF8F3] hover:text-[#0E0C0A] font-medium text-xs uppercase tracking-[0.16em] px-5 py-2.5 rounded-[4px] transition-colors duration-200 whitespace-nowrap shrink-0"
+              onClick={() => onNavigate('#contact')}
+              className="min-h-[42px] px-5 py-2.5 rounded-[4px] bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold inline-flex items-center gap-2 transition-colors cursor-pointer shadow-md whitespace-nowrap"
             >
-              <Phone className="w-3.5 h-3.5" strokeWidth={1.8} aria-hidden="true" />
-              <LinkRollText text="Call Now" />
+              <LinkRollText text="Get a Quote" />
             </MagneticButton>
-
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-[4px] text-[#FBF8F3] border border-[#E6C98B]/25 hover:bg-white/10 transition-colors cursor-pointer shrink-0"
-              aria-label={mobileMenuOpen ? 'Close full-screen menu' : 'Open full-screen menu'}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-fullscreen-menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
+
+          {/* Mobile Hamburger Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open navigation menu"
+            className="xl:hidden w-11 h-11 rounded-[4px] bg-[#171412] border border-[#2A241F] text-[#FBF8F3] flex items-center justify-center cursor-pointer shrink-0"
+          >
+            <Menu className="w-5 h-5 text-[#B8793A]" />
+          </button>
         </div>
       </motion.header>
 
-      {/* Mobile Full-Screen Staggered Menu Overlay */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            id="mobile-fullscreen-menu"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[75] bg-[#0E0C0A] text-[#FBF8F3] flex flex-col justify-between px-5 pt-20 pb-[calc(2rem+env(safe-area-inset-bottom))] overflow-y-auto lg:hidden"
+            className="fixed inset-0 z-[100] bg-[#0E0C0A]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10"
           >
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close navigation menu"
-              className="absolute top-4 right-4 w-11 h-11 rounded-[4px] border border-[#E6C98B]/35 flex items-center justify-center text-[#E6C98B] cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center justify-between border-b border-[#2A241F] pb-4">
+              <DoorWorldLogo variant="compact" showSubtitle={true} />
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close navigation menu"
+                className="w-10 h-10 rounded-full bg-[#171412] border border-[#2A241F] text-[#FBF8F3] flex items-center justify-center hover:bg-[#B8793A] transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-            <nav aria-label="Full-screen Mobile Navigation">
-              <ul className="space-y-3">
-                {NAV_LINKS.map((item, idx) => (
-                  <motion.li
-                    key={item.href}
-                    initial={prefersReducedMotion ? false : { opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.055, duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
-                    className="border-b border-[#E6C98B]/15 pb-3"
+            <nav className="my-auto py-6 space-y-4">
+              {NAV_LINKS.map((link) => (
+                <div key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="flex items-baseline justify-between text-2xl font-bold text-[#FBF8F3] hover:text-[#B8793A] transition-colors py-1"
                   >
-                    <a
-                      href={item.href}
-                      onClick={(e) => handleLinkClick(e, item.href)}
-                      className="flex items-baseline justify-between min-h-[44px] py-1 group"
-                    >
-                      <span className="font-display text-[2rem] leading-tight font-medium text-[#FBF8F3] group-active:text-[#E6C98B] transition-colors">
-                        {item.label}
-                      </span>
-                      <span className="text-xs tracking-[0.25em] text-[#E6C98B] tabular-nums">
-                        {item.numeral}
-                      </span>
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
+                    <span>{link.label}</span>
+                    <span className="text-xs font-mono text-[#B8793A]">
+                      {link.numeral}
+                    </span>
+                  </a>
+                </div>
+              ))}
             </nav>
 
-            <div className="pt-5 border-t border-[#E6C98B]/20 text-xs text-[#8A7F73] space-y-2">
-              <p className="text-[#E6C98B] uppercase tracking-[0.22em]">
-                {BUSINESS_INFO.hours}
-              </p>
+            <div className="space-y-3 pt-4 border-t border-[#2A241F]">
               <a
-                href={BUSINESS_INFO.mapDirectionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-[#F1E8DA] underline decoration-[#E6C98B]/40 underline-offset-4 py-1"
+                href={`tel:+91${primaryPhone}`}
+                className="w-full min-h-[48px] rounded-[4px] bg-[#171412] border border-[#2A241F] text-[#FBF8F3] text-xs uppercase tracking-[0.18em] font-semibold flex items-center justify-center gap-2"
               >
-                {BUSINESS_INFO.address}
+                <Phone className="w-4 h-4 text-[#B8793A]" />
+                <span>Direct Call: {primaryPhoneDisplay}</span>
               </a>
-              <a
-                href={BUSINESS_INFO.phoneHref}
-                className="inline-flex items-center min-h-[44px] tabular-nums text-sm text-[#E6C98B] font-semibold"
+
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onNavigate('#contact');
+                }}
+                className="w-full min-h-[48px] rounded-[4px] bg-[#B8793A] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-bold flex items-center justify-center"
               >
-                {BUSINESS_INFO.phoneDisplay} · {BUSINESS_INFO.contactPerson}
-              </a>
+                Get Free Project Quote →
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
-}
+};

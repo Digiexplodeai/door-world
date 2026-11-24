@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="doorWoodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D49557"/>
+      <stop offset="50%" stop-color="#B8793A"/>
+      <stop offset="100%" stop-color="#7A4B1F"/>
+    </linearGradient>
+    <linearGradient id="copperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2A66D"/>
+      <stop offset="100%" stop-color="#B8793A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Brand Mark Icon: Bold Black 'D' enclosing swinging wooden door & globe -->
+  <g transform="translate(10, 10)">
+    <!-- Base D Shape -->
+    <path d="M5 5 H48 C72 5 90 23 90 48 C90 73 72 95 48 95 H5 Z" fill="#0E0C0A" stroke="#B8793A" stroke-width="2"/>
+    <!-- Globe wireframe inside D -->
+    <circle cx="48" cy="50" r="32" fill="none" stroke="#2A241F" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <ellipse cx="48" cy="50" rx="16" ry="32" fill="none" stroke="#2A241F" stroke-width="1.2"/>
+    <line x1="16" y1="50" x2="80" y2="50" stroke="#2A241F" stroke-width="1.2"/>
+    
+    <!-- Wooden Door swinging open in 3D perspective -->
+    <path d="M30 22 L58 14 L58 84 L30 78 Z" fill="url(#doorWoodGrad)" stroke="#E6DEC9" stroke-width="1.5"/>
+    <!-- Door Panels -->
+    <rect x="36" y="26" width="16" height="22" rx="1" fill="#7A4B1F" opacity="0.6"/>
+    <rect x="36" y="52" width="16" height="24" rx="1" fill="#7A4B1F" opacity="0.6"/>
+    <!-- Door handle -->
+    <circle cx="53" cy="50" r="2" fill="#F7F3EC"/>
+    <line x1="53" y1="50" x2="55" y2="50" stroke="#F7F3EC" stroke-width="1.5"/>
+  </g>
+
+  <!-- Brand Wordmark: DOORS (Heavy Black Geometric Sans) & world (copper lowercase) -->
+  <g transform="translate(115, 12)">
+    <!-- DOORS -->
+    <text x="0" y="44" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="900" font-size="44" fill="#FBF8F3" letter-spacing="1">DOORS</text>
+    
+    <!-- world in copper with globe as 'o' -->
+    <g transform="translate(178, 0)">
+      <text x="0" y="44" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="600" font-size="42" fill="url(#copperGrad)" letter-spacing="0.5">w</text>
+      <!-- Globe 'o' -->
+      <g transform="translate(48, 22)">
+        <circle cx="12" cy="12" r="11" fill="none" stroke="url(#copperGrad)" stroke-width="2.5"/>
+        <ellipse cx="12" cy="12" rx="5.5" ry="11" fill="none" stroke="url(#copperGrad)" stroke-width="1.5"/>
+        <line x1="1" y1="12" x2="23" y2="12" stroke="url(#copperGrad)" stroke-width="1.5"/>
+      </g>
+      <text x="76" y="44" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="600" font-size="42" fill="url(#copperGrad)" letter-spacing="0.5">rld</text>
+    </g>
+
+    <!-- Tagline: THE COMPLETE DOORS SOLUTIONS -->
+    <text x="2" y="68" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="700" font-size="11" fill="#B8793A" letter-spacing="3.8">THE COMPLETE DOORS SOLUTIONS</text>
+    
+    <!-- Sub-branding badge: by Kumar Kitchen King -->
+    <g transform="translate(2, 78)">
+      <rect x="0" y="0" width="220" height="18" rx="2" fill="#171412" stroke="#2A241F" stroke-width="1"/>
+      <circle cx="8" cy="9" r="3.5" fill="#0F3B33" stroke="#1B5C4F" stroke-width="1"/>
+      <text x="18" y="13" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="600" font-size="9.5" fill="#F7F3EC" letter-spacing="1.2">by Kumar Kitchen King</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ftWoodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D49557"/>
+      <stop offset="100%" stop-color="#B8793A"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(10, 10)">
+    <path d="M5 5 H48 C72 5 90 23 90 48 C90 73 72 95 48 95 H5 Z" fill="#171412" stroke="#B8793A" stroke-width="2"/>
+    <circle cx="48" cy="50" r="32" fill="none" stroke="#2A241F" stroke-width="1.5"/>
+    <path d="M30 22 L58 14 L58 84 L30 78 Z" fill="url(#ftWoodGrad)" stroke="#F7F3EC" stroke-width="1.5"/>
+    <circle cx="53" cy="50" r="2" fill="#F7F3EC"/>
+  </g>
+
+  <g transform="translate(115, 12)">
+    <text x="0" y="44" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="900" font-size="44" fill="#FBF8F3" letter-spacing="1">DOORS</text>
+    <g transform="translate(178, 0)">
+      <text x="0" y="44" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="600" font-size="42" fill="#B8793A" letter-spacing="0.5">w</text>
+      <circle cx="60" cy="34" r="11" fill="none" stroke="#B8793A" stroke-width="2.5"/>
+      <ellipse cx="60" cy="34" rx="5.5" ry="11" fill="none" stroke="#B8793A" stroke-width="1.5"/>
+      <line x1="49" y1="34" x2="71" y2="34" stroke="#B8793A" stroke-width="1.5"/>
+      <text x="76" y="44" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="600" font-size="42" fill="#B8793A" letter-spacing="0.5">rld</text>
+    </g>
+    <text x="2" y="68" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="700" font-size="11" fill="#B8793A" letter-spacing="3.8">THE COMPLETE DOORS SOLUTIONS</text>
+    <text x="2" y="90" font-family="'Outfit', 'Poppins', -apple-system, sans-serif" font-weight="600" font-size="11" fill="#F7F3EC" letter-spacing="1.5">A Division of Kumar Kitchen King</text>
+  </g>
+</svg>

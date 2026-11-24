@@ -2,14 +2,19 @@
 
 :root {
   --dw-ink: #0E0C0A;
+  --dw-charcoal: #0E0C0A;
+  --dw-charcoal-elevated: #171412;
   --dw-espresso: #1C1511;
-  --dw-teak: #B8733B;
-  --dw-gold: #E6C98B;
-  --dw-ivory: #FBF8F3;
-  --dw-sand: #F1E8DA;
+  --dw-copper: #B8793A;
+  --dw-copper-light: #D49557;
+  --dw-walnut: #3E2B1E;
+  --dw-teak: #B8793A;
+  --dw-gold: #B8793A;
+  --dw-ivory: #F7F3EC;
+  --dw-sand: #EFE9DE;
   --dw-emerald: #0F3B33;
   --dw-emerald-light: #1B5C4F;
-  --dw-muted: #8A7F73;
+  --dw-muted: #8E8275;
 
   /* Strict Editorial Type Scale Tokens */
   --text-hero: clamp(2.5rem, 6vw, 5.5rem);
@@ -26,16 +31,21 @@
 
 @theme {
   --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --color-ink: #0E0C0A;
+  --color-charcoal: #0E0C0A;
+  --color-charcoal-elevated: #171412;
   --color-espresso: #1C1511;
-  --color-teak: #B8733B;
-  --color-champagne: #E6C98B;
-  --color-ivory: #FBF8F3;
-  --color-sand: #F1E8DA;
+  --color-copper: #B8793A;
+  --color-copper-light: #D49557;
+  --color-walnut: #3E2B1E;
+  --color-teak: #B8793A;
+  --color-champagne: #D49557;
+  --color-ivory: #F7F3EC;
+  --color-sand: #EFE9DE;
   --color-emerald-deep: #0F3B33;
   --color-emerald-light: #1B5C4F;
-  --color-muted: #8A7F73;
+  --color-muted: #8E8275;
 }
 
 @layer base {
@@ -50,17 +60,19 @@
     overflow-x: clip;
     background-color: var(--dw-ink);
     color: var(--dw-ink);
+    font-family: var(--font-sans);
   }
 
   h1,
   h2,
   h3,
   .font-display {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
+    letter-spacing: -0.02em;
   }
 
   :focus-visible {
-    outline: 2px solid #E6C98B;
+    outline: 2px solid #B8793A;
     outline-offset: 3px;
   }
 }

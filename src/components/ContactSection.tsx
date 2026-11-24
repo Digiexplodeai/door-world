@@ -16,6 +16,7 @@ import {
   BUSINESS_INFO,
   DOOR_TYPE_OPTIONS,
 } from '../data/doorWorldData';
+import { SITE_DATA } from '../data/site';
 import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
 import { submitEnquiry } from '../services/enquiryService';
 import { LinkRollText, MagneticButton } from './MagneticButton';
@@ -152,14 +153,14 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
           </div>
 
           <div className="lg:col-span-10">
-            <p className="type-eyebrow text-[#B8733B] font-semibold mb-2.5 lg:mb-3">
-              Visit Our Showroom · Kharar
+            <p className="type-eyebrow text-[#B8793A] font-bold tracking-[0.22em] uppercase mb-2.5 lg:mb-3">
+              Visit Our Master Gallery · Sector 82, JLPL Mohali
             </p>
             <h2
               id="contact-heading"
-              className="type-h2 font-semibold text-[#0E0C0A]"
+              className="type-h2 font-bold text-[#0E0C0A]"
             >
-              Visit &amp; Enquire
+              Get in Touch &amp; Request a Quote
             </h2>
           </div>
         </div>
@@ -170,61 +171,66 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left 6 Cols: Showroom Info + Floating Label Form */}
           <div className="lg:col-span-6 space-y-8 lg:space-y-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 pb-8 lg:pb-10 border-b border-[#B8733B]/25">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 pb-8 lg:pb-10 border-b border-[#B8793A]/25">
               <div className="sm:col-span-2 flex items-start gap-4">
                 <MapPin
-                  className="w-5 h-5 text-[#B8733B] shrink-0 mt-0.5"
+                  className="w-5 h-5 text-[#B8793A] shrink-0 mt-0.5"
                   strokeWidth={1.6}
                   aria-hidden="true"
                 />
                 <div>
-                  <p className="type-eyebrow text-[#B8733B] font-semibold mb-1.5">
-                    Showroom Address
+                  <p className="type-eyebrow text-[#B8793A] font-bold uppercase tracking-wider mb-1">
+                    Mohali Showroom &amp; Master Gallery
                   </p>
-                  <p className="type-body text-[#0E0C0A]">
+                  <p className="type-body font-medium text-[#0E0C0A]">
                     {BUSINESS_INFO.address}
+                  </p>
+                  <p className="text-xs text-[#8E8275] mt-1">
+                    Factory: {BUSINESS_INFO.factoryAddress}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3.5">
                 <Phone
-                  className="w-4 h-4 text-[#B8733B] shrink-0 mt-1"
+                  className="w-4 h-4 text-[#B8793A] shrink-0 mt-1"
                   strokeWidth={1.75}
                   aria-hidden="true"
                 />
                 <div>
-                  <p className="type-eyebrow text-[#B8733B] font-semibold mb-1">
-                    Phone &amp; WhatsApp
+                  <p className="type-eyebrow text-[#B8793A] font-bold uppercase tracking-wider mb-1">
+                    Direct Phone &amp; WhatsApp
                   </p>
                   <a
                     href={BUSINESS_INFO.phoneHref}
-                    className="text-base font-semibold text-[#0E0C0A] hover:text-[#B8733B] transition-colors tabular-nums block"
+                    className="text-base font-bold text-[#0E0C0A] hover:text-[#B8793A] transition-colors tabular-nums block"
                   >
                     {BUSINESS_INFO.phoneDisplay}
                   </a>
-                  <span className="text-xs text-[#8A7F73] tabular-nums">
-                    {BUSINESS_INFO.phoneIntl}
-                  </span>
+                  <a
+                    href={BUSINESS_INFO.landlineHref}
+                    className="text-xs text-[#8E8275] hover:text-[#0E0C0A] transition-colors tabular-nums block mt-0.5"
+                  >
+                    Landline: {BUSINESS_INFO.landlineDisplay}
+                  </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-3.5">
                 <Clock
-                  className="w-4 h-4 text-[#B8733B] shrink-0 mt-1"
+                  className="w-4 h-4 text-[#B8793A] shrink-0 mt-1"
                   strokeWidth={1.75}
                   aria-hidden="true"
                 />
                 <div>
-                  <p className="type-eyebrow text-[#B8733B] font-semibold mb-1">
-                    Hours &amp; Desk
+                  <p className="type-eyebrow text-[#B8793A] font-bold uppercase tracking-wider mb-1">
+                    Hours &amp; Location
                   </p>
                   <p className="text-sm font-semibold text-[#0E0C0A]">
                     {BUSINESS_INFO.hours}
                   </p>
-                  <p className="text-xs text-[#8A7F73] flex items-center gap-1 mt-0.5">
-                    <UserCheck className="w-3.5 h-3.5 text-[#B8733B]" aria-hidden="true" />
-                    <span>{BUSINESS_INFO.contactPerson}</span>
+                  <p className="text-xs text-[#8E8275] mt-0.5">
+                    Email: {BUSINESS_INFO.email}
                   </p>
                 </div>
               </div>
@@ -232,11 +238,11 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
 
             {/* Enquiry Form */}
             <div>
-              <h3 className="type-h3 font-semibold text-[#0E0C0A] mb-2">
-                Request Wholesale Quote
+              <h3 className="type-h3 font-bold text-[#0E0C0A] mb-2">
+                Request Project / Showroom Estimate
               </h3>
-              <p className="type-body text-[#8A7F73] mb-8">
-                Share door counts, dimensions, or hardware requirements for an accurate showroom estimate.
+              <p className="type-body text-[#8E8275] mb-8">
+                Share your room layout, door counts, modular kitchen requirements, or bespoke interior specs for a fixed factory estimate.
               </p>
 
               {submittedData ? (
@@ -478,8 +484,8 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
           <div className="lg:col-span-6 space-y-5">
             <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] rounded-[4px] overflow-hidden border border-[#B8733B]/30 bg-[#E6C98B]/15">
               <iframe
-                title="Door World Showroom Map — Kharar - Landran Rd near Ambika Devi Mandir"
-                src={BUSINESS_INFO.mapEmbedUrl}
+                title="Kumar Kitchen King and Door World Showroom Map - Plot 657, Sector 82, JLPL Mohali"
+                src={SITE_DATA.business.showroom.mapEmbedUrl}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full border-0"
@@ -489,22 +495,22 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
               <div>
-                <p className="font-display text-xl font-semibold text-[#0E0C0A]">
-                  {BUSINESS_INFO.name} Showroom
+                <p className="font-bold text-xl text-[#0E0C0A]">
+                  Kumar Kitchen King &amp; Door World
                 </p>
-                <p className="text-xs text-[#8A7F73]">
-                  {BUSINESS_INFO.landmark}, New Hari Enclave, Kharar
+                <p className="text-xs text-[#8E8275]">
+                  Plot No. 657, Sector 82, JLPL Industrial Area, Mohali, Punjab 140306
                 </p>
               </div>
 
               <MagneticButton
-                href={BUSINESS_INFO.mapDirectionsUrl}
+                href={SITE_DATA.business.showroom.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 wrapperClassName="w-full sm:w-auto inline-block"
-                className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#0E0C0A] hover:bg-[#B8733B] text-[#FBF8F3] text-xs uppercase tracking-[0.2em] font-semibold px-5 py-3.5 rounded-[4px] transition-colors whitespace-nowrap"
+                className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#0E0C0A] hover:bg-[#B8793A] text-[#FBF8F3] text-xs uppercase tracking-[0.2em] font-semibold px-5 py-3.5 rounded-[4px] transition-colors whitespace-nowrap"
               >
-                <Navigation className="w-3.5 h-3.5 text-[#E6C98B]" aria-hidden="true" />
+                <Navigation className="w-3.5 h-3.5 text-[#B8793A]" aria-hidden="true" />
                 <LinkRollText text="Get Directions" />
               </MagneticButton>
             </div>

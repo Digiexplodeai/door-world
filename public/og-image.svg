@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none" width="100%" height="100%">
+  <!-- Background with subtle dark vignette -->
+  <rect width="1200" height="630" fill="#0E0C0A"/>
+  <radialGradient id="ogGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#1F1813" stop-opacity="0.9"/>
+    <stop offset="100%" stop-color="#0E0C0A" stop-opacity="1"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#ogGlow)"/>
+
+  <!-- Subtle Copper Accent Borders -->
+  <rect x="40" y="40" width="1120" height="550" rx="12" fill="none" stroke="#B8793A" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- Logo Mark -->
+  <g transform="translate(120, 110)">
+    <!-- Base D Shape -->
+    <path d="M0 0 H80 C120 0 150 30 150 72 C150 114 120 144 80 144 H0 Z" fill="#171412" stroke="#B8793A" stroke-width="3"/>
+    <circle cx="80" cy="72" r="54" fill="none" stroke="#2A241F" stroke-width="2" stroke-dasharray="5 5"/>
+    <path d="M48 30 L96 18 L96 126 L48 114 Z" fill="#B8793A" stroke="#F7F3EC" stroke-width="2.5"/>
+    <circle cx="88" cy="72" r="3" fill="#F7F3EC"/>
+
+    <g transform="translate(180, 20)">
+      <text x="0" y="65" font-family="'Outfit', -apple-system, sans-serif" font-weight="900" font-size="72" fill="#FBF8F3" letter-spacing="2">DOORS</text>
+      <text x="290" y="65" font-family="'Outfit', -apple-system, sans-serif" font-weight="600" font-size="70" fill="#B8793A">world</text>
+      <text x="4" y="105" font-family="'Outfit', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#B8793A" letter-spacing="5">THE COMPLETE DOORS SOLUTIONS</text>
+      <text x="4" y="135" font-family="'Outfit', -apple-system, sans-serif" font-weight="600" font-size="17" fill="#F7F3EC" letter-spacing="2">by Kumar Kitchen King · The Complete Interior Solution</text>
+    </g>
+  </g>
+
+  <!-- Value propositions & locations -->
+  <g transform="translate(120, 360)">
+    <text x="0" y="30" font-family="'Outfit', -apple-system, sans-serif" font-weight="700" font-size="42" fill="#FBF8F3">Kitchens · Doors · Complete Interiors</text>
+    <text x="0" y="70" font-family="'Outfit', -apple-system, sans-serif" font-weight="400" font-size="22" fill="#8E8275">100% Factory Built with No Carpentry at Site · ISI Certified · Direct Mill-to-Site Pricing</text>
+    
+    <g transform="translate(0, 115)">
+      <rect x="0" y="0" width="460" height="50" rx="6" fill="#171412" stroke="#2A241F" stroke-width="1"/>
+      <text x="20" y="32" font-family="'Outfit', -apple-system, sans-serif" font-weight="600" font-size="16" fill="#B8793A">SHOWROOM:</text>
+      <text x="135" y="32" font-family="'Outfit', -apple-system, sans-serif" font-weight="500" font-size="16" fill="#F7F3EC">Plot 657, Sector 82, JLPL Mohali</text>
+    </g>
+
+    <g transform="translate(480, 115)">
+      <rect x="0" y="0" width="440" height="50" rx="6" fill="#171412" stroke="#2A241F" stroke-width="1"/>
+      <text x="20" y="32" font-family="'Outfit', -apple-system, sans-serif" font-weight="600" font-size="16" fill="#B8793A">CALL / WHATSAPP:</text>
+      <text x="195" y="32" font-family="'Outfit', -apple-system, sans-serif" font-weight="600" font-size="16" fill="#F7F3EC">98120 05418 / 0172-2912765</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0E0C0A"/>
+  <!-- D Shape -->
+  <path d="M12 12 H32 C46 12 54 20 54 32 C54 44 46 52 32 52 H12 Z" fill="#171412" stroke="#B8793A" stroke-width="2"/>
+  <!-- Swinging Door in Copper Wood -->
+  <path d="M22 20 L38 16 L38 48 L22 44 Z" fill="#B8793A" stroke="#E6DEC9" stroke-width="1.5"/>
+  <rect x="25" y="23" width="9" height="9" fill="#7A4B1F"/>
+  <rect x="25" y="34" width="9" height="8" fill="#7A4B1F"/>
+  <circle cx="35" cy="32" r="1.5" fill="#F7F3EC"/>
+</svg>

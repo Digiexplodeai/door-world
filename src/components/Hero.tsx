@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowDownRight, ArrowRight, Compass, DoorOpen, Star } from 'lucide-react';
-import { BUSINESS_INFO } from '../data/doorWorldData';
+import { ArrowDownRight, ArrowRight, Compass, DoorOpen, Phone } from 'lucide-react';
+import { SITE_DATA } from '../data/site';
 import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
 import { LinkRollText, MagneticButton } from './MagneticButton';
 
@@ -273,10 +273,11 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
 
   // Reduced motion mode: Static high-resolution hero with immediate CTAs
   if (prefersReducedMotion) {
+    const { contact } = SITE_DATA.business;
     return (
       <section
         id="home"
-        aria-label="Door World Architectural Entrance"
+        aria-label="Kumar Kitchen King and Door World Entrance"
         className="relative w-full min-h-[100svh] bg-[#0E0C0A] text-[#FBF8F3] flex flex-col justify-between"
       >
         <picture className="absolute inset-0 w-full h-full pointer-events-none">
@@ -284,51 +285,55 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
           <source srcSet="/videos/hero_doors_poster_mobile.webp" type="image/webp" media="(max-width: 767px)" />
           <img
             src="/videos/hero_doors_poster_desktop.jpg"
-            alt="Door World Solid Wooden Gates"
+            alt="Door World and Kumar Kitchen King Architectural Gates"
             className="w-full h-full object-cover object-center"
           />
         </picture>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[#0E0C0A]/60"
+          className="pointer-events-none absolute inset-0 bg-[#0E0C0A]/70"
         />
 
         <div className="relative z-10 max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-12 pt-32 pb-16 flex flex-col justify-between flex-1">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-[4px] bg-[#0E0C0A]/75 backdrop-blur-md border border-[#E6C98B]/35 text-[#E6C98B] type-eyebrow font-semibold uppercase tracking-[0.2em]">
-              <span>Kharar, Punjab · Bespoke Wooden Doors &amp; Hardware</span>
-            </div>
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-[4px] bg-[#0E0C0A]/75 backdrop-blur-md border border-[#E6C98B]/25 text-[#F1E8DA] type-eyebrow tabular-nums">
-              <Star className="w-3.5 h-3.5 text-[#E6C98B] fill-[#E6C98B]" aria-hidden="true" />
-              <span className="font-medium text-[#FBF8F3]">{BUSINESS_INFO.googleRating}</span>
-              <span className="text-[#8A7F73]">·</span>
-              <span>{BUSINESS_INFO.reviewCount} Reviews</span>
-            </div>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[4px] bg-[#0E0C0A]/85 backdrop-blur-md border border-[#B8793A]/40 text-[#B8793A] type-eyebrow font-bold uppercase tracking-[0.2em] w-fit">
+            <span>The Complete Interior Solution · Mohali &amp; Yamuna Nagar</span>
           </div>
 
-          <div className="max-w-2xl py-8">
-            <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-semibold text-[#FBF8F3] leading-[1.04] mb-5">
-              <span>Crafted Doors.</span>
-              <span className="block text-[#E6C98B] italic">Built to Last.</span>
+          <div className="max-w-3xl py-8">
+            <h1 className="font-sans text-4xl sm:text-6xl lg:text-7xl font-black text-[#FBF8F3] leading-[1.04] mb-4">
+              <span>The Complete</span>
+              <span className="block text-[#B8793A] italic font-serif">Interior Solution.</span>
             </h1>
-            <p className="text-xl sm:text-2xl text-[#F1E8DA] font-serif italic mb-6">
-              Where Exceptional Entrances Begin.
+            <p className="text-xl sm:text-2xl text-[#F7F3EC] font-sans font-medium mb-4">
+              Kitchens, Doors &amp; Bespoke Interiors
             </p>
+            <p className="text-sm sm:text-base text-[#8E8275] leading-relaxed max-w-xl mb-6">
+              Factory-manufactured European modular kitchens, solid architectural wooden doors, and turnkey interiors. 100% factory built with zero on-site carpentry work.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2 mb-8">
+              <span className="px-3 py-1 rounded-[3px] bg-[#171412] border border-[#B8793A]/40 text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">Factory Built</span>
+              <span className="px-3 py-1 rounded-[3px] bg-[#171412] border border-[#B8793A]/40 text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">No Carpentry at Site</span>
+              <span className="px-3 py-1 rounded-[3px] bg-[#171412] border border-[#B8793A]/40 text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">ISI Certified</span>
+              <span className="px-3 py-1 rounded-[3px] bg-[#171412] border border-[#B8793A]/40 text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">Custom Designs</span>
+            </div>
+
             <div className="flex flex-wrap items-center gap-4">
               <MagneticButton
-                onClick={onExploreClick}
-                className="min-h-[52px] inline-flex items-center justify-center gap-3 bg-[#B8733B] hover:bg-[#E6C98B] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-semibold px-8 py-4 rounded-[4px] shadow-lg transition-all"
-              >
-                <LinkRollText text="Explore Our Collection" />
-                <ArrowDownRight className="w-4 h-4 text-[#0E0C0A]" aria-hidden="true" />
-              </MagneticButton>
-              <MagneticButton
                 onClick={handleQuoteClick}
-                className="min-h-[52px] inline-flex items-center justify-center gap-3 border border-[#E6C98B]/50 hover:border-[#E6C98B] bg-[#0E0C0A]/70 text-[#FBF8F3] text-xs uppercase tracking-[0.2em] font-semibold px-8 py-4 rounded-[4px] transition-all"
+                className="min-h-[52px] inline-flex items-center justify-center gap-3 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded-[4px] shadow-lg transition-all"
               >
-                <LinkRollText text="Get a Quote" />
-                <ArrowRight className="w-4 h-4 text-[#E6C98B]" aria-hidden="true" />
+                <LinkRollText text="Get Free Quote" />
+                <ArrowRight className="w-4 h-4 text-[#0E0C0A]" aria-hidden="true" />
               </MagneticButton>
+
+              <a
+                href={`tel:+91${contact.primaryPhone}`}
+                className="min-h-[52px] inline-flex items-center justify-center gap-3 border border-[#B8793A]/50 hover:border-[#B8793A] bg-[#171412] text-[#FBF8F3] text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded-[4px] transition-all"
+              >
+                <Phone className="w-4 h-4 text-[#B8793A]" />
+                <span>Call Now: {contact.primaryPhoneDisplay}</span>
+              </a>
             </div>
           </div>
         </div>
@@ -420,44 +425,64 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
         >
           {/* Top Eyebrow Bar with Quick Skip Button (Clean layout, no bottom overlap) */}
           <div className="flex items-center justify-between gap-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#0E0C0A]/75 backdrop-blur-md border border-[#E6C98B]/35 text-[#E6C98B] type-eyebrow font-semibold uppercase tracking-[0.18em] shadow-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E6C98B] animate-pulse" aria-hidden="true" />
-              <span className="hidden sm:inline">Kharar, Punjab · Bespoke Wooden Doors &amp; Hardware</span>
-              <span className="sm:hidden">Door World · Bespoke Wooden Doors</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-[#0E0C0A]/85 backdrop-blur-md border border-[#B8793A]/40 text-[#B8793A] type-eyebrow font-bold uppercase tracking-[0.18em] shadow-lg">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B8793A] animate-pulse" aria-hidden="true" />
+              <span className="hidden sm:inline">Kumar Kitchen King · Sector 82, JLPL Mohali &amp; Yamuna Nagar</span>
+              <span className="sm:hidden">Kumar Kitchen King · Mohali</span>
             </div>
 
             <div className="flex items-center gap-2.5">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-[#0E0C0A]/75 backdrop-blur-md border border-[#E6C98B]/25 text-[#F1E8DA] type-eyebrow tabular-nums shadow-lg">
-                <Star className="w-3.5 h-3.5 text-[#E6C98B] fill-[#E6C98B]" aria-hidden="true" />
-                <span className="font-medium text-[#FBF8F3]">{BUSINESS_INFO.googleRating}</span>
-                <span className="hidden sm:inline text-[#8A7F73]">·</span>
-                <span className="hidden sm:inline">{BUSINESS_INFO.reviewCount} Verified Reviews</span>
-              </div>
-
               <button
                 type="button"
                 onClick={handleSkipToInterior}
-                className="text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#F1E8DA]/90 hover:text-[#E6C98B] bg-[#0E0C0A]/80 hover:bg-[#0E0C0A] backdrop-blur-md px-3 py-1.5 rounded-[4px] border border-[#E6C98B]/30 hover:border-[#E6C98B] transition-colors cursor-pointer whitespace-nowrap"
+                className="text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#F7F3EC] hover:text-[#B8793A] bg-[#0E0C0A]/80 hover:bg-[#0E0C0A] backdrop-blur-md px-3.5 py-1.5 rounded-[4px] border border-[#B8793A]/30 hover:border-[#B8793A] transition-colors cursor-pointer whitespace-nowrap font-medium"
               >
-                Skip →
+                Skip Walkthrough →
               </button>
             </div>
           </div>
 
-          {/* Main Editorial Headline - Positioned in the upper region to leave carved doors in clear view */}
+          {/* Main Editorial Headline - The Complete Interior Solution */}
           <div className="max-w-xl lg:max-w-2xl py-2 my-2 sm:my-auto">
-            <h1 className="font-serif text-[2.25rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.75rem] font-semibold text-[#FBF8F3] leading-[1.05] tracking-tight mb-3 drop-shadow-[0_4px_28px_rgba(14,12,10,0.95)]">
-              <span className="block">Crafted Doors.</span>
-              <span className="block text-[#E6C98B] italic font-medium">Built to Last.</span>
+            <h1 className="font-sans text-[2.25rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.75rem] font-black text-[#FBF8F3] leading-[1.04] tracking-tight mb-2.5 drop-shadow-[0_4px_28px_rgba(14,12,10,0.95)]">
+              <span className="block">The Complete</span>
+              <span className="block text-[#B8793A] italic font-serif">Interior Solution.</span>
             </h1>
 
-            <p className="text-base sm:text-xl md:text-2xl text-[#F1E8DA] font-serif italic mb-2.5 drop-shadow-[0_2px_12px_rgba(14,12,10,0.9)]">
-              Where Exceptional Entrances Begin.
+            <p className="text-base sm:text-xl md:text-2xl text-[#F7F3EC] font-sans font-medium mb-3 drop-shadow-[0_2px_12px_rgba(14,12,10,0.9)]">
+              Kitchens, Doors &amp; Turnkey Interiors
             </p>
 
-            <p className="text-xs sm:text-sm md:text-base text-[#F1E8DA]/85 font-sans leading-relaxed max-w-md drop-shadow-[0_2px_10px_rgba(14,12,10,0.85)]">
-              Scroll down to watch the solid wooden double gates swing open, unveiling the architectural entrance and interior collection.
+            <p className="text-xs sm:text-sm md:text-base text-[#8E8275] font-sans leading-relaxed max-w-lg mb-4 drop-shadow-[0_2px_10px_rgba(14,12,10,0.85)]">
+              Factory-manufactured European modular kitchens, solid architectural wooden doors, and turnkey interior joinery. 100% factory built with zero on-site carpentry work.
             </p>
+
+            {/* Trust Chips */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-5">
+              <span className="px-2.5 py-1 rounded-[3px] bg-[#0E0C0A]/85 border border-[#B8793A]/40 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">Factory Built</span>
+              <span className="px-2.5 py-1 rounded-[3px] bg-[#0E0C0A]/85 border border-[#B8793A]/40 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">No Carpentry at Site</span>
+              <span className="px-2.5 py-1 rounded-[3px] bg-[#0E0C0A]/85 border border-[#B8793A]/40 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">ISI Certified</span>
+              <span className="px-2.5 py-1 rounded-[3px] bg-[#0E0C0A]/85 border border-[#B8793A]/40 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#F7F3EC]">Custom Designs</span>
+            </div>
+
+            {/* Dual CTAs */}
+            <div className="flex flex-wrap items-center gap-3">
+              <MagneticButton
+                onClick={handleQuoteClick}
+                className="min-h-[46px] sm:min-h-[50px] inline-flex items-center justify-center gap-2.5 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold px-7 py-3.5 rounded-[4px] shadow-lg transition-all cursor-pointer"
+              >
+                <LinkRollText text="Get Free Quote" />
+                <ArrowRight className="w-4 h-4 text-[#0E0C0A]" aria-hidden="true" />
+              </MagneticButton>
+
+              <a
+                href={`tel:+91${SITE_DATA.business.contact.primaryPhone}`}
+                className="min-h-[46px] sm:min-h-[50px] inline-flex items-center justify-center gap-2.5 border border-[#B8793A]/50 hover:border-[#B8793A] bg-[#171412]/80 hover:bg-[#171412] text-[#FBF8F3] text-xs uppercase tracking-[0.18em] font-bold px-6 py-3.5 rounded-[4px] transition-all"
+              >
+                <Phone className="w-4 h-4 text-[#B8793A]" />
+                <span>Call: {SITE_DATA.business.contact.primaryPhoneDisplay}</span>
+              </a>
+            </div>
           </div>
 
           {/* Spacer to guarantee no collision with HUD */}
@@ -474,64 +499,64 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
         >
           {/* Top Eyebrow */}
           <div className="flex items-center justify-between">
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-[4px] bg-[#0E0C0A]/85 backdrop-blur-md border border-[#E6C98B]/35 text-[#E6C98B] type-eyebrow font-semibold uppercase tracking-[0.2em] shadow-lg">
-              <DoorOpen className="w-4 h-4 text-[#E6C98B]" />
-              <span>Door World · Architectural Timber Showroom</span>
+            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-[4px] bg-[#0E0C0A]/85 backdrop-blur-md border border-[#B8793A]/40 text-[#B8793A] type-eyebrow font-bold uppercase tracking-[0.2em] shadow-lg">
+              <DoorOpen className="w-4 h-4 text-[#B8793A]" />
+              <span>Door World · A Division of Kumar Kitchen King</span>
             </div>
 
-            <p className="type-eyebrow text-[#F1E8DA]/85 tracking-widest uppercase hidden sm:block bg-[#0E0C0A]/60 backdrop-blur-sm px-3 py-1 rounded-[3px] border border-white/10">
+            <p className="type-eyebrow text-[#8E8275] tracking-widest uppercase hidden sm:block bg-[#0E0C0A]/60 backdrop-blur-sm px-3 py-1 rounded-[3px] border border-[#2A241F]">
               Stage 04 / Sanctuary Unveiled
             </p>
           </div>
 
           {/* Main Reveal Headline & CTAs */}
           <div className="max-w-xl lg:max-w-2xl py-2 my-auto">
-            <h2 className="font-serif text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[#FBF8F3] leading-[1.05] tracking-tight mb-3 sm:mb-4 drop-shadow-[0_4px_28px_rgba(14,12,10,0.95)]">
-              Every Door Opens <br />
-              <span className="text-[#E6C98B] italic">a New Story.</span>
+            <h2 className="font-sans text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#FBF8F3] leading-[1.05] tracking-tight mb-3 sm:mb-4 drop-shadow-[0_4px_28px_rgba(14,12,10,0.95)]">
+              Crafted Precision. <br />
+              <span className="text-[#B8793A] italic font-serif">Engineered to Endure.</span>
             </h2>
 
-            <p className="text-xs sm:text-base md:text-lg lg:text-xl text-[#F1E8DA]/95 font-sans leading-relaxed max-w-lg mb-5 sm:mb-8 drop-shadow-[0_2px_12px_rgba(14,12,10,0.9)]">
-              Discover exquisitely finished solid teak doors, contemporary pivot entries, and precision hardware crafted for enduring luxury.
+            <p className="text-xs sm:text-base md:text-lg text-[#F7F3EC]/90 font-sans leading-relaxed max-w-lg mb-6 sm:mb-8 drop-shadow-[0_2px_12px_rgba(14,12,10,0.9)]">
+              Experience our classic European Designer Series kitchens and custom solid timber entrance doors manufactured at our Yamuna Nagar plant.
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <MagneticButton
                 onClick={onExploreClick}
                 wrapperClassName="w-full sm:w-auto inline-block"
-                className="w-full sm:w-auto min-h-[46px] sm:min-h-[52px] inline-flex items-center justify-center gap-3 bg-[#B8733B] hover:bg-[#E6C98B] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-[4px] shadow-lg shadow-[#B8733B]/30 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto min-h-[46px] sm:min-h-[52px] inline-flex items-center justify-center gap-3 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-[4px] shadow-lg shadow-[#B8793A]/30 transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
-                <LinkRollText text="Explore Our Collection" />
+                <LinkRollText text="Explore Kitchens &amp; Doors" />
                 <ArrowDownRight className="w-4 h-4 text-[#0E0C0A]" aria-hidden="true" />
               </MagneticButton>
 
               <MagneticButton
                 onClick={handleQuoteClick}
                 wrapperClassName="w-full sm:w-auto inline-block"
-                className="w-full sm:w-auto min-h-[46px] sm:min-h-[52px] inline-flex items-center justify-center gap-3 border border-[#E6C98B]/50 hover:border-[#E6C98B] bg-[#0E0C0A]/75 hover:bg-[#E6C98B]/10 backdrop-blur-md text-[#FBF8F3] hover:text-[#E6C98B] text-xs uppercase tracking-[0.2em] font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-[4px] transition-all duration-300 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto min-h-[46px] sm:min-h-[52px] inline-flex items-center justify-center gap-3 border border-[#B8793A]/50 hover:border-[#B8793A] bg-[#171412]/80 hover:bg-[#171412] backdrop-blur-md text-[#FBF8F3] hover:text-[#B8793A] text-xs uppercase tracking-[0.2em] font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-[4px] transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 <LinkRollText text="Get a Quote" />
-                <ArrowRight className="w-4 h-4 text-[#E6C98B]" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4 text-[#B8793A]" aria-hidden="true" />
               </MagneticButton>
             </div>
           </div>
 
           {/* Bottom Architectural Specs Strip */}
-          <div className="w-full pt-3 sm:pt-6 border-t border-[#E6C98B]/25 flex items-center justify-between gap-4">
+          <div className="w-full pt-3 sm:pt-6 border-t border-[#B8793A]/30 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 sm:gap-10">
               <div>
-                <p className="type-eyebrow text-[#E6C98B] font-semibold text-[10px] sm:text-xs">Seasoned Teak</p>
-                <p className="text-[10px] sm:text-xs text-[#F1E8DA]/80">Kiln-seasoned hardwood</p>
+                <p className="type-eyebrow text-[#B8793A] font-bold text-[10px] sm:text-xs">Yamuna Nagar Plant</p>
+                <p className="text-[10px] sm:text-xs text-[#8E8275]">100% Factory Built</p>
               </div>
-              <div className="w-px h-5 bg-[#E6C98B]/30" />
+              <div className="w-px h-5 bg-[#2A241F]" />
               <div>
-                <p className="type-eyebrow text-[#E6C98B] font-semibold text-[10px] sm:text-xs">Custom Sizing</p>
-                <p className="text-[10px] sm:text-xs text-[#F1E8DA]/80">Pivot &amp; double entries</p>
+                <p className="type-eyebrow text-[#B8793A] font-bold text-[10px] sm:text-xs">Sector 82, JLPL Mohali</p>
+                <p className="text-[10px] sm:text-xs text-[#8E8275]">Showroom &amp; Master Gallery</p>
               </div>
             </div>
 
-            <p className="text-[10px] sm:text-xs text-[#E6C98B] uppercase tracking-[0.16em] font-medium drop-shadow-[0_1px_4px_rgba(14,12,10,0.8)]">
-              Scroll for Collections ↓
+            <p className="text-[10px] sm:text-xs text-[#B8793A] uppercase tracking-[0.16em] font-semibold drop-shadow-[0_1px_4px_rgba(14,12,10,0.8)]">
+              Scroll for Kitchens &amp; Doors ↓
             </p>
           </div>
         </div>

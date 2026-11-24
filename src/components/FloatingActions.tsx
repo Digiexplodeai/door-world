@@ -80,7 +80,7 @@ export function FloatingActions() {
   const showMobileBar = pastHero && !blockedSectionVisible && !scrollingDownFast;
 
   const quickWhatsAppHref = buildWhatsAppUrl(
-    `Hello ${BUSINESS_INFO.contactPerson}, I found Door World online and would like wholesale door rates.`
+    `Hello Kumar Kitchen King & Door World, I am enquiring about modular kitchens, doors, and turnkey interior solutions.`
   );
 
   return (
@@ -131,7 +131,7 @@ export function FloatingActions() {
               />
             )}
             <span className="relative z-10 text-[11px] uppercase tracking-[0.14em] font-semibold">
-              Get Wholesale Rates →
+              Get Kitchen &amp; Door Quote →
             </span>
           </a>
 

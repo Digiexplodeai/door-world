@@ -2,33 +2,31 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { AboutSection } from './components/AboutSection';
 import { AnnouncementBar } from './components/AnnouncementBar';
-import { ArchWholesaleBanner } from './components/ArchWholesaleBanner';
-import { BigNumbersBand } from './components/BigNumbersBand';
 import { ContactSection } from './components/ContactSection';
 import { CustomCursor } from './components/CustomCursor';
-import { DoorConfigurator } from './components/DoorConfigurator';
-import { DoorOpeningCtaBanner } from './components/DoorOpeningCtaBanner';
-import { DoorPanelCollections } from './components/DoorPanelCollections';
-import { EditorialReviews } from './components/EditorialReviews';
-import { EditorialStory } from './components/EditorialStory';
+import { DoorsSection } from './components/DoorsSection';
 import { FloatingActions } from './components/FloatingActions';
 import { Footer } from './components/Footer';
+import { GallerySection } from './components/GallerySection';
 import { Hero } from './components/Hero';
-import { HorizontalGallery } from './components/HorizontalGallery';
 import { IntroPreloader } from './components/IntroPreloader';
+import { ModularKitchensShowcase } from './components/ModularKitchensShowcase';
 import { Navbar } from './components/Navbar';
-import { ScrollProgress, SectionIndicator } from './components/ScrollProgress';
-import { SpotlightGrainBanner } from './components/SpotlightGrainBanner';
-import { StatsRibbonBanner } from './components/StatsRibbonBanner';
-import { TiltedRibbonsBanner } from './components/TiltedRibbonsBanner';
+import { PartnerBrandsStrip } from './components/PartnerBrandsStrip';
+import { ProcessSection } from './components/ProcessSection';
+import { ScrollProgress } from './components/ScrollProgress';
+import { ServicesGrid } from './components/ServicesGrid';
+import { ShowroomFactorySection } from './components/ShowroomFactorySection';
+import { WhyChooseUs } from './components/WhyChooseUs';
 import { useMotionCapabilities } from './hooks/useMotionCapabilities';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function App() {
   const { prefersReducedMotion, isTouchDevice } = useMotionCapabilities();
-  const [selectedDoorType, setSelectedDoorType] = useState<string>('');
+  const [selectedInterest, setSelectedInterest] = useState<string>('');
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -81,7 +79,7 @@ export function App() {
 
   const handleEnquireNavigation = useCallback(
     (itemLabel: string) => {
-      setSelectedDoorType(itemLabel);
+      setSelectedInterest(itemLabel);
       scrollToTarget('#contact');
     },
     [scrollToTarget]
@@ -91,14 +89,13 @@ export function App() {
     <div className="min-h-[100svh] lg:min-h-screen flex flex-col bg-[#0E0C0A] text-[#0E0C0A]">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[130] focus:bg-[#B8733B] focus:text-[#FBF8F3] focus:font-semibold focus:px-4 focus:py-2 focus:rounded-[4px]"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[130] focus:bg-[#B8793A] focus:text-[#0E0C0A] focus:font-bold focus:px-4 focus:py-2 focus:rounded-[4px]"
       >
         Skip to main content
       </a>
 
       <IntroPreloader />
       <ScrollProgress />
-      <SectionIndicator />
       <CustomCursor />
 
       <AnnouncementBar
@@ -110,28 +107,51 @@ export function App() {
         hasAnnouncement={showAnnouncement}
       />
 
-      {/* Main Content sits above Curtain Footer (z-10 vs z-0) */}
+      {/* Main Content */}
       <main id="main-content" className="relative z-10 flex-1 bg-[#0E0C0A]">
+        {/* 1 & 2. Hero Section: The Complete Interior Solution */}
         <Hero
-          onExploreClick={() => scrollToTarget('#collections')}
+          onExploreClick={() => scrollToTarget('#kitchens')}
           onQuoteClick={() => scrollToTarget('#contact')}
         />
-        <TiltedRibbonsBanner />
-        <DoorPanelCollections onEnquireCategory={handleEnquireNavigation} />
-        <ArchWholesaleBanner />
-        <StatsRibbonBanner />
-        <DoorConfigurator />
-        <SpotlightGrainBanner />
-        <EditorialStory />
-        <BigNumbersBand />
-        <HorizontalGallery onEnquireDesign={handleEnquireNavigation} />
-        <EditorialReviews />
-        <ContactSection preselectedDoorType={selectedDoorType} />
-        <DoorOpeningCtaBanner />
+
+        {/* 8. Partner Brands Strip */}
+        <PartnerBrandsStrip />
+
+        {/* 4. Modular Kitchens Showcase (Main Feature) */}
+        <ModularKitchensShowcase onEnquireKitchen={handleEnquireNavigation} />
+
+        {/* 5. Doors Section (Second Major Section) */}
+        <DoorsSection onEnquireDoor={handleEnquireNavigation} />
+
+        {/* 3. Services Grid (9 Core Services from Showroom Signboard) */}
+        <ServicesGrid onEnquireService={handleEnquireNavigation} />
+
+        {/* 6. Why Choose Us (4-6 Points based only on real data) */}
+        <WhyChooseUs />
+
+        {/* 7. Process (5 Steps: Consultation to Delivery & Fitting) */}
+        <ProcessSection />
+
+        {/* 9. Gallery Section (Filterable Masonry Grid with Lightbox) */}
+        <GallerySection />
+
+        {/* 10. Visit Our Showroom & Factory Section */}
+        <ShowroomFactorySection />
+
+        {/* 11. About Section (Story-led copy) */}
+        <AboutSection />
+
+        {/* 12. Contact & Quote Section */}
+        <ContactSection preselectedDoorType={selectedInterest} />
+
         <div id="footer-visibility-sentinel" className="h-px w-full pointer-events-none" />
       </main>
 
+      {/* 13. Footer */}
       <Footer onNavigate={scrollToTarget} />
+
+      {/* Floating Actions on Mobile */}
       <FloatingActions />
     </div>
   );
