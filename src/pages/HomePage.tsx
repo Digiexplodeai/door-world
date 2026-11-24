@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronRight, Eye, ShieldCheck, Sparkles } from 'lucide-react';
 import { SeoHead } from '../components/SeoHead';
@@ -9,16 +9,18 @@ import { ServicesGrid } from '../components/ServicesGrid';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { ShowroomFactorySection } from '../components/ShowroomFactorySection';
 import { DoorOpeningCtaBanner } from '../components/DoorOpeningCtaBanner';
-import { DOORS_CATALOGUE, KITCHEN_CATALOGUE_ITEMS, SITE_DATA } from '../data/site';
+import { KITCHEN_CATALOGUE_ITEMS, SITE_DATA } from '../data/site';
+import { HOME_FEATURED_DOORS } from '../data/doors';
+import { DoorImage } from '../components/DoorImage';
+import { DoorLightbox } from '../components/DoorLightbox';
 import { LinkRollText, MagneticButton } from '../components/MagneticButton';
 
 export const HomePage: FC = () => {
   const navigate = useNavigate();
+  const [activeDoorIndex, setActiveDoorIndex] = useState<number | null>(null);
 
   // Featured 3-4 kitchens for the homepage
   const featuredKitchens = KITCHEN_CATALOGUE_ITEMS.slice(0, 3);
-  // Featured 3 doors for the homepage
-  const featuredDoors = DOORS_CATALOGUE.slice(0, 3);
 
   return (
     <>
@@ -135,48 +137,53 @@ export const HomePage: FC = () => {
               to="/doors"
               className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-[0.2em] text-[#FBF8F3] hover:text-[#B8793A] transition-colors self-start md:self-end pb-1 border-b border-white/20 hover:border-[#B8793A]"
             >
-              <span>Explore All Doors ({DOORS_CATALOGUE.length} Collections)</span>
+              <span>Explore All Doors &amp; Collections</span>
               <ArrowRight className="w-4 h-4 text-[#B8793A]" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredDoors.map((door) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HOME_FEATURED_DOORS.map((door, index) => (
               <div
                 key={door.id}
                 className="group bg-[#171412] rounded-[8px] overflow-hidden border border-[#2A241F] hover:border-[#B8793A]/60 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#171412]">
-                  <img
+                <div className="relative">
+                  <DoorImage
                     src={door.image}
-                    alt={door.imageAlt}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt={door.alt}
+                    aspectRatio="4/5"
+                    onClick={() => setActiveDoorIndex(index)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/90 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-3 left-3">
+                  <div className="absolute top-3 left-3 pointer-events-none">
                     <span className="text-[10px] uppercase font-mono font-bold tracking-widest bg-[#0E0C0A]/85 backdrop-blur-md text-[#B8793A] px-2.5 py-1 rounded-[3px] border border-[#B8793A]/30">
                       {door.category}
                     </span>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setActiveDoorIndex(index)}
+                    aria-label={`View ${door.title} in full resolution`}
+                    className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-[#0E0C0A]/80 hover:bg-[#B8793A] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col justify-between">
+                <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-bold text-[#FBF8F3] mb-2 group-hover:text-[#B8793A] transition-colors">
-                      {door.name}
+                    <h3 className="text-lg font-bold text-[#FBF8F3] mb-2 group-hover:text-[#B8793A] transition-colors">
+                      {door.title}
                     </h3>
                     <p className="text-xs text-[#8E8275] leading-relaxed line-clamp-2 mb-4">
                       {door.description}
                     </p>
-                    <p className="text-[11px] font-mono text-[#D49557] mb-4">
-                      {door.dimensions}
-                    </p>
                   </div>
 
-                  <div className="pt-4 border-t border-[#2A241F] flex items-center justify-between">
+                  <div className="pt-3 border-t border-[#2A241F] flex items-center justify-between">
                     <Link
-                      to={`/contact?product=${encodeURIComponent(`Door World: ${door.name}`)}`}
+                      to={`/contact?product=${encodeURIComponent(`Door World: ${door.title}`)}`}
                       className="text-xs font-bold uppercase tracking-[0.18em] text-[#B8793A] hover:text-[#D49557] inline-flex items-center gap-1.5 transition-colors"
                     >
                       <span>Enquire Rate</span>
@@ -191,6 +198,15 @@ export const HomePage: FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Door Lightbox */}
+        <DoorLightbox
+          doors={HOME_FEATURED_DOORS}
+          currentIndex={activeDoorIndex ?? 0}
+          isOpen={activeDoorIndex !== null}
+          onClose={() => setActiveDoorIndex(null)}
+          onIndexChange={(idx) => setActiveDoorIndex(idx)}
+        />
       </section>
 
       {/* 7. Why Choose Us */}

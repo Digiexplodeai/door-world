@@ -8,6 +8,7 @@
  */
 
 import { SITE_IMAGES } from './images';
+import { ALL_DOORS, INTERIORS_WALL_PANELLING } from './doors';
 
 export interface NavLinkItem {
   label: string;
@@ -217,8 +218,8 @@ export const SHOWROOM_SERVICES: ServiceItem[] = [
     title: 'Doors (Door World)',
     subtitle: 'Solid Wood, Carved & Designer Doors',
     description: 'The Complete Doors Solutions: Burma Teak, natural Walnut, carved entrance designs, decorative laminate doors, and seasoned timber chaukhats.',
-    image: SITE_IMAGES.doors.concentricMolded11,
-    imageAlt: 'Door World architectural wooden entrance door with concentric molded profiles and casing',
+    image: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
+    imageAlt: 'Radial carved solid wood entrance door by Door World',
     category: 'doors',
     iconName: 'DoorOpen',
   },
@@ -237,8 +238,8 @@ export const SHOWROOM_SERVICES: ServiceItem[] = [
     title: 'Interiors',
     subtitle: 'Complete Turnkey Architectural Solutions',
     description: 'Comprehensive residential and commercial interior woodwork designed, precision CNC-cut at our factory, and seamlessly assembled under one roof.',
-    image: null,
-    imageAlt: 'Architectural living room wall paneling and customized furniture integration',
+    image: '/images/doors/web/wall-panelling/22-wood-panelled-corridor.webp',
+    imageAlt: 'Architectural wood panelled corridor and flush door interior',
     category: 'interiors',
     iconName: 'LayoutGrid',
   },
@@ -257,8 +258,8 @@ export const SHOWROOM_SERVICES: ServiceItem[] = [
     title: 'Wallpapers & Blinds',
     subtitle: 'Curated Designer Textures & Automation',
     description: 'Imported architectural textured wallpapers, motorized roller blinds, blackout fabrics, and acoustic wall coverings for modern homes.',
-    image: null,
-    imageAlt: 'Textured designer wallpaper with motorized architectural window blinds',
+    image: '/images/doors/web/wall-panelling/53-dark-patterned-wall-panelling.webp',
+    imageAlt: 'Dark patterned architectural wall panelling and interior coverings',
     category: 'decor',
     iconName: 'Sun',
   },
@@ -508,63 +509,58 @@ export const KITCHEN_FEATURE_HIGHLIGHTS = [
 export const DOORS_CATALOGUE: DoorProductItem[] = [
   {
     id: 'grand-villa-entrance',
-    name: 'Grand Villa Entrance Double Doors',
+    name: 'Radial Grid Double Entrance Door',
     category: 'Grand Entrance' as any,
-    description: 'Symmetrical floor-to-ceiling natural Burma Teak double pivot doors with matching timber soffit ceiling, warm ambient illumination, and integrated sidelight glass panels.',
+    description: 'Symmetrical floor-to-ceiling architectural double doors with geometric wood grid geometry, warm ambient illumination, and solid frame casing.',
     woodOptions: ['Burma Teak', 'American Walnut', 'Kiln-Seasoned Hardwood'],
-    dimensions: 'Custom heights up to 10ft (Double Pivot)',
-    // TODO: Client to confirm real door product prices
+    dimensions: 'Custom heights up to 10ft (Double Leaf)',
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: SITE_IMAGES.doors.luxuryVillaEntrance01,
-    imageAlt: 'Symmetrical modern luxury villa entrance with solid teak double pivot doors, warm ambient lanterns, and stone pathway',
+    image: '/images/doors/web/double-entrance/47-radial-grid-double-door.webp',
+    imageAlt: 'Architectural radial grid double entrance door with geometric wood panels',
   },
   {
     id: 'solid-wood-panel',
-    name: 'Solid Wood Panel Doors',
+    name: 'White Classic Panel Door',
     category: 'Solid Wood Panel',
-    description: 'Seasoned Burma Teak, natural Walnut, and White Oak panel doors constructed with traditional mortise-and-tenon joints for lifelong dimensional stability.',
+    description: 'Seasoned solid wood panel construction with traditional mortise-and-tenon joints for lifelong dimensional stability.',
     woodOptions: ['Burma Teak', 'American Walnut', 'White Oak', 'Champagne Ash'],
     dimensions: 'Custom heights up to 9ft (Single & Double Leaf)',
-    // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: SITE_IMAGES.doors.cofferedPanelDouble03,
-    imageAlt: 'Classic double solid wood doors with coffered raised square panels set inside a carved timber frame',
+    image: '/images/doors/web/classic-panel/05-white-classic-panel-door.webp',
+    imageAlt: 'Classic white painted panel interior door with molded bevels',
   },
   {
     id: 'carved-designer-doors',
-    name: 'Carved Designer Doors',
+    name: 'Radial Carved Wood Entrance Door',
     category: 'Carved Designer',
-    description: 'Precision CNC 3D carved motifs, traditional Indian heritage carvings, geometric fluted textures, and bespoke architectural entrance statements.',
+    description: 'Precision 3D CNC machined sunburst geometry, architectural relief depth, and bespoke entrance statement.',
     woodOptions: ['Selected Seasoned Teak', 'High-Density Engineered Hardwood'],
     dimensions: 'Standard 8ft x 4ft & Bespoke Villa Sizes',
-    // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: SITE_IMAGES.doors.carvedLatticeTeak02,
-    imageAlt: 'Handcrafted teak double entrance door featuring intricate geometric lattice panels, central relief carvings, and timber surround',
+    image: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
+    imageAlt: 'Radial carved solid wood entrance door with central sunburst motif',
   },
   {
     id: 'laminated-decorative-doors',
-    name: 'Laminated & Decorative Doors',
+    name: 'Vertical Fluted Wood Door',
     category: 'Laminated Decorative',
-    description: 'Heavy-duty flush doors pressed with high-pressure designer laminates from Stylam, Merino, and Greenlam. Scratch, moisture, and termite resistant.',
+    description: 'Continuous vertical fluted architectural design with tactile linear depth and moisture-resistant solid core.',
     woodOptions: ['Solid Tubular Core', 'Kiln-Dried Hardwood Pine Frame'],
     dimensions: '7ft x 3ft, 7ft x 3.25ft, 8ft x 3.5ft',
-    // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: SITE_IMAGES.doors.chevronTextured07,
-    imageAlt: 'Contemporary walnut veneer flush door with precision chevron routered texture and vertical frame',
+    image: '/images/doors/web/fluted-textured/09-vertical-fluted-wood-door.webp',
+    imageAlt: 'Full-height vertical fluted timber door with rich wood grain',
   },
   {
     id: 'timber-frames-chaukhat',
-    name: 'Timber Frames (Chaukhats)',
+    name: 'Ornate Carved Wood Door',
     category: 'Timber Frames',
-    description: 'Kiln-seasoned hardwood door frames precision planed and rebated for air-tight gasket seals and heavy solid wood door hanging.',
+    description: 'Deep relief architectural carvings paired with heavy kiln-seasoned hardwood chaukhat frame.',
     woodOptions: ['Malaysian Sal Wood', 'Teak Wood', 'Red Miranti', 'Marandi'],
     dimensions: 'Section sizes: 4"x2.5", 5"x2.5", 6"x2.5"',
-    // TODO: Client to confirm real chaukhat running-foot rates
     pricingNote: 'Request custom quotation based on running-foot specification.',
-    image: SITE_IMAGES.doors.sunburstRadialPivot08,
-    imageAlt: 'Architectural sunburst radial teak pivot door with brass crescent handle in natural stone and timber frame casing',
+    image: '/images/doors/web/cnc-carved/06-ornate-carved-wood-door.webp',
+    imageAlt: 'Deeply carved architectural wooden door with ornamental scrollwork',
   },
 ];
 
@@ -665,69 +661,40 @@ export const PROCESS_STEPS: ProcessStep[] = [
 // 8. GALLERY ITEMS (CROSS-CATEGORY SHOWCASE)
 // ============================================================================
 export const GALLERY_ITEMS: GalleryImage[] = [
+  // 1. All Doors from Verified Doors Catalogue (30 Verified Real Doors)
+  ...ALL_DOORS.map((door, idx) => ({
+    id: `gal-door-${idx + 1}`,
+    title: door.title,
+    category: 'Doors' as const,
+    tag: door.category,
+    image: door.image,
+    imageAlt: door.alt,
+    aspect: 'tall' as const,
+  })),
+
+  // 2. Interiors Wall Panelling References (3 Real Panelling Slots)
+  ...INTERIORS_WALL_PANELLING.map((item, idx) => ({
+    id: `gal-interior-${idx + 1}`,
+    title: item.title,
+    category: 'Interiors' as const,
+    tag: 'Wall Panelling',
+    image: item.image,
+    imageAlt: item.alt,
+    aspect: 'tall' as const,
+  })),
+
+  // 3. Showroom Storefront Photo
   {
-    id: 'gal-door-1',
-    title: 'Circular Medallion Solid Teak Doors',
-    category: 'Doors',
-    tag: 'Handcrafted Relief',
-    image: SITE_IMAGES.doors.circularMedallion04,
-    imageAlt: 'Solid wood double entrance doors with a carved circular medallion center and antique brass pull handles',
-    aspect: 'tall',
+    id: 'gal-showroom-1',
+    title: 'Kumar Kitchen King Master Gallery',
+    category: 'Interiors',
+    tag: 'Mohali Showroom',
+    image: SITE_IMAGES.showroom.storefront,
+    imageAlt: 'Kumar Kitchen King Master Gallery and Showroom in Sector 82, JLPL Industrial Area Mohali',
+    aspect: 'wide',
   },
-  {
-    id: 'gal-door-2',
-    title: 'Organic Wave Sculpted Entrance Door',
-    category: 'Doors',
-    tag: 'Architectural Sculptural',
-    image: SITE_IMAGES.doors.artisticWave05,
-    imageAlt: 'Contemporary designer entrance door with organic wave groove carvings and custom sculpted wooden handle in marble surround',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-door-3',
-    title: 'Chevron Fluted Walnut Entrance Door',
-    category: 'Doors',
-    tag: 'Textured Walnut',
-    image: SITE_IMAGES.doors.chevronFlutedWalnut06,
-    imageAlt: 'Modern natural walnut door with horizontal grain panels and central chevron fluted texture',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-door-4',
-    title: 'Bleached Ash Fluted Interior Door',
-    category: 'Doors',
-    tag: 'Contemporary Fluted',
-    image: SITE_IMAGES.doors.flutedAcoustic09,
-    imageAlt: 'Minimalist luxury interior door with bottom fluted relief, textured border, and integrated vertical jamb lighting',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-door-5',
-    title: 'Carved Floral Acanthus Sliding Door',
-    category: 'Doors',
-    tag: 'Barn Sliding System',
-    image: SITE_IMAGES.doors.carvedFloralBarn10,
-    imageAlt: 'Matte black wooden sliding barn door with deep traditional floral acanthus carvings on steel roller track',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-door-6',
-    title: 'Classic Three-Panel Espresso Door',
-    category: 'Doors',
-    tag: 'Molded Profiles',
-    image: SITE_IMAGES.doors.classicThreePanel12,
-    imageAlt: 'Dark espresso finished three-panel interior door with clean molded profiles and silver lever handle',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-door-7',
-    title: 'Concentric Molded Security Entrance Door',
-    category: 'Doors',
-    tag: 'Architectural Casing',
-    image: SITE_IMAGES.doors.concentricMolded11,
-    imageAlt: 'Matte black architectural entrance door with concentric circular molded panels and heavy casing',
-    aspect: 'tall',
-  },
+
+  // 4. Kitchen Items (UNTOUCHED per brief)
   {
     id: 'gal-kitchen-1',
     title: 'High Reflective White Modular Island',
@@ -772,15 +739,6 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     image: SITE_IMAGES.kitchens.kkk142,
     imageAlt: 'Tudor arched cabinet door style with English country inspired modular layout',
     aspect: 'tall',
-  },
-  {
-    id: 'gal-showroom-1',
-    title: 'Kumar Kitchen King Master Gallery',
-    category: 'Interiors',
-    tag: 'Mohali Showroom',
-    image: SITE_IMAGES.showroom.storefront,
-    imageAlt: 'Kumar Kitchen King Master Gallery and Showroom in Sector 82, JLPL Industrial Area Mohali',
-    aspect: 'wide',
   },
 ];
 

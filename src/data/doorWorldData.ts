@@ -138,29 +138,29 @@ export const DOOR_STYLES: DoorStyleOption[] = [
     id: 'solid-panel',
     name: 'Solid Panel',
     tagline: 'Traditional Mortise & Tenon Construction',
-    image: '/images/doors/coffered-panel-double-door-03.webp',
-    imageAlt: 'Classic double solid wood doors with coffered raised square panels',
+    image: '/images/doors/web/classic-panel/05-white-classic-panel-door.webp',
+    imageAlt: 'White classic panel door with molded bevels',
   },
   {
     id: 'carved',
     name: 'Carved 3D',
     tagline: 'Hand-Finished & CNC Architectural Carvings',
-    image: '/images/doors/carved-lattice-teak-door-02.webp',
-    imageAlt: 'Handcrafted teak double entrance door featuring intricate geometric lattice panels',
+    image: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
+    imageAlt: 'Radial carved solid wood entrance door with central sunburst motif',
   },
   {
     id: 'laminated',
     name: 'Laminated',
     tagline: 'High-Pressure Scratch & Moisture Resistant',
-    image: '/images/doors/chevron-textured-interior-door-07.webp',
-    imageAlt: 'Contemporary walnut veneer flush door with precision chevron routered texture',
+    image: '/images/doors/web/fluted-textured/09-vertical-fluted-wood-door.webp',
+    imageAlt: 'Full-height vertical fluted timber door with rich wood grain',
   },
   {
     id: 'modular-fluted',
     name: 'Fluted Slats',
     tagline: 'Modern Slatted Glass & Wood Detailing',
-    image: '/images/doors/chevron-fluted-walnut-door-06.webp',
-    imageAlt: 'Modern natural walnut door with horizontal grain panels and central chevron fluted texture',
+    image: '/images/doors/web/fluted-textured/33-taupe-fluted-panel-door.webp',
+    imageAlt: 'Earthy taupe door with precision fluted vertical paneling',
   },
 ];
 
@@ -186,7 +186,7 @@ export const MARQUEE_ITEMS = [
 import { SITE_IMAGES } from './images';
 
 export const SPOTLIGHT_WOOD_IMAGE = {
-  src: SITE_IMAGES.doors.chevronFlutedWalnut06,
+  src: '/images/doors/web/fluted-textured/09-vertical-fluted-wood-door.webp',
   alt: 'Architectural wood grain detailing',
 } as const;
 
@@ -194,22 +194,22 @@ export const ARCH_BANNER_WINDOWS = [
   {
     id: 'arch-1',
     title: 'Solid Panel Heritage',
-    src: SITE_IMAGES.doors.cofferedPanelDouble03,
-    alt: 'Solid teak raised panel interior door in bright hallway',
+    src: '/images/doors/web/classic-panel/18-light-wood-panel-door.webp',
+    alt: 'Natural light oak solid wood panel door',
     heightClass: 'h-[260px] sm:h-[310px] lg:h-[330px]',
   },
   {
     id: 'arch-2',
-    title: 'Sunlit Showroom Double',
-    src: SITE_IMAGES.doors.luxuryVillaEntrance01,
-    alt: 'Sunlit golden teak double entrance doors inside luxury showroom',
+    title: 'Radial Grid Double Portal',
+    src: '/images/doors/web/double-entrance/47-radial-grid-double-door.webp',
+    alt: 'Architectural radial grid double entrance doors',
     heightClass: 'h-[310px] sm:h-[380px] lg:h-[410px]',
   },
   {
     id: 'arch-3',
-    title: 'Carved Main Entrance',
-    src: SITE_IMAGES.doors.carvedLatticeTeak02,
-    alt: 'Carved wooden double doors with traditional ornamental motifs',
+    title: 'Ornate Carved Entrance',
+    src: '/images/doors/web/cnc-carved/06-ornate-carved-wood-door.webp',
+    alt: 'Carved wooden doors with traditional ornamental motifs',
     heightClass: 'h-[270px] sm:h-[330px] lg:h-[360px]',
   },
 ];
@@ -221,7 +221,7 @@ export const COLLECTION_CATEGORIES = [
     title: 'Solid Wood Panel Doors',
     woodSpec: 'Seasoned Burma Teak & Walnut',
     description: 'Bespoke solid timber doors handcrafted with mortise & tenon joinery.',
-    image: SITE_IMAGES.doors.cofferedPanelDouble03,
+    image: '/images/doors/web/classic-panel/05-white-classic-panel-door.webp',
     imageAlt: 'Solid timber raised panel door',
   },
   {
@@ -230,7 +230,7 @@ export const COLLECTION_CATEGORIES = [
     title: 'Carved Architectural Entrances',
     woodSpec: 'High-Density Hardwood & CNC Motifs',
     description: 'Intricately carved grand entrance doors with timeless motifs.',
-    image: SITE_IMAGES.doors.carvedLatticeTeak02,
+    image: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
     imageAlt: 'Carved luxury entrance door',
   },
 ];

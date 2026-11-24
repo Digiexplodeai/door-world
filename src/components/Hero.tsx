@@ -24,7 +24,7 @@ export const Hero: FC<HeroProps> = ({ onExploreClick, onQuoteClick }) => {
       <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden bg-[#120D09]">
         <img
           src={SITE_IMAGES.hero.background}
-          alt="Kumar Kitchen King and Door World luxury villa entrance with solid Burma teak doors and warm ambient lighting"
+          alt="Radial carved wood entrance door by Door World"
           fetchPriority="high"
           loading="eager"
           decoding="async"

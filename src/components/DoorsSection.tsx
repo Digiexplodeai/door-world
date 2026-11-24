@@ -1,31 +1,44 @@
 import { FC, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Compass, DoorOpen, ShieldCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { DOORS_CATALOGUE, DoorProductItem } from '../data/site';
-import { LinkRollText, MagneticButton } from './MagneticButton';
+import { ArrowRight, Eye, Layers } from 'lucide-react';
+import {
+  ALL_DOOR_CATEGORIES,
+  COLOUR_OPTIONS_STRIP,
+  DOOR_SPECIFICATIONS,
+  DoorItem,
+} from '../data/doors';
+import { DoorImage } from './DoorImage';
+import { DoorLightbox } from './DoorLightbox';
 
 interface DoorsSectionProps {
-  onEnquireDoor?: (doorName: string) => void;
+  onEnquireDoor?: (doorTitle: string) => void;
 }
 
 export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
-  const [activeDoor, setActiveDoor] = useState<DoorProductItem>(DOORS_CATALOGUE[0]);
   const navigate = useNavigate();
 
-  const handleEnquire = (name: string) => {
+  // Lightbox state
+  const [activeCategoryDoors, setActiveCategoryDoors] = useState<DoorItem[]>([]);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const handleEnquire = (doorTitle: string) => {
     if (onEnquireDoor) {
-      onEnquireDoor(name);
+      onEnquireDoor(doorTitle);
     } else {
-      navigate(`/contact?product=${encodeURIComponent(`Door World: ${name}`)}`);
+      navigate(`/contact?product=${encodeURIComponent(`Door World: ${doorTitle}`)}`);
     }
+  };
+
+  const openLightbox = (doorsList: DoorItem[], index: number) => {
+    setActiveCategoryDoors(doorsList);
+    setLightboxIndex(index);
   };
 
   return (
     <section
       id="doors"
       aria-labelledby="doors-heading"
-      className="py-20 lg:py-40 bg-[#0E0C0A] text-[#FBF8F3] relative overflow-hidden border-t border-[#B8793A]/25"
+      className="py-16 sm:py-24 lg:py-36 bg-[#0E0C0A] text-[#FBF8F3] relative overflow-hidden border-t border-[#B8793A]/25"
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-8 lg:px-12 relative z-10">
         {/* Section Header */}
@@ -51,122 +64,181 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
 
           <div className="lg:col-span-4">
             <p className="text-sm text-[#8E8275] leading-relaxed">
-              Solid Burma Teak, natural Walnut raised panels, intricate 3D CNC carved double entrance doors, durable decorative laminated doors, and seasoned hardwood chaukhats.
+              Solid Burma Teak, natural Walnut raised panels, intricate 3D CNC carved entrance doors, architectural fluted profiles, and bespoke acoustic leather-finish doors.
             </p>
           </div>
         </div>
 
-        {/* 12-Col Interactive Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left: Dynamic Door Visual Frame */}
-          <div className="lg:col-span-6">
-            <div className="relative aspect-[3/4] max-h-[640px] w-full rounded-[6px] overflow-hidden bg-[#171412] border border-[#B8793A]/40 shadow-2xl">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeDoor.id}
-                  initial={{ opacity: 0, scale: 1.02 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute inset-0 bg-[#171412]"
-                >
-                  <img
-                    src={activeDoor.image}
-                    alt={activeDoor.imageAlt}
-                    loading="lazy"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/doors/luxury-villa-entrance-01.webp';
-                    }}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/95 via-transparent to-transparent pointer-events-none" />
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Overlay Spec Details */}
-              <div className="absolute bottom-0 inset-x-0 p-6 sm:p-8 z-10 flex items-end justify-between gap-4">
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#B8793A] font-bold block mb-1">
-                    {activeDoor.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-[#FBF8F3]">
-                    {activeDoor.name}
-                  </h3>
-                  <p className="text-xs text-[#8E8275] mt-1">
-                    {activeDoor.dimensions}
-                  </p>
-                </div>
-
-                <MagneticButton
-                  onClick={() => handleEnquire(activeDoor.name)}
-                  className="shrink-0 min-h-[44px] px-5 py-2.5 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold rounded-[4px] cursor-pointer"
-                >
-                  <LinkRollText text="Enquire Rate" />
-                </MagneticButton>
-              </div>
-            </div>
+        {/* 5. VERIFIED DOOR SPECIFICATIONS BLOCK (Facts Only) */}
+        <div className="mb-20 p-6 sm:p-8 rounded-[8px] bg-[#140F0B] border border-[#2A241F] shadow-xl">
+          <div className="flex items-center gap-2.5 mb-6">
+            <Layers className="w-5 h-5 text-[#B8793A]" />
+            <h3 className="text-sm uppercase font-mono font-bold tracking-[0.2em] text-[#B8793A]">
+              Architectural Specifications &amp; Standards
+            </h3>
           </div>
 
-          {/* Right: Door Categories Selector & Specs */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="p-4 bg-[#171412] rounded-[6px] border border-[#2A241F]">
-              <div className="flex items-center gap-2 text-xs text-[#B8793A] font-semibold uppercase tracking-wider mb-1">
-                <ShieldCheck className="w-4 h-4 text-[#B8793A]" />
-                <span>Client Notice · Real Door Catalogue</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {DOOR_SPECIFICATIONS.map((spec, idx) => (
+              <div
+                key={idx}
+                className="p-4 rounded-[6px] bg-[#0E0C0A] border border-[#221D19]"
+              >
+                <span className="text-[10px] uppercase font-mono font-bold text-[#8E8275] tracking-wider block mb-1">
+                  {spec.label}
+                </span>
+                <p className="text-sm font-bold text-[#FBF8F3] mb-1">
+                  {spec.value}
+                </p>
+                <span className="text-[11px] text-[#B8793A]/80 font-mono">
+                  {spec.note}
+                </span>
               </div>
-              <p className="text-xs text-[#8E8275]">
-                {activeDoor.pricingNote} (Contact our Mohali desk for wholesale &amp; project rates).
+            ))}
+          </div>
+        </div>
+
+        {/* CATEGORY GRIDS (1 heading per category, 3 cols desktop, 2 cols tablet, 1 col mobile) */}
+        <div className="space-y-24">
+          {ALL_DOOR_CATEGORIES.map((cat) => (
+            <div key={cat.id} id={cat.id} className="scroll-mt-28">
+              {/* Category Heading Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 mb-8 border-b border-[#2A241F]">
+                <div>
+                  <span className="text-[11px] uppercase font-mono font-bold tracking-[0.22em] text-[#B8793A] block mb-1">
+                    Collection Series
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#FBF8F3]">
+                    {cat.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-[#8E8275] sm:text-right max-w-md">
+                  {cat.subtitle} ({cat.doors.length} Designs)
+                </p>
+              </div>
+
+              {/* 3-Col / 2-Col / 1-Col Responsive Door Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {cat.doors.map((door, index) => (
+                  <article
+                    key={door.id}
+                    className="group bg-[#171412] rounded-[8px] overflow-hidden border border-[#2A241F] hover:border-[#B8793A]/60 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
+                  >
+                    {/* Visual Container (Fixed 4:5 Aspect Ratio, Dark Backing, Object-Fit Cover) */}
+                    <div className="relative">
+                      <DoorImage
+                        src={door.image}
+                        alt={door.alt}
+                        aspectRatio="4/5"
+                        onClick={() => openLightbox(cat.doors, index)}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/90 via-transparent to-transparent pointer-events-none" />
+
+                      <div className="absolute top-3 left-3 pointer-events-none">
+                        <span className="text-[10px] uppercase font-mono font-bold tracking-widest bg-[#0E0C0A]/85 backdrop-blur-md text-[#B8793A] px-2.5 py-1 rounded-[3px] border border-[#B8793A]/30">
+                          {door.category}
+                        </span>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => openLightbox(cat.doors, index)}
+                        aria-label={`Enlarge ${door.title}`}
+                        className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-[#0E0C0A]/80 hover:bg-[#B8793A] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Meta & Quote Action */}
+                    <div className="p-5 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h4 className="text-lg font-bold text-[#FBF8F3] mb-2 group-hover:text-[#B8793A] transition-colors">
+                          {door.title}
+                        </h4>
+                        {door.description && (
+                          <p className="text-xs text-[#8E8275] leading-relaxed line-clamp-2 mb-4">
+                            {door.description}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="pt-3 border-t border-[#2A241F] flex items-center justify-between">
+                        <button
+                          type="button"
+                          onClick={() => handleEnquire(door.title)}
+                          className="text-xs font-bold uppercase tracking-[0.18em] text-[#B8793A] hover:text-[#D49557] inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                        >
+                          <span>Request Quote</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="text-[10px] uppercase font-mono text-[#8E8275]">
+                          Factory Precision
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* COLOUR OPTIONS STRIP (Light tile container, object-fit: contain) */}
+          <div className="pt-6">
+            <div className="pb-4 mb-8 border-b border-[#2A241F]">
+              <span className="text-[11px] uppercase font-mono font-bold tracking-[0.22em] text-[#B8793A] block mb-1">
+                Finishing Palettes
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#FBF8F3]">
+                Colour Options &amp; Finish Collections
+              </h3>
+              <p className="text-xs text-[#8E8275] mt-1 max-w-xl">
+                Bespoke palette samples, natural timber stains, and PU architectural colors available for custom doors.
               </p>
             </div>
 
-            {/* List of 5 Door Collections */}
-            <div className="space-y-3">
-              {DOORS_CATALOGUE.map((door) => {
-                const isCurrent = activeDoor.id === door.id;
-                return (
-                  <button
-                    key={door.id}
-                    onClick={() => setActiveDoor(door)}
-                    className={`w-full text-left p-5 rounded-[6px] border transition-all cursor-pointer ${
-                      isCurrent
-                        ? 'bg-[#171412] border-[#B8793A] shadow-md'
-                        : 'bg-transparent border-[#2A241F] hover:border-[#B8793A]/50 text-[#8E8275]'
-                    }`}
-                  >
-                    <div className="flex items-baseline justify-between mb-1.5">
-                      <span className="text-sm font-bold text-[#FBF8F3]">
-                        {door.name}
-                      </span>
-                      <span
-                        className={`text-[10px] uppercase font-mono font-bold tracking-wider ${
-                          isCurrent ? 'text-[#B8793A]' : 'text-[#8E8275]'
-                        }`}
-                      >
-                        {door.category}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {COLOUR_OPTIONS_STRIP.map((strip, index) => (
+                <div
+                  key={strip.id}
+                  onClick={() => openLightbox(COLOUR_OPTIONS_STRIP, index)}
+                  className="group bg-[#F4EFE6] rounded-[8px] overflow-hidden border border-[#E0D5C3] p-4 flex flex-col justify-between cursor-pointer hover:shadow-xl transition-all"
+                >
+                  <div className="relative aspect-[4/5] bg-white rounded-[4px] overflow-hidden flex items-center justify-center">
+                    <DoorImage
+                      src={strip.image}
+                      alt={strip.alt}
+                      aspectRatio="contain"
+                      objectFit="contain"
+                      className="bg-transparent"
+                    />
+                  </div>
+                  <div className="pt-3 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-bold text-[#0E0C0A]">
+                        {strip.title}
+                      </h4>
+                      <span className="text-[10px] uppercase font-mono font-bold text-[#B8793A]">
+                        Sample Palette
                       </span>
                     </div>
-                    <p className="text-xs text-[#8E8275] line-clamp-2 leading-relaxed">
-                      {door.description}
-                    </p>
-
-                    {/* Timber options chips */}
-                    <div className="flex flex-wrap items-center gap-1.5 mt-3">
-                      {door.woodOptions.map((w, idx) => (
-                        <span
-                          key={idx}
-                          className="text-[9.5px] uppercase tracking-wider px-2 py-0.5 rounded-[2px] bg-[#0E0C0A] text-[#D49557] border border-[#2A241F]"
-                        >
-                          {w}
-                        </span>
-                      ))}
-                    </div>
-                  </button>
-                );
-              })}
+                    <Eye className="w-4 h-4 text-[#8E8275] group-hover:text-[#B8793A] transition-colors" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Lightbox for Doors Section */}
+      <DoorLightbox
+        doors={activeCategoryDoors}
+        currentIndex={lightboxIndex ?? 0}
+        isOpen={lightboxIndex !== null}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={(idx) => setLightboxIndex(idx)}
+      />
     </section>
   );
 };

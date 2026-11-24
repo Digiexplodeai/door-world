@@ -10,13 +10,13 @@ export const SITE_IMAGES = {
     logoHeader: '/images/logo/door-world-logo-header.svg',
     logoFooter: '/images/logo/door-world-logo-footer.svg',
     favicon: '/favicon.svg',
-    ogImage: '/og-image.svg',
+    ogImage: '/images/doors/web/double-entrance/47-radial-grid-double-door.webp',
   },
 
   // Hero Section
   hero: {
-    background: '/images/doors/luxury-villa-entrance-01.webp',
-    poster: '/images/doors/luxury-villa-entrance-01.webp',
+    background: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
+    poster: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
   },
 
   // Showroom & Factory
@@ -35,32 +35,17 @@ export const SITE_IMAGES = {
     kkk168: '/images/catalogue/kitchen-07.webp',
   },
 
-  // Door World Division - 12 Real Door Photographs
+  // Door World Division - Key Featured Doors from /public/images/doors/web/
   doors: {
-    // Hero & Featured Grand Entrance
-    luxuryVillaEntrance01: '/images/doors/luxury-villa-entrance-01.webp',
-    // Carved Designer Doors
-    carvedLatticeTeak02: '/images/doors/carved-lattice-teak-door-02.webp',
-    // Solid Wood Panel Doors
-    cofferedPanelDouble03: '/images/doors/coffered-panel-double-door-03.webp',
-    // Gallery / Carved Medallion
-    circularMedallion04: '/images/doors/circular-medallion-carved-door-04.webp',
-    // Gallery / Organic Wave Sculpted
-    artisticWave05: '/images/doors/artistic-wave-carved-door-05.webp',
-    // Gallery / Chevron Fluted Walnut
-    chevronFlutedWalnut06: '/images/doors/chevron-fluted-walnut-door-06.webp',
-    // Laminated & Decorative Doors
-    chevronTextured07: '/images/doors/chevron-textured-interior-door-07.webp',
-    // Timber Frames / Architectural Pivot
-    sunburstRadialPivot08: '/images/doors/sunburst-radial-pivot-door-08.webp',
-    // Gallery / Bleached Ash Fluted
-    flutedAcoustic09: '/images/doors/fluted-acoustic-interior-door-09.webp',
-    // Gallery / Acanthus Sliding Barn Door
-    carvedFloralBarn10: '/images/doors/carved-floral-sliding-barn-door-10.webp',
-    // Services Doors Card / Security Architrave
-    concentricMolded11: '/images/doors/concentric-molded-security-door-11.webp',
-    // Gallery / Classic Three-Panel Espresso
-    classicThreePanel12: '/images/doors/classic-three-panel-espresso-door-12.webp',
+    heroRadial17: '/images/doors/web/cnc-carved/17-radial-carved-wood-door.webp',
+    doubleGrid47: '/images/doors/web/double-entrance/47-radial-grid-double-door.webp',
+    bronzeGrid13: '/images/doors/web/modern-designer/13-bronze-grid-door.webp',
+    woodGrid14: '/images/doors/web/modern-designer/14-wood-grid-entrance-door.webp',
+    ornateCarved06: '/images/doors/web/cnc-carved/06-ornate-carved-wood-door.webp',
+    classicPanel05: '/images/doors/web/classic-panel/05-white-classic-panel-door.webp',
+    verticalFluted09: '/images/doors/web/fluted-textured/09-vertical-fluted-wood-door.webp',
+    interiorsCorridor22: '/images/doors/web/wall-panelling/22-wood-panelled-corridor.webp',
+    interiorsPattern53: '/images/doors/web/wall-panelling/53-dark-patterned-wall-panelling.webp',
   },
 } as const;
 
