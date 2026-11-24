@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Check, ChevronRight, Eye, Sparkles, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import {
   KITCHEN_CATALOGUE_ITEMS,
   KITCHEN_CORE_SWATCHES,
@@ -12,7 +13,7 @@ import {
 import { LinkRollText, MagneticButton } from './MagneticButton';
 
 interface ModularKitchensShowcaseProps {
-  onEnquireKitchen: (kitchenTitle: string) => void;
+  onEnquireKitchen?: (kitchenTitle: string) => void;
 }
 
 export const ModularKitchensShowcase: FC<ModularKitchensShowcaseProps> = ({
@@ -21,6 +22,15 @@ export const ModularKitchensShowcase: FC<ModularKitchensShowcaseProps> = ({
   const [selectedStyle, setSelectedStyle] = useState<string>('all');
   const [activeSwatch, setActiveSwatch] = useState<string>(KITCHEN_CORE_SWATCHES[0].code);
   const [lightboxItem, setLightboxItem] = useState<KitchenProductItem | null>(null);
+  const navigate = useNavigate();
+
+  const handleEnquire = (title: string) => {
+    if (onEnquireKitchen) {
+      onEnquireKitchen(title);
+    } else {
+      navigate(`/contact?product=${encodeURIComponent(title)}`);
+    }
+  };
 
   const filteredKitchens = KITCHEN_CATALOGUE_ITEMS.filter((item) => {
     if (selectedStyle === 'all') return true;
@@ -198,7 +208,7 @@ export const ModularKitchensShowcase: FC<ModularKitchensShowcaseProps> = ({
                 <div className="pt-4 border-t border-[#E6DEC9] flex items-center justify-between">
                   <button
                     type="button"
-                    onClick={() => onEnquireKitchen(`Modular Kitchen ${item.code} - ${item.name}`)}
+                    onClick={() => handleEnquire(`Modular Kitchen ${item.code} - ${item.name}`)}
                     className="text-xs font-bold uppercase tracking-[0.18em] text-[#0E0C0A] hover:text-[#B8793A] inline-flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
                     <span>Request Kitchen Quote</span>
@@ -283,7 +293,7 @@ export const ModularKitchensShowcase: FC<ModularKitchensShowcaseProps> = ({
                   <MagneticButton
                     onClick={() => {
                       setLightboxItem(null);
-                      onEnquireKitchen(`Modular Kitchen ${lightboxItem.code} - ${lightboxItem.name}`);
+                      handleEnquire(`Modular Kitchen ${lightboxItem.code} - ${lightboxItem.name}`);
                     }}
                     className="min-h-[44px] px-6 py-2.5 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold rounded-[4px] cursor-pointer"
                   >

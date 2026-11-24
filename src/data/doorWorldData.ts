@@ -183,8 +183,10 @@ export const MARQUEE_ITEMS = [
   'FACTORY BUILT QUALITY',
 ] as const;
 
+import { SITE_IMAGES } from './images';
+
 export const SPOTLIGHT_WOOD_IMAGE = {
-  src: '/src/assets/images/macro_teak_wood_grain_1795429393983.jpg',
+  src: SITE_IMAGES.doors.chevronFlutedWalnut06,
   alt: 'Architectural wood grain detailing',
 } as const;
 
@@ -192,21 +194,21 @@ export const ARCH_BANNER_WINDOWS = [
   {
     id: 'arch-1',
     title: 'Solid Panel Heritage',
-    src: '/src/assets/images/door_solid_wood_panel_1795423050360.jpg',
+    src: SITE_IMAGES.doors.cofferedPanelDouble03,
     alt: 'Solid teak raised panel interior door in bright hallway',
     heightClass: 'h-[260px] sm:h-[310px] lg:h-[330px]',
   },
   {
     id: 'arch-2',
     title: 'Sunlit Showroom Double',
-    src: '/src/assets/images/hero_sunlit_teak_showroom_1795423538188.jpg',
+    src: SITE_IMAGES.doors.luxuryVillaEntrance01,
     alt: 'Sunlit golden teak double entrance doors inside luxury showroom',
     heightClass: 'h-[310px] sm:h-[380px] lg:h-[410px]',
   },
   {
     id: 'arch-3',
     title: 'Carved Main Entrance',
-    src: '/src/assets/images/door_designer_carved_1795423050335.jpg',
+    src: SITE_IMAGES.doors.carvedLatticeTeak02,
     alt: 'Carved wooden double doors with traditional ornamental motifs',
     heightClass: 'h-[270px] sm:h-[330px] lg:h-[360px]',
   },
@@ -219,7 +221,7 @@ export const COLLECTION_CATEGORIES = [
     title: 'Solid Wood Panel Doors',
     woodSpec: 'Seasoned Burma Teak & Walnut',
     description: 'Bespoke solid timber doors handcrafted with mortise & tenon joinery.',
-    image: '/src/assets/images/door_solid_wood_panel_1795423050360.jpg',
+    image: SITE_IMAGES.doors.cofferedPanelDouble03,
     imageAlt: 'Solid timber raised panel door',
   },
   {
@@ -228,7 +230,7 @@ export const COLLECTION_CATEGORIES = [
     title: 'Carved Architectural Entrances',
     woodSpec: 'High-Density Hardwood & CNC Motifs',
     description: 'Intricately carved grand entrance doors with timeless motifs.',
-    image: '/src/assets/images/door_designer_carved_1795423050335.jpg',
+    image: SITE_IMAGES.doors.carvedLatticeTeak02,
     imageAlt: 'Carved luxury entrance door',
   },
 ];
@@ -262,10 +264,12 @@ export const EDITORIAL_PILLARS = [
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'Entrance' | 'Interior' | 'Carved & Veneer' | 'Frames & Hardware';
-  finish: string;
-  sizeClass: 'tall' | 'wide' | 'portrait';
-  parallaxSpeed: number;
+  category: string;
+  finish?: string;
+  tag?: string;
+  sizeClass?: 'tall' | 'wide' | 'portrait';
+  aspect?: 'tall' | 'wide' | 'square';
+  parallaxSpeed?: number;
   image: string;
   imageAlt: string;
 }

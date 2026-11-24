@@ -7,6 +7,8 @@
  * styling specifications are centralized here for easy client maintenance.
  */
 
+import { SITE_IMAGES } from './images';
+
 export interface NavLinkItem {
   label: string;
   href: string;
@@ -19,9 +21,10 @@ export interface ServiceItem {
   title: string;
   subtitle: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  image?: string | null;
+  imageAlt?: string;
   category: 'kitchens' | 'doors' | 'wardrobes' | 'interiors' | 'decor';
+  iconName: string;
 }
 
 export interface KitchenStyleCategory {
@@ -169,15 +172,13 @@ export function buildWhatsAppUrl(message: string): string {
 
 // Navigation Links
 export const NAV_LINKS: NavLinkItem[] = [
-  { label: 'Home', href: '#home', sectionId: 'home', numeral: '01' },
-  { label: 'Kitchens', href: '#kitchens', sectionId: 'kitchens', numeral: '02' },
-  { label: 'Doors', href: '#doors', sectionId: 'doors', numeral: '03' },
-  { label: 'Services', href: '#services', sectionId: 'services', numeral: '04' },
-  { label: 'Process', href: '#process', sectionId: 'process', numeral: '05' },
-  { label: 'Gallery', href: '#gallery', sectionId: 'gallery', numeral: '06' },
-  { label: 'Showroom', href: '#showroom', sectionId: 'showroom', numeral: '07' },
-  { label: 'About', href: '#about', sectionId: 'about', numeral: '08' },
-  { label: 'Contact', href: '#contact', sectionId: 'contact', numeral: '09' },
+  { label: 'Home', href: '/', sectionId: 'home', numeral: '01' },
+  { label: 'Kitchens', href: '/kitchens', sectionId: 'kitchens', numeral: '02' },
+  { label: 'Doors', href: '/doors', sectionId: 'doors', numeral: '03' },
+  { label: 'Services', href: '/services', sectionId: 'services', numeral: '04' },
+  { label: 'Gallery', href: '/gallery', sectionId: 'gallery', numeral: '05' },
+  { label: 'About', href: '/about', sectionId: 'about', numeral: '06' },
+  { label: 'Contact', href: '/contact', sectionId: 'contact', numeral: '07' },
 ];
 
 // Announcement bar messages
@@ -206,81 +207,90 @@ export const SHOWROOM_SERVICES: ServiceItem[] = [
     title: 'Modular Kitchens',
     subtitle: 'Classic European & Contemporary Layouts',
     description: 'Factory-manufactured acrylic, PU lacquer, and textured laminate kitchens engineered with Blum/Hettich hardware and zero on-site mess.',
-    image: '/images/catalogue/kitchen-01.webp',
+    image: SITE_IMAGES.kitchens.kkk101,
     imageAlt: 'European designer modular kitchen with slatted glass cabinets and integrated island',
     category: 'kitchens',
+    iconName: 'UtensilsCrossed',
   },
   {
     id: 'doors',
     title: 'Doors (Door World)',
     subtitle: 'Solid Wood, Carved & Designer Doors',
     description: 'The Complete Doors Solutions: Burma Teak, natural Walnut, carved entrance designs, decorative laminate doors, and seasoned timber chaukhats.',
-    image: '/images/doors/concentric-molded-security-door-11.webp',
+    image: SITE_IMAGES.doors.concentricMolded11,
     imageAlt: 'Door World architectural wooden entrance door with concentric molded profiles and casing',
     category: 'doors',
+    iconName: 'DoorOpen',
   },
   {
     id: 'wardrobes',
     title: 'Wardrobes',
     subtitle: 'Walk-In & Built-In Storage Systems',
     description: 'Bespoke floor-to-ceiling wardrobes featuring tinted glass sliding shutters, internal pull-outs, jewellery trays, and concealed vertical LED illumination.',
-    image: '/images/catalogue/wardrobe_contemporary.jpg',
+    image: null,
     imageAlt: 'Luxury modular wardrobe with tinted glass doors and integrated lighting',
     category: 'wardrobes',
+    iconName: 'Layers',
   },
   {
     id: 'interiors',
     title: 'Interiors',
     subtitle: 'Complete Turnkey Architectural Solutions',
     description: 'Comprehensive residential and commercial interior woodwork designed, precision CNC-cut at our factory, and seamlessly assembled under one roof.',
-    image: '/images/catalogue/interior_living_panel.jpg',
+    image: null,
     imageAlt: 'Architectural living room wall paneling and customized furniture integration',
     category: 'interiors',
+    iconName: 'LayoutGrid',
   },
   {
     id: 'vanities-consoles',
     title: 'Vanities & Consoles',
     subtitle: 'Moisture-Resistant Luxury Craftsmanship',
     description: 'Custom wall-hung bathroom vanities, fluted consoles, and entryway credenzas crafted from marine-grade plywood and seamless quartz tops.',
-    image: '/images/catalogue/vanity_fluted_console.jpg',
+    image: null,
     imageAlt: 'Wall-hung bathroom vanity with fluted timber detailing and quartz basin',
     category: 'decor',
+    iconName: 'Bath',
   },
   {
     id: 'wallpapers-blinds',
     title: 'Wallpapers & Blinds',
     subtitle: 'Curated Designer Textures & Automation',
     description: 'Imported architectural textured wallpapers, motorized roller blinds, blackout fabrics, and acoustic wall coverings for modern homes.',
-    image: '/images/catalogue/wallpaper_acoustic_blinds.jpg',
+    image: null,
     imageAlt: 'Textured designer wallpaper with motorized architectural window blinds',
     category: 'decor',
+    iconName: 'Sun',
   },
   {
     id: 'curtain-temples',
     title: 'Curtain Temples',
     subtitle: 'Handcrafted Sacred Mandir Sanctuaries',
     description: 'Custom wooden pooja rooms and spiritual home temples featuring intricate CNC jali screens, warm brass backlighting, and sanctum drawers.',
-    image: '/images/catalogue/pooja_mandir_temple.jpg',
+    image: null,
     imageAlt: 'Custom handcrafted wooden home temple with laser cut jali work',
     category: 'decor',
+    iconName: 'Sparkles',
   },
   {
     id: 'designer-mirrors',
     title: 'Designer Mirrors',
     subtitle: 'Illuminated Ambient & Fluted Profiles',
     description: 'Backlit halo LED mirrors, asymmetric pebble silhouettes, and copper-framed statement pieces tailored for powder rooms and master bedrooms.',
-    image: '/images/catalogue/designer_mirror_backlit.jpg',
+    image: null,
     imageAlt: 'Contemporary organic LED backlit mirror over vanity console',
     category: 'decor',
+    iconName: 'Maximize2',
   },
   {
     id: 'designer-chairs',
     title: 'Designer Chairs',
     subtitle: 'Ergonomic Dining & Accent Seating',
     description: 'Custom-upholstered dining chairs, lounge accent chairs, and bar counter stools handcrafted in solid hardwoods and premium bouclé/leatherette.',
-    image: '/images/catalogue/designer_chairs_dining.jpg',
+    image: null,
     imageAlt: 'Solid timber upholstered luxury dining and accent chairs',
     category: 'decor',
+    iconName: 'Armchair',
   },
 ];
 
@@ -387,7 +397,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#F9FAFB',
     description: 'Full European island composition featuring motorized slatted glass wall units, seamless quartz worktop, and integrated dining console.',
     features: ['Slatted glass wall units', 'Concealed LED strip profiles', 'Slimmer plinths for 12% extra storage', 'Touch-to-open Blum Aventos lifts'],
-    image: '/images/catalogue/kitchen-01.webp',
+    image: SITE_IMAGES.kitchens.kkk101,
     imageAlt: 'Kumar Kitchen King KKK-101 European modular kitchen in High Reflective White with integrated island',
   },
   {
@@ -399,7 +409,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#F4F2EE',
     description: 'Refined rectilinear cabinetry with recessed J-pull profiles and tall pantry highboards with full-extension internal wire baskets.',
     features: ['Tall pantry highboard with internal pull-outs', 'Anti-fingerprint PU coat', 'Quartz backsplashes', 'Soft-close tandem drawers'],
-    image: '/images/catalogue/kitchen-02.webp',
+    image: SITE_IMAGES.kitchens.kkk102,
     imageAlt: 'Kumar Kitchen King KKK-102 Pure White classic European kitchen cabinets',
   },
   {
@@ -411,7 +421,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#4A4E53',
     description: 'Dramatic dual-tone configuration combining Magnetic Grey base units with natural oak floating wall shelves and warm linear LED lighting.',
     features: ['Integrated dining extension table', 'Warm 3000K concealed LEDs', 'German Hafele cutlery organizers', 'Zero on-site carpentry assembly'],
-    image: '/images/catalogue/kitchen-03.webp',
+    image: SITE_IMAGES.kitchens.kkk103,
     imageAlt: 'Kumar Kitchen King KKK-103 Magnetic Grey modern modular kitchen with island table',
   },
   {
@@ -423,7 +433,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#D7CEBE',
     description: 'Subtle proportioned Shaker panels with solid timber door rails, bespoke brass cup handles, and fluted glass display cabinets.',
     features: ['Solid core moisture-resistant frame', 'Brushed warm brass hardware', 'Corner carousel pull-out solutions', 'Factory spray finish'],
-    image: '/images/catalogue/kitchen-04.webp',
+    image: SITE_IMAGES.kitchens.kkk124,
     imageAlt: 'Kumar Kitchen King KKK-124 Craftsman Shaker kitchen in Cashmere Greige',
   },
   {
@@ -435,7 +445,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#7C6E5C',
     description: 'English country-inspired modular arrangement with soft arched rails, plate racks, and natural stone worktops.',
     features: ['Solid oak accent rails', 'Integrated spice pull-outs', 'Appliance garage with bi-fold doors', 'Hettich Sensys hinges'],
-    image: '/images/catalogue/kitchen-05.webp',
+    image: SITE_IMAGES.kitchens.kkk142,
     imageAlt: 'Kumar Kitchen King KKK-142 Tudor arched cabinet door style',
   },
   {
@@ -447,7 +457,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#F2EFEB',
     description: 'Delicate stepped molding around door perimeters, crown moldings, and open wine rack displays.',
     features: ['Stepped architectural beading', 'Soft-close full extension slides', 'Corian/Quartz sink integration', 'Custom under-counter pull-outs'],
-    image: '/images/catalogue/kitchen-06.webp',
+    image: SITE_IMAGES.kitchens.kkk150,
     imageAlt: 'Kumar Kitchen King KKK-150 French provincial kitchen cabinets with crown moldings',
   },
   {
@@ -459,7 +469,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#B8793A',
     description: 'Extensive catalogue collection spanning codes KKK-157 through KKK-176. Precision custom-sized for replacement or new installations.',
     features: ['20 distinct profile cuts', 'Available in all 20 Greiges colors', 'Matching drawer fronts and dummy panels', 'Standard 18mm & 22mm thickness'],
-    image: '/images/catalogue/kitchen-07.webp',
+    image: SITE_IMAGES.kitchens.kkk168,
     imageAlt: 'Kumar Kitchen King popular cabinet door profile collection KKK-157 to KKK-176',
   },
 ];
@@ -499,13 +509,13 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
   {
     id: 'grand-villa-entrance',
     name: 'Grand Villa Entrance Double Doors',
-    category: 'Grand Entrance',
+    category: 'Grand Entrance' as any,
     description: 'Symmetrical floor-to-ceiling natural Burma Teak double pivot doors with matching timber soffit ceiling, warm ambient illumination, and integrated sidelight glass panels.',
     woodOptions: ['Burma Teak', 'American Walnut', 'Kiln-Seasoned Hardwood'],
     dimensions: 'Custom heights up to 10ft (Double Pivot)',
     // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: '/images/doors/luxury-villa-entrance-01.webp',
+    image: SITE_IMAGES.doors.luxuryVillaEntrance01,
     imageAlt: 'Symmetrical modern luxury villa entrance with solid teak double pivot doors, warm ambient lanterns, and stone pathway',
   },
   {
@@ -517,7 +527,7 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     dimensions: 'Custom heights up to 9ft (Single & Double Leaf)',
     // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: '/images/doors/coffered-panel-double-door-03.webp',
+    image: SITE_IMAGES.doors.cofferedPanelDouble03,
     imageAlt: 'Classic double solid wood doors with coffered raised square panels set inside a carved timber frame',
   },
   {
@@ -529,7 +539,7 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     dimensions: 'Standard 8ft x 4ft & Bespoke Villa Sizes',
     // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: '/images/doors/carved-lattice-teak-door-02.webp',
+    image: SITE_IMAGES.doors.carvedLatticeTeak02,
     imageAlt: 'Handcrafted teak double entrance door featuring intricate geometric lattice panels, central relief carvings, and timber surround',
   },
   {
@@ -541,7 +551,7 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     dimensions: '7ft x 3ft, 7ft x 3.25ft, 8ft x 3.5ft',
     // TODO: Client to confirm real door product prices
     pricingNote: 'Request custom quotation based on architectural site measurement.',
-    image: '/images/doors/chevron-textured-interior-door-07.webp',
+    image: SITE_IMAGES.doors.chevronTextured07,
     imageAlt: 'Contemporary walnut veneer flush door with precision chevron routered texture and vertical frame',
   },
   {
@@ -553,20 +563,8 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     dimensions: 'Section sizes: 4"x2.5", 5"x2.5", 6"x2.5"',
     // TODO: Client to confirm real chaukhat running-foot rates
     pricingNote: 'Request custom quotation based on running-foot specification.',
-    image: '/images/doors/sunburst-radial-pivot-door-08.webp',
+    image: SITE_IMAGES.doors.sunburstRadialPivot08,
     imageAlt: 'Architectural sunburst radial teak pivot door with brass crescent handle in natural stone and timber frame casing',
-  },
-  {
-    id: 'architectural-hardware',
-    name: 'Architectural Door Hardware',
-    category: 'Architectural Hardware',
-    description: 'Heavy solid brass pull handles, stainless steel ball-bearing hinges, digital smart locks, and magnetic door stoppers from Hafele, Blum, and Dorset.',
-    woodOptions: ['Solid Brass (Antique, Satin Gold, Rose Gold)', 'SS-304 Matte Black'],
-    dimensions: 'Various specifications for standard & pivot installations',
-    // TODO: Client to confirm hardware catalog pricing
-    pricingNote: 'Request specification & price list for locks and handles.',
-    image: '/images/doors/hardware-placeholder.webp',
-    imageAlt: 'Architectural brass handles and locks for luxury wooden entrance doors',
   },
 ];
 
@@ -672,7 +670,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Circular Medallion Solid Teak Doors',
     category: 'Doors',
     tag: 'Handcrafted Relief',
-    image: '/images/doors/circular-medallion-carved-door-04.webp',
+    image: SITE_IMAGES.doors.circularMedallion04,
     imageAlt: 'Solid wood double entrance doors with a carved circular medallion center and antique brass pull handles',
     aspect: 'tall',
   },
@@ -681,7 +679,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Organic Wave Sculpted Entrance Door',
     category: 'Doors',
     tag: 'Architectural Sculptural',
-    image: '/images/doors/artistic-wave-carved-door-05.webp',
+    image: SITE_IMAGES.doors.artisticWave05,
     imageAlt: 'Contemporary designer entrance door with organic wave groove carvings and custom sculpted wooden handle in marble surround',
     aspect: 'tall',
   },
@@ -690,7 +688,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Chevron Fluted Walnut Entrance Door',
     category: 'Doors',
     tag: 'Textured Walnut',
-    image: '/images/doors/chevron-fluted-walnut-door-06.webp',
+    image: SITE_IMAGES.doors.chevronFlutedWalnut06,
     imageAlt: 'Modern natural walnut door with horizontal grain panels and central chevron fluted texture',
     aspect: 'tall',
   },
@@ -699,7 +697,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Bleached Ash Fluted Interior Door',
     category: 'Doors',
     tag: 'Contemporary Fluted',
-    image: '/images/doors/fluted-acoustic-interior-door-09.webp',
+    image: SITE_IMAGES.doors.flutedAcoustic09,
     imageAlt: 'Minimalist luxury interior door with bottom fluted relief, textured border, and integrated vertical jamb lighting',
     aspect: 'tall',
   },
@@ -708,7 +706,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Carved Floral Acanthus Sliding Door',
     category: 'Doors',
     tag: 'Barn Sliding System',
-    image: '/images/doors/carved-floral-sliding-barn-door-10.webp',
+    image: SITE_IMAGES.doors.carvedFloralBarn10,
     imageAlt: 'Matte black wooden sliding barn door with deep traditional floral acanthus carvings on steel roller track',
     aspect: 'tall',
   },
@@ -717,8 +715,17 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'Classic Three-Panel Espresso Door',
     category: 'Doors',
     tag: 'Molded Profiles',
-    image: '/images/doors/classic-three-panel-espresso-door-12.webp',
+    image: SITE_IMAGES.doors.classicThreePanel12,
     imageAlt: 'Dark espresso finished three-panel interior door with clean molded profiles and silver lever handle',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-door-7',
+    title: 'Concentric Molded Security Entrance Door',
+    category: 'Doors',
+    tag: 'Architectural Casing',
+    image: SITE_IMAGES.doors.concentricMolded11,
+    imageAlt: 'Matte black architectural entrance door with concentric circular molded panels and heavy casing',
     aspect: 'tall',
   },
   {
@@ -726,54 +733,54 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     title: 'High Reflective White Modular Island',
     category: 'Kitchens',
     tag: 'Designer Series KKK-101',
-    image: '/images/catalogue/kitchen-01.webp',
+    image: SITE_IMAGES.kitchens.kkk101,
     imageAlt: 'European style modular kitchen island with slatted glass cabinets and LED lighting',
     aspect: 'tall',
   },
   {
     id: 'gal-kitchen-2',
-    title: 'Magnetic Grey & Natural Wood Console Suite',
+    title: 'Pure White Velvet Matte Kitchen Suite',
     category: 'Kitchens',
-    tag: 'Designer Series KKK-103',
-    image: '/images/catalogue/kitchen-03.webp',
-    imageAlt: 'Magnetic grey modern modular kitchen with island breakfast table',
+    tag: 'Designer Series KKK-102',
+    image: SITE_IMAGES.kitchens.kkk102,
+    imageAlt: 'Pure white classic European modular kitchen cabinets with recessed J-pull profiles',
     aspect: 'wide',
   },
   {
     id: 'gal-kitchen-3',
+    title: 'Magnetic Grey & Natural Wood Console Suite',
+    category: 'Kitchens',
+    tag: 'Designer Series KKK-103',
+    image: SITE_IMAGES.kitchens.kkk103,
+    imageAlt: 'Magnetic grey modern modular kitchen with island breakfast table',
+    aspect: 'wide',
+  },
+  {
+    id: 'gal-kitchen-4',
     title: 'Cashmere Greige Craftsman Shaker Kitchen',
     category: 'Kitchens',
     tag: 'Designer Series KKK-124',
-    image: '/images/catalogue/kitchen-04.webp',
+    image: SITE_IMAGES.kitchens.kkk124,
     imageAlt: 'Craftsman Shaker modular kitchen in Cashmere Greige PU finish',
     aspect: 'wide',
   },
   {
-    id: 'gal-wardrobe-1',
-    title: 'Walk-In Wardrobe with Tinted Glass Shutters',
-    category: 'Wardrobes',
-    tag: 'Custom Interior Joinery',
-    image: '/images/catalogue/wardrobe_contemporary.jpg',
-    imageAlt: 'Luxury walk-in wardrobe with concealed vertical LED lighting and organizers',
-    aspect: 'square',
-  },
-  {
-    id: 'gal-interior-1',
-    title: 'Fluted Bathroom Vanity with Quartz Basin',
-    category: 'Interiors',
-    tag: 'Vanities & Consoles',
-    image: '/images/catalogue/vanity_fluted_console.jpg',
-    imageAlt: 'Water-resistant fluted bathroom vanity with backlit designer mirror',
-    aspect: 'square',
-  },
-  {
-    id: 'gal-interior-2',
-    title: 'Handcrafted Pooja Room Temple Sanctuary',
-    category: 'Interiors',
-    tag: 'Curtain Temples',
-    image: '/images/catalogue/pooja_mandir_temple.jpg',
-    imageAlt: 'Handcrafted wooden home temple with laser cut jali screens and brass accents',
+    id: 'gal-kitchen-5',
+    title: 'Tudor Manor Arched Kitchen Composition',
+    category: 'Kitchens',
+    tag: 'Designer Series KKK-142',
+    image: SITE_IMAGES.kitchens.kkk142,
+    imageAlt: 'Tudor arched cabinet door style with English country inspired modular layout',
     aspect: 'tall',
+  },
+  {
+    id: 'gal-showroom-1',
+    title: 'Kumar Kitchen King Master Gallery',
+    category: 'Interiors',
+    tag: 'Mohali Showroom',
+    image: SITE_IMAGES.showroom.storefront,
+    imageAlt: 'Kumar Kitchen King Master Gallery and Showroom in Sector 82, JLPL Industrial Area Mohali',
+    aspect: 'wide',
   },
 ];
 
@@ -799,7 +806,7 @@ export const CLIENT_TODO_LIST = [
   {
     item: 'Storefront Night Photo',
     status: 'Pending Image File Upload',
-    details: 'Upload the night storefront photo with the illuminated "Kumar Kitchen King" signboard to /public/images/showroom.jpg.',
+    details: 'Upload the night storefront photo with the illuminated "Kumar Kitchen King" signboard to `/public/images/showroom.jpg`.',
   },
   {
     item: 'Catalogue Photos Export',

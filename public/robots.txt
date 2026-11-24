@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kumarkitchenking.com/sitemap.xml
+Sitemap: https://door-world.vercel.app/sitemap.xml

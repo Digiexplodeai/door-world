@@ -1,27 +1,27 @@
 import { FC, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
-import { Menu, Phone, Sparkles, X } from 'lucide-react';
+import { Menu, Phone, X, Sparkles } from 'lucide-react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { NAV_LINKS, SITE_DATA } from '../data/site';
 import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
 import { DoorWorldLogo } from './DoorWorldLogo';
-import { LinkRollText, MagneticButton } from './MagneticButton';
+import { LinkRollText } from './MagneticButton';
 
 interface NavbarProps {
-  onNavigate: (href: string) => void;
   hasAnnouncement: boolean;
 }
 
-export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
+export const Navbar: FC<NavbarProps> = ({ hasAnnouncement }) => {
   const { prefersReducedMotion } = useMotionCapabilities();
   const { scrollY } = useScroll();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    setIsScrolled(latest > 40);
+    setIsScrolled(latest > 30);
 
     if (mobileMenuOpen) {
       setIsHidden(false);
@@ -30,31 +30,10 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
 
     if (latest > 160 && latest > previous + 6) {
       setIsHidden(true);
-    } else if (latest < previous - 4 || latest <= 80) {
+    } else if (latest < previous - 4 || latest <= 60) {
       setIsHidden(false);
     }
   });
-
-  useEffect(() => {
-    const sections = NAV_LINKS.map((l) => document.getElementById(l.sectionId)).filter(
-      (el): el is HTMLElement => Boolean(el)
-    );
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-35% 0px -45% 0px', threshold: 0 }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const overflowValue = mobileMenuOpen ? 'hidden' : '';
@@ -66,11 +45,10 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
     };
   }, [mobileMenuOpen]);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  // Close mobile drawer on route change
+  useEffect(() => {
     setMobileMenuOpen(false);
-    onNavigate(href);
-  };
+  }, [location.pathname]);
 
   const primaryPhone = SITE_DATA.business.contact.primaryPhone;
   const primaryPhoneDisplay = SITE_DATA.business.contact.primaryPhoneDisplay;
@@ -86,19 +64,18 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
         } ${
           isScrolled
             ? 'bg-[#0E0C0A]/95 backdrop-blur-xl border-b border-[#2A241F] py-2.5 shadow-xl'
-            : 'bg-[#0E0C0A]/40 backdrop-blur-md border-b border-white/5 py-3.5 shadow-sm'
+            : 'bg-[#0E0C0A]/60 backdrop-blur-md border-b border-white/5 py-3.5 shadow-sm'
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 flex items-center justify-between gap-4">
           {/* Brand Logo */}
-          <a
-            href="#home"
-            onClick={(e) => handleLinkClick(e, '#home')}
+          <Link
+            to="/"
             className="group min-h-[44px] flex items-center shrink-0 cursor-pointer"
             aria-label="Kumar Kitchen King and Door World Home"
           >
             <DoorWorldLogo variant="header" theme="dark" showSubtitle={true} />
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav
@@ -106,24 +83,29 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
             className="hidden xl:flex items-center gap-7 text-[12px] uppercase tracking-[0.18em] font-medium text-[#F7F3EC]"
           >
             {NAV_LINKS.map((item) => {
-              const isActive = activeSection === item.sectionId;
+              const isItemActive =
+                item.href === '/'
+                  ? location.pathname === '/'
+                  : location.pathname.startsWith(item.href);
+
               return (
-                <a
+                <NavLink
                   key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleLinkClick(e, item.href)}
+                  to={item.href}
                   className={`relative py-1 whitespace-nowrap shrink-0 group transition-colors ${
-                    isActive ? 'text-[#B8793A] font-bold' : 'text-[#E5DDD0] hover:text-[#B8793A]'
+                    isItemActive
+                      ? 'text-[#B8793A] font-bold'
+                      : 'text-[#E5DDD0] hover:text-[#B8793A]'
                   }`}
                 >
                   <LinkRollText text={item.label} />
-                  {isActive && (
+                  {isItemActive && (
                     <motion.span
                       layoutId="navUnderline"
                       className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#B8793A]"
                     />
                   )}
-                </a>
+                </NavLink>
               );
             })}
           </nav>
@@ -139,22 +121,25 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
               <span className="md:hidden">Call</span>
             </a>
 
-            <MagneticButton
-              onClick={() => onNavigate('#contact')}
-              className="min-h-[42px] px-5 py-2.5 rounded-[4px] bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold inline-flex items-center gap-2 transition-colors cursor-pointer shadow-md whitespace-nowrap"
+            <Link
+              to="/contact"
+              className="min-h-[42px] px-5 py-2 rounded-[4px] bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold inline-flex items-center gap-2 shadow-sm transition-colors whitespace-nowrap cursor-pointer"
             >
-              <LinkRollText text="Get a Quote" />
-            </MagneticButton>
+              <Sparkles className="w-3.5 h-3.5 text-[#0E0C0A]" />
+              <span>Get a Quote</span>
+            </Link>
           </div>
 
-          {/* Mobile Hamburger Toggle Button */}
+          {/* Mobile Menu Button */}
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open navigation menu"
-            className="xl:hidden w-11 h-11 rounded-[4px] bg-[#171412] border border-[#2A241F] text-[#FBF8F3] flex items-center justify-center cursor-pointer shrink-0"
+            onClick={() => setMobileMenuOpen((p) => !p)}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu-drawer"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            className="xl:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-[4px] text-[#F7F3EC] hover:text-[#B8793A] bg-[#171412] border border-[#2A241F] cursor-pointer"
           >
-            <Menu className="w-5 h-5 text-[#B8793A]" />
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </motion.header>
@@ -163,62 +148,62 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile Navigation Menu"
+            id="mobile-menu-drawer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#0E0C0A]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-[#0E0C0A]/98 backdrop-blur-2xl xl:hidden flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto"
           >
-            <div className="flex items-center justify-between border-b border-[#2A241F] pb-4">
-              <DoorWorldLogo variant="compact" showSubtitle={true} />
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close navigation menu"
-                className="w-10 h-10 rounded-full bg-[#171412] border border-[#2A241F] text-[#FBF8F3] flex items-center justify-center hover:bg-[#B8793A] transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
+            <div className="space-y-4">
+              <p className="text-[10px] uppercase font-mono font-bold tracking-[0.22em] text-[#B8793A] pb-2 border-b border-[#2A241F]">
+                Directory Navigation
+              </p>
+              <div className="space-y-1">
+                {NAV_LINKS.map((item) => {
+                  const isItemActive =
+                    item.href === '/'
+                      ? location.pathname === '/'
+                      : location.pathname.startsWith(item.href);
+
+                  return (
+                    <NavLink
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center justify-between py-3 px-3 rounded-[4px] text-base uppercase tracking-[0.14em] font-bold transition-colors ${
+                        isItemActive
+                          ? 'bg-[#B8793A] text-[#0E0C0A]'
+                          : 'text-[#E5DDD0] hover:text-[#B8793A] hover:bg-[#171412]'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <span className="text-[10px] font-mono opacity-60">{item.numeral}</span>
+                    </NavLink>
+                  );
+                })}
+              </div>
             </div>
 
-            <nav className="my-auto py-6 space-y-4">
-              {NAV_LINKS.map((link) => (
-                <div key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="flex items-baseline justify-between text-2xl font-bold text-[#FBF8F3] hover:text-[#B8793A] transition-colors py-1"
-                  >
-                    <span>{link.label}</span>
-                    <span className="text-xs font-mono text-[#B8793A]">
-                      {link.numeral}
-                    </span>
-                  </a>
-                </div>
-              ))}
-            </nav>
-
-            <div className="space-y-3 pt-4 border-t border-[#2A241F]">
-              <a
-                href={`tel:+91${primaryPhone}`}
-                className="w-full min-h-[48px] rounded-[4px] bg-[#171412] border border-[#2A241F] text-[#FBF8F3] text-xs uppercase tracking-[0.18em] font-semibold flex items-center justify-center gap-2"
+            <div className="pt-6 border-t border-[#2A241F] space-y-3">
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full min-h-[48px] bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold rounded-[4px] flex items-center justify-center gap-2 shadow-lg cursor-pointer"
               >
-                <Phone className="w-4 h-4 text-[#B8793A]" />
-                <span>Direct Call: {primaryPhoneDisplay}</span>
-              </a>
+                <Sparkles className="w-4 h-4 text-[#0E0C0A]" />
+                <span>Request Custom Quote</span>
+              </Link>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onNavigate('#contact');
-                }}
-                className="w-full min-h-[48px] rounded-[4px] bg-[#B8793A] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-bold flex items-center justify-center"
-              >
-                Get Free Project Quote →
-              </button>
+              <div className="flex gap-2">
+                <a
+                  href={`tel:+91${primaryPhone}`}
+                  className="flex-1 min-h-[44px] bg-[#171412] border border-[#2A241F] text-[#F7F3EC] text-xs uppercase tracking-[0.14em] font-bold rounded-[4px] flex items-center justify-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-[#B8793A]" />
+                  <span>{primaryPhoneDisplay}</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

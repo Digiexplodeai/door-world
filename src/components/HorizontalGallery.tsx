@@ -25,9 +25,9 @@ export function HorizontalGallery({ onEnquireDesign }: HorizontalGalleryProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [hasSwiped, setHasSwiped] = useState(false);
 
-  const activeItem: GalleryItem | null =
+  const activeItem: (GalleryItem | any) | null =
     lightboxIndex !== null && GALLERY_ITEMS[lightboxIndex]
-      ? GALLERY_ITEMS[lightboxIndex]
+      ? (GALLERY_ITEMS[lightboxIndex] as any)
       : null;
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export function HorizontalGallery({ onEnquireDesign }: HorizontalGalleryProps) {
         // Subtle inner-image parallax shift inside each gallery frame
         const innerImgs = track.querySelectorAll<HTMLElement>('.gallery-parallax-img');
         innerImgs.forEach((img, idx) => {
-          const speed = GALLERY_ITEMS[idx]?.parallaxSpeed ?? 1;
+          const speed = (GALLERY_ITEMS[idx] as any)?.parallaxSpeed ?? 1;
           gsap.fromTo(
             img,
             { xPercent: -4 * speed },
@@ -219,11 +219,11 @@ export function HorizontalGallery({ onEnquireDesign }: HorizontalGalleryProps) {
             ref={trackRef}
             className="flex items-start lg:items-end gap-4 lg:gap-12 px-5 md:px-8 lg:px-12 w-max"
           >
-            {GALLERY_ITEMS.map((item, idx) => {
+            {GALLERY_ITEMS.map((item: any, idx) => {
               const sizeClasses =
-                item.sizeClass === 'tall'
+                item.sizeClass === 'tall' || item.aspect === 'tall'
                   ? 'w-[78vw] sm:w-[46vw] lg:w-[27vw] h-auto lg:h-[58vh]'
-                  : item.sizeClass === 'wide'
+                  : item.sizeClass === 'wide' || item.aspect === 'wide'
                     ? 'w-[78vw] sm:w-[60vw] lg:w-[38vw] h-auto lg:h-[46vh]'
                     : 'w-[78vw] sm:w-[48vw] lg:w-[30vw] h-auto lg:h-[52vh]';
 
@@ -260,7 +260,7 @@ export function HorizontalGallery({ onEnquireDesign }: HorizontalGalleryProps) {
                         {item.category}
                       </p>
                       <p className="hidden lg:block type-eyebrow text-[#E6C98B]/85 mt-1">
-                        {item.finish}
+                        {item.finish || item.tag || item.category}
                       </p>
                     </div>
                     <span className="text-xs text-[#8A7F73] tabular-nums shrink-0 pt-1">

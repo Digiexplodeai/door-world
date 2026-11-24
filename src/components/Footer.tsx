@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { DoorWorldLogo } from './DoorWorldLogo';
 import { LinkRollText } from './MagneticButton';
 import { NAV_LINKS, SHOWROOM_SERVICES, SITE_DATA } from '../data/site';
 
 interface FooterProps {
-  onNavigate: (href: string) => void;
+  onNavigate?: (href: string) => void;
 }
 
 export const Footer: FC<FooterProps> = ({ onNavigate }) => {
@@ -48,16 +49,15 @@ export const Footer: FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs uppercase tracking-[0.16em]">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate(link.href);
+                  <Link
+                    to={link.href}
+                    onClick={() => {
+                      if (onNavigate) onNavigate(link.href);
                     }}
                     className="text-[#8E8275] hover:text-[#B8793A] transition-colors inline-flex items-center min-h-[36px]"
                   >
                     <LinkRollText text={link.label} />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -71,13 +71,12 @@ export const Footer: FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs text-[#8E8275]">
               {SHOWROOM_SERVICES.slice(0, 6).map((svc) => (
                 <li key={svc.id}>
-                  <button
-                    type="button"
-                    onClick={() => onNavigate('#services')}
+                  <Link
+                    to={svc.id === 'kitchens' ? '/kitchens' : svc.id === 'doors' ? '/doors' : '/services'}
                     className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
                   >
                     {svc.title}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

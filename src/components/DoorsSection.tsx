@@ -1,15 +1,25 @@
 import { FC, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Compass, DoorOpen, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { DOORS_CATALOGUE, DoorProductItem } from '../data/site';
 import { LinkRollText, MagneticButton } from './MagneticButton';
 
 interface DoorsSectionProps {
-  onEnquireDoor: (doorName: string) => void;
+  onEnquireDoor?: (doorName: string) => void;
 }
 
 export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
   const [activeDoor, setActiveDoor] = useState<DoorProductItem>(DOORS_CATALOGUE[0]);
+  const navigate = useNavigate();
+
+  const handleEnquire = (name: string) => {
+    if (onEnquireDoor) {
+      onEnquireDoor(name);
+    } else {
+      navigate(`/contact?product=${encodeURIComponent(`Door World: ${name}`)}`);
+    }
+  };
 
   return (
     <section
@@ -58,7 +68,7 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="absolute inset-0"
+                  className="absolute inset-0 bg-[#171412]"
                 >
                   <img
                     src={activeDoor.image}
@@ -88,7 +98,7 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
                 </div>
 
                 <MagneticButton
-                  onClick={() => onEnquireDoor(`Door World: ${activeDoor.name}`)}
+                  onClick={() => handleEnquire(activeDoor.name)}
                   className="shrink-0 min-h-[44px] px-5 py-2.5 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.18em] font-bold rounded-[4px] cursor-pointer"
                 >
                   <LinkRollText text="Enquire Rate" />
@@ -153,16 +163,6 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
                   </button>
                 );
               })}
-            </div>
-
-            <div className="pt-2">
-              <MagneticButton
-                onClick={() => onEnquireDoor('Door World Complete Product Catalog & Pricing')}
-                className="w-full sm:w-auto min-h-[50px] inline-flex items-center justify-center gap-3 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded-[4px] cursor-pointer shadow-lg"
-              >
-                <DoorOpen className="w-4 h-4 text-[#0E0C0A]" />
-                <LinkRollText text="Request Complete Doors Catalogue" />
-              </MagneticButton>
             </div>
           </div>
         </div>
