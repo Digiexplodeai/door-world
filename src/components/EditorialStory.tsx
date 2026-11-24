@@ -96,7 +96,7 @@ export function EditorialStory() {
               Built to Endure.
             </p>
             <p className="type-body text-[#8A7F73]">
-              Every detail—from timber seasoning to brass bearing hinges—is stocked under one roof on Kharar - Landran Road.
+              Every detail—from timber seasoning to brass bearing hinges—is showcased under one roof in Sector 82, JLPL Industrial Area, Mohali.
             </p>
           </div>
 

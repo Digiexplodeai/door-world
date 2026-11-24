@@ -60,7 +60,7 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left: Dynamic Door Visual Frame */}
           <div className="lg:col-span-6">
-            <div className="relative aspect-[3/4] max-h-[640px] w-full rounded-[6px] overflow-hidden bg-[#171412] border border-[#B8793A]/40 shadow-2xl">
+            <div className="relative aspect-[3/4] max-h-[640px] w-full rounded-[6px] overflow-hidden bg-[#0E0C0A] border border-[#B8793A]/40 shadow-2xl">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeDoor.id}
@@ -68,7 +68,7 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="absolute inset-0 bg-[#171412]"
+                  className="absolute inset-0 bg-[#0E0C0A]"
                 >
                   <img
                     src={activeDoor.image}
@@ -77,7 +77,7 @@ export const DoorsSection: FC<DoorsSectionProps> = ({ onEnquireDoor }) => {
                     onError={(e) => {
                       e.currentTarget.src = '/images/doors/luxury-villa-entrance-01.webp';
                     }}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/95 via-transparent to-transparent pointer-events-none" />
                 </motion.div>

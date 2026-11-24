@@ -6,7 +6,7 @@ export const WhyChooseUs: FC = () => {
     <section
       id="why-choose-us"
       aria-labelledby="why-heading"
-      className="py-20 lg:py-36 bg-[#F7F3EC] text-[#0E0C0A] border-t border-[#E6DEC9]"
+      className="relative z-10 py-16 sm:py-20 lg:py-32 bg-[#F7F3EC] text-[#0E0C0A] border-t border-[#E6DEC9] clear-both"
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-end mb-14 lg:mb-20">

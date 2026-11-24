@@ -146,12 +146,12 @@ export const HomePage: FC = () => {
                 key={door.id}
                 className="group bg-[#171412] rounded-[8px] overflow-hidden border border-[#2A241F] hover:border-[#B8793A]/60 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#171412]">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#0E0C0A]">
                   <img
                     src={door.image}
                     alt={door.imageAlt}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/90 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute top-3 left-3">

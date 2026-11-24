@@ -48,7 +48,7 @@ export function DoorPanelCollections({ onEnquireCategory }: DoorPanelCollections
 
           <div className="lg:col-span-4 lg:pb-1">
             <p className="type-body text-[#8A7F73]">
-              Explore finishes, structural specs, and request direct wholesale rates from our Kharar showroom.
+              Explore finishes, structural specs, and request direct wholesale rates from our Mohali Master Gallery.
             </p>
           </div>
         </div>
