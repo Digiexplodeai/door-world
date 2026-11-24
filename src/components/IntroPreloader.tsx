@@ -145,7 +145,7 @@ export function IntroPreloader() {
       >
         <div className="bg-[#0E0C0A]/70 backdrop-blur-sm border border-[#E6C98B]/30 px-8 py-5 rounded-[4px] text-center">
           <p className="text-[10px] uppercase tracking-[0.35em] text-[#E6C98B] mb-2">
-            Mohali · Architectural Studio
+            Kharar · Timber Studio
           </p>
           <p className="font-display text-3xl sm:text-5xl font-semibold text-[#FBF8F3] tracking-tight">
             Door World

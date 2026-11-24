@@ -171,7 +171,7 @@ export function DoorOpeningCtaBanner() {
             id="showroom-cta-heading"
             className="type-h2 font-semibold text-[#FBF8F3] mb-3 lg:mb-4"
           >
-            Visit Our Showroom in Mohali
+            Visit Our Showroom in Kharar
           </h2>
           <p className="type-body text-[#F1E8DA]/90 mx-auto mb-6 lg:mb-8">
             {BUSINESS_INFO.address}

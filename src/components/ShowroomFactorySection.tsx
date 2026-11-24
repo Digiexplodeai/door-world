@@ -10,7 +10,7 @@ export const ShowroomFactorySection: FC = () => {
     <section
       id="showroom"
       aria-labelledby="showroom-heading"
-      className="relative z-10 py-16 sm:py-20 lg:py-32 bg-[#0E0C0A] text-[#FBF8F3] border-t border-[#B8793A]/25 clear-both"
+      className="py-20 lg:py-36 bg-[#0E0C0A] text-[#FBF8F3] border-t border-[#B8793A]/25"
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-8 lg:px-12">
         {/* Section Header */}
@@ -138,23 +138,26 @@ export const ShowroomFactorySection: FC = () => {
             </div>
 
             {/* Storefront Photo Container */}
-            <figure className="relative aspect-[16/10] rounded-[8px] overflow-hidden bg-[#171412] border border-[#2A241F]">
+            <div className="relative aspect-[16/10] rounded-[8px] overflow-hidden bg-[#171412] border border-[#2A241F]">
               <img
                 src="/images/showroom.jpg"
-                alt="Kumar Kitchen King - Mohali Showroom storefront"
+                alt="Kumar Kitchen King illuminated night storefront in Sector 82, JLPL Mohali"
                 loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/90 via-transparent to-transparent pointer-events-none" />
-              <figcaption className="absolute bottom-4 left-4 right-4 z-10">
+              <div className="absolute bottom-4 left-4 right-4 z-10">
                 <span className="text-[10px] font-mono uppercase font-bold text-[#B8793A] tracking-wider block mb-0.5">
                   Live Showroom
                 </span>
                 <p className="text-sm font-bold text-[#FBF8F3]">
-                  Kumar Kitchen King - Mohali Showroom
+                  Kumar Kitchen King Illuminated Signboard Gallery
                 </p>
-              </figcaption>
-            </figure>
+              </div>
+            </div>
           </div>
         </div>
       </div>

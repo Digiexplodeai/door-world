@@ -14,7 +14,7 @@ export function ArchWholesaleBanner() {
   const [hoveredArch, setHoveredArch] = useState<string | null>(null);
 
   const whatsappHref = buildWhatsAppUrl(
-    `Hello ${BUSINESS_INFO.contactPerson}, I am enquiring about bulk / contractor wholesale door rates at Door World, Mohali.`
+    `Hello ${BUSINESS_INFO.contactPerson}, I am enquiring about bulk / contractor wholesale door rates at Door World, Kharar.`
   );
 
   return (
@@ -45,7 +45,7 @@ export function ArchWholesaleBanner() {
               </span>
             </h2>
             <p className="type-body text-[#F1E8DA]/85">
-              Direct mill-to-site rates on bulk flush doors, solid teak chaukhats, carved main doors, and matching brass hardware sets across Mohali, Chandigarh, and the Tricity region.
+              Direct mill-to-site rates on bulk flush doors, solid teak chaukhats, carved main doors, and matching brass hardware sets across Kharar, Landran, and Mohali.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
@@ -107,7 +107,7 @@ export function ArchWholesaleBanner() {
                   letterSpacing="2.35"
                 >
                   <textPath href="#arch-badge-circle" startOffset="0%">
-                    WHOLESALE • RETAIL • MOHALI •
+                    WHOLESALE • RETAIL • KHARAR •
                   </textPath>
                 </text>
               </svg>

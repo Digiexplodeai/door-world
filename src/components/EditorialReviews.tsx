@@ -6,7 +6,7 @@ import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
 
 /**
  * NOTE: Testimonials in CUSTOMER_REVIEWS (src/data/doorWorldData.ts) are sample
- * placeholders representing Mohali & Tricity customer feedback.
+ * placeholders representing Kharar & Mohali customer feedback.
  */
 export function EditorialReviews() {
   const { prefersReducedMotion } = useMotionCapabilities();
@@ -56,7 +56,7 @@ export function EditorialReviews() {
               Rated {BUSINESS_INFO.googleRating} ★ on Google
             </h2>
             <p className="type-body text-[#8A7F73] tabular-nums">
-              Based on {BUSINESS_INFO.reviewCount} reviews from homeowners, architects, and builders across Mohali &amp; Chandigarh.
+              Based on {BUSINESS_INFO.reviewCount} reviews from homeowners, architects, and builders across Kharar &amp; Mohali.
             </p>
 
             {/* Controls (44px min touch target) */}

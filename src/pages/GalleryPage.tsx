@@ -81,7 +81,7 @@ export const GalleryPage: FC = () => {
                   className="group relative rounded-[8px] overflow-hidden bg-[#171412] border border-[#2A241F] hover:border-[#B8793A] transition-all cursor-pointer shadow-md hover:shadow-2xl"
                   onClick={() => setActiveLightbox(item)}
                 >
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#0E0C0A]">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#171412]">
                     <img
                       src={item.image}
                       alt={item.imageAlt}
@@ -89,7 +89,7 @@ export const GalleryPage: FC = () => {
                       onError={(e) => {
                         e.currentTarget.src = '/images/doors/luxury-villa-entrance-01.webp';
                       }}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A]/95 via-[#0E0C0A]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
 
