@@ -50,11 +50,10 @@ export const GalleryPage: FC = () => {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-5 py-2.5 rounded-[4px] text-xs uppercase tracking-[0.18em] font-semibold transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#B8793A] text-[#0E0C0A] font-bold shadow-md shadow-[#B8793A]/20'
-                        : 'bg-[#171412] text-[#8E8275] hover:text-[#FBF8F3] hover:bg-[#221D19] border border-[#2A241F]'
-                    }`}
+                    className={`px-5 py-2.5 rounded-[4px] text-xs uppercase tracking-[0.18em] font-semibold transition-all cursor-pointer ${isActive
+                      ? 'bg-[#B8793A] text-[#0E0C0A] font-bold shadow-md shadow-[#B8793A]/20'
+                      : 'bg-[#171412] text-[#8E8275] hover:text-[#FBF8F3] hover:bg-[#221D19] border border-[#2A241F]'
+                      }`}
                   >
                     {cat}
                   </button>
