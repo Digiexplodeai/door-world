@@ -88,7 +88,7 @@ export const GallerySection: FC = () => {
                     alt={item.imageAlt}
                     loading="lazy"
                     onError={(e) => {
-                      e.currentTarget.src = '/videos/hero_doors_poster_desktop.jpg';
+                      e.currentTarget.src = '/images/doors/luxury-villa-entrance-01.webp';
                     }}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

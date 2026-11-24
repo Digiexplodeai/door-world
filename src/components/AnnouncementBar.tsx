@@ -24,10 +24,10 @@ export function AnnouncementBar({ visible, onDismiss }: AnnouncementBarProps) {
   if (!visible) return null;
 
   return (
-    <div
+    <aside
       role="region"
       aria-label="Showroom Announcements"
-      className="fixed top-0 inset-x-0 z-[60] h-9 bg-[#B8733B] text-[#FBF8F3] border-b border-[#E6C98B]/30 flex items-center justify-center px-10 overflow-hidden"
+      className="absolute top-0 inset-x-0 z-[60] h-9 bg-[#B8793A] text-[#0E0C0A] border-b border-[#0E0C0A]/20 flex items-center justify-center px-10 overflow-hidden"
     >
       <div className="relative h-6 w-full max-w-2xl flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
@@ -37,7 +37,7 @@ export function AnnouncementBar({ visible, onDismiss }: AnnouncementBarProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={prefersReducedMotion ? undefined : { y: -14, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="type-eyebrow text-center text-[#FBF8F3] font-semibold whitespace-nowrap truncate"
+            className="type-eyebrow text-center text-[#0E0C0A] font-bold whitespace-nowrap truncate"
           >
             {ANNOUNCEMENT_MESSAGES[msgIndex]}
           </motion.p>
@@ -48,10 +48,10 @@ export function AnnouncementBar({ visible, onDismiss }: AnnouncementBarProps) {
         type="button"
         onClick={onDismiss}
         aria-label="Dismiss announcement bar"
-        className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 min-w-[44px] h-9 flex items-center justify-center rounded-[4px] text-[#FBF8F3]/90 hover:text-[#FBF8F3] hover:bg-black/15 transition-colors cursor-pointer"
+        className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 min-w-[44px] h-9 flex items-center justify-center rounded-[4px] text-[#0E0C0A]/80 hover:text-[#0E0C0A] hover:bg-black/10 transition-colors cursor-pointer"
       >
         <X className="w-3.5 h-3.5" aria-hidden="true" />
       </button>
-    </div>
+    </aside>
   );
 }

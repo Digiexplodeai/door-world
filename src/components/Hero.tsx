@@ -281,10 +281,8 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
         className="relative w-full min-h-[100svh] bg-[#0E0C0A] text-[#FBF8F3] flex flex-col justify-between"
       >
         <picture className="absolute inset-0 w-full h-full pointer-events-none">
-          <source srcSet="/videos/hero_doors_poster_desktop.webp" type="image/webp" media="(min-width: 768px)" />
-          <source srcSet="/videos/hero_doors_poster_mobile.webp" type="image/webp" media="(max-width: 767px)" />
           <img
-            src="/videos/hero_doors_poster_desktop.jpg"
+            src="/images/doors/luxury-villa-entrance-01.webp"
             alt="Door World and Kumar Kitchen King Architectural Gates"
             className="w-full h-full object-cover object-center"
           />
@@ -307,7 +305,7 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
             <p className="text-xl sm:text-2xl text-[#F7F3EC] font-sans font-medium mb-4">
               Kitchens, Doors &amp; Bespoke Interiors
             </p>
-            <p className="text-sm sm:text-base text-[#8E8275] leading-relaxed max-w-xl mb-6">
+            <p className="text-sm sm:text-base text-[#E8DFC8] leading-relaxed max-w-xl mb-6">
               Factory-manufactured European modular kitchens, solid architectural wooden doors, and turnkey interiors. 100% factory built with zero on-site carpentry work.
             </p>
 
@@ -350,22 +348,12 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
     >
       {/* Pinned Sticky Viewport Video Container */}
       <div className="sticky top-0 left-0 w-full h-[100svh] min-h-[100svh] overflow-hidden select-none bg-[#0E0C0A]">
-        {/* Poster shown ONLY before video is ready (Zero ghosting or background bleed) */}
+        {/* Poster shown ONLY before video is ready (Real luxury entrance door photo) */}
         {!isVideoReady && (
           <picture className="absolute inset-0 w-full h-full pointer-events-none z-[1]">
-            <source
-              srcSet="/videos/hero_doors_poster_desktop.webp"
-              type="image/webp"
-              media="(min-width: 768px)"
-            />
-            <source
-              srcSet="/videos/hero_doors_poster_mobile.webp"
-              type="image/webp"
-              media="(max-width: 767px)"
-            />
             <img
-              src="/videos/hero_doors_poster_desktop.jpg"
-              alt="Door World Closed Wooden Gates"
+              src="/images/doors/luxury-villa-entrance-01.webp"
+              alt="Door World Symmetrical Luxury Villa Entrance"
               className="w-full h-full object-cover object-center"
               loading="eager"
               fetchPriority="high"
@@ -383,7 +371,7 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
           preload="auto"
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback"
-          poster="/videos/hero_doors_poster_desktop.jpg"
+          poster="/images/doors/luxury-villa-entrance-01.webp"
           className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-[2]"
         >
           {/* Desktop full wide authentic video (1280x720) */}
@@ -405,14 +393,18 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
           />
         </video>
 
-        {/* Subtle architectural boundary gradients for optimal contrast */}
+        {/* Dark gradient overlay for pristine text readability (55-70% black, stronger behind text) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#0E0C0A]/85 via-[#0E0C0A]/35 to-transparent z-10"
+          className="pointer-events-none absolute inset-0 bg-[#0E0C0A]/60 bg-gradient-to-r from-[#0E0C0A]/85 via-[#0E0C0A]/65 to-[#0E0C0A]/40 z-10"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#0E0C0A]/90 via-[#0E0C0A]/40 to-transparent z-10"
+          className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#0E0C0A]/95 via-[#0E0C0A]/45 to-transparent z-10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0E0C0A]/95 via-[#0E0C0A]/50 to-transparent z-10"
         />
 
         {/* =========================================================================
@@ -453,7 +445,7 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
               Kitchens, Doors &amp; Turnkey Interiors
             </p>
 
-            <p className="text-xs sm:text-sm md:text-base text-[#8E8275] font-sans leading-relaxed max-w-lg mb-4 drop-shadow-[0_2px_10px_rgba(14,12,10,0.85)]">
+            <p className="text-xs sm:text-sm md:text-base text-[#E8DFC8] font-sans font-medium leading-relaxed max-w-lg mb-4 drop-shadow-[0_2px_10px_rgba(14,12,10,0.95)]">
               Factory-manufactured European modular kitchens, solid architectural wooden doors, and turnkey interior joinery. 100% factory built with zero on-site carpentry work.
             </p>
 
@@ -546,12 +538,12 @@ export function Hero({ onExploreClick, onQuoteClick }: HeroProps) {
             <div className="flex items-center gap-4 sm:gap-10">
               <div>
                 <p className="type-eyebrow text-[#B8793A] font-bold text-[10px] sm:text-xs">Yamuna Nagar Plant</p>
-                <p className="text-[10px] sm:text-xs text-[#8E8275]">100% Factory Built</p>
+                <p className="text-[10px] sm:text-xs text-[#D4C9B8]">100% Factory Built</p>
               </div>
               <div className="w-px h-5 bg-[#2A241F]" />
               <div>
                 <p className="type-eyebrow text-[#B8793A] font-bold text-[10px] sm:text-xs">Sector 82, JLPL Mohali</p>
-                <p className="text-[10px] sm:text-xs text-[#8E8275]">Showroom &amp; Master Gallery</p>
+                <p className="text-[10px] sm:text-xs text-[#D4C9B8]">Showroom &amp; Master Gallery</p>
               </div>
             </div>
 

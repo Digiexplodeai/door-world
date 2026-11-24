@@ -103,8 +103,7 @@ export const ServicesGrid: FC<ServicesGridProps> = ({ onEnquireService }) => {
                     alt={service.imageAlt}
                     loading="lazy"
                     onError={(e) => {
-                      // Fallback to stylized SVG placeholder if image file is pending client upload
-                      e.currentTarget.src = '/videos/hero_doors_poster_desktop.jpg';
+                      e.currentTarget.src = '/images/doors/concentric-molded-security-door-11.webp';
                     }}
                     className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-85"
                   />

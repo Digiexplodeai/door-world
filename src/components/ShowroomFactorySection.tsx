@@ -144,7 +144,7 @@ export const ShowroomFactorySection: FC = () => {
                 alt="Kumar Kitchen King illuminated night storefront in Sector 82, JLPL Mohali"
                 loading="lazy"
                 onError={(e) => {
-                  e.currentTarget.src = '/videos/hero_doors_poster_desktop.jpg';
+                  e.currentTarget.style.display = 'none';
                 }}
                 className="w-full h-full object-cover"
               />

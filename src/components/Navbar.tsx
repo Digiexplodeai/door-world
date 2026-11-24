@@ -82,11 +82,11 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
         animate={{ y: !prefersReducedMotion && isHidden ? '-140%' : '0%' }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 z-50 transition-[top,background-color,padding] duration-300 ${
-          hasAnnouncement ? 'top-9' : 'top-0'
+          hasAnnouncement && !isScrolled ? 'top-9' : 'top-0'
         } ${
           isScrolled
             ? 'bg-[#0E0C0A]/95 backdrop-blur-xl border-b border-[#2A241F] py-2.5 shadow-xl'
-            : 'bg-transparent py-4'
+            : 'bg-[#0E0C0A]/40 backdrop-blur-md border-b border-white/5 py-3.5 shadow-sm'
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 flex items-center justify-between gap-4">
@@ -113,7 +113,7 @@ export const Navbar: FC<NavbarProps> = ({ onNavigate, hasAnnouncement }) => {
                   href={item.href}
                   onClick={(e) => handleLinkClick(e, item.href)}
                   className={`relative py-1 whitespace-nowrap shrink-0 group transition-colors ${
-                    isActive ? 'text-[#B8793A] font-bold' : 'text-[#8E8275] hover:text-[#FBF8F3]'
+                    isActive ? 'text-[#B8793A] font-bold' : 'text-[#E5DDD0] hover:text-[#B8793A]'
                   }`}
                 >
                   <LinkRollText text={item.label} />

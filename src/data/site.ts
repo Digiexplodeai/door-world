@@ -94,7 +94,7 @@ export const SITE_DATA = {
     doorsTagline: 'THE COMPLETE DOORS SOLUTIONS',
     badgeText: 'by Kumar Kitchen King',
     experienceClaim: 'A Decade of Manufacturing Excellence',
-    experienceNote: 'TODO: Client to confirm whether to display "15 Years" badge from catalogue or "A decade of experience". Currently using 10+ Years.',
+    // TODO: Client to confirm whether to display "15 Years" badge from catalogue or "A decade of experience". Currently using 10+ Years.
     positioning: 'Manufacturer of customised modular kitchens (acrylic & laminate), solid architectural doors, and turnkey luxury interiors. ISI certified, 100% factory-built with zero on-site carpentry work.',
 
     // Showroom & Master Gallery (Mohali)
@@ -104,11 +104,12 @@ export const SITE_DATA = {
       city: 'Sahibzada Ajit Singh Nagar (Mohali)',
       state: 'Punjab',
       pincode: '140306',
-      pincodeNote: 'TODO: Client to confirm PIN code 140306 (Google Maps) vs 140308 (Catalogue).',
+      // TODO: Client to confirm PIN code 140306 (Google Maps) vs 140308 (Catalogue)
       fullAddress: 'Plot No. 657, Sector 82, JLPL Industrial Area, Sahibzada Ajit Singh Nagar (Mohali), Punjab 140306',
       directionsUrl: 'https://www.google.com/maps?q=Plot+No.+657,+Kumar+Kitchen+King,+Sector+82,+JLPL+Industrial+Area,+Sahibzada+Ajit+Singh+Nagar,+Punjab+140306',
       mapEmbedUrl: 'https://maps.google.com/maps?q=Plot+No.+657,+Kumar+Kitchen+King,+Sector+82,+JLPL+Industrial+Area,+Sahibzada+Ajit+Singh+Nagar,+Punjab+140306&t=&z=15&ie=UTF8&iwloc=&output=embed',
-      hours: 'Open Monday – Saturday · 10:00 AM – 7:30 PM (TODO: Client to confirm exact showroom hours)',
+      // TODO: Client to confirm exact showroom hours
+      hours: 'Open Monday – Saturday',
     },
 
     // Factory & Manufacturing Unit (Yamuna Nagar)
@@ -126,7 +127,7 @@ export const SITE_DATA = {
     contact: {
       primaryPhone: '9812005418',
       primaryPhoneDisplay: '98120 05418',
-      primaryPhoneNote: 'TODO: Client to confirm 9812005418 as primary WhatsApp/Calling number.',
+      // TODO: Client to confirm 9812005418 as primary WhatsApp/Calling number
       landline: '0172-2912765',
       landlineDisplay: '0172-2912765',
       otherPhones: [
@@ -137,7 +138,7 @@ export const SITE_DATA = {
       email: 'info@kumarkitchenking.com',
       website: 'www.kumarkitchenking.com',
       websiteUrl: 'https://www.kumarkitchenking.com',
-      gst: 'TODO: Client to supply official GST number',
+      // TODO: Client to supply official GST number
     },
   },
 
@@ -205,7 +206,7 @@ export const SHOWROOM_SERVICES: ServiceItem[] = [
     title: 'Modular Kitchens',
     subtitle: 'Classic European & Contemporary Layouts',
     description: 'Factory-manufactured acrylic, PU lacquer, and textured laminate kitchens engineered with Blum/Hettich hardware and zero on-site mess.',
-    image: '/images/catalogue/kitchen_hero_pu_lacquer.jpg',
+    image: '/images/catalogue/kitchen-01.webp',
     imageAlt: 'European designer modular kitchen with slatted glass cabinets and integrated island',
     category: 'kitchens',
   },
@@ -214,8 +215,8 @@ export const SHOWROOM_SERVICES: ServiceItem[] = [
     title: 'Doors (Door World)',
     subtitle: 'Solid Wood, Carved & Designer Doors',
     description: 'The Complete Doors Solutions: Burma Teak, natural Walnut, carved entrance designs, decorative laminate doors, and seasoned timber chaukhats.',
-    image: '/images/doors/entrance-doors-luxury.jpg',
-    imageAlt: 'Crafted solid wood entrance doors with architectural chaukhat and warm lighting',
+    image: '/images/doors/concentric-molded-security-door-11.webp',
+    imageAlt: 'Door World architectural wooden entrance door with concentric molded profiles and casing',
     category: 'doors',
   },
   {
@@ -333,8 +334,8 @@ export const KITCHEN_STYLE_CATEGORIES: KitchenStyleCategory[] = [
   {
     id: 'popular-doors',
     name: 'Popular Cabinet Doors',
-    description: 'The most requested cabinet door panel styles from KKK-159 to KKK-176 in custom sizing.',
-    codes: ['KKK-159', 'KKK-162', 'KKK-168', 'KKK-174', 'KKK-176'],
+    description: 'The most requested cabinet door panel styles from KKK-157 to KKK-176 in custom sizing.',
+    codes: ['KKK-157', 'KKK-159', 'KKK-162', 'KKK-168', 'KKK-174', 'KKK-176'],
   },
 ];
 
@@ -386,7 +387,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#F9FAFB',
     description: 'Full European island composition featuring motorized slatted glass wall units, seamless quartz worktop, and integrated dining console.',
     features: ['Slatted glass wall units', 'Concealed LED strip profiles', 'Slimmer plinths for 12% extra storage', 'Touch-to-open Blum Aventos lifts'],
-    image: '/images/catalogue/kkk_101_high_reflective_white.jpg',
+    image: '/images/catalogue/kitchen-01.webp',
     imageAlt: 'Kumar Kitchen King KKK-101 European modular kitchen in High Reflective White with integrated island',
   },
   {
@@ -398,7 +399,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#F4F2EE',
     description: 'Refined rectilinear cabinetry with recessed J-pull profiles and tall pantry highboards with full-extension internal wire baskets.',
     features: ['Tall pantry highboard with internal pull-outs', 'Anti-fingerprint PU coat', 'Quartz backsplashes', 'Soft-close tandem drawers'],
-    image: '/images/catalogue/kkk_102_pure_white.jpg',
+    image: '/images/catalogue/kitchen-02.webp',
     imageAlt: 'Kumar Kitchen King KKK-102 Pure White classic European kitchen cabinets',
   },
   {
@@ -410,7 +411,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#4A4E53',
     description: 'Dramatic dual-tone configuration combining Magnetic Grey base units with natural oak floating wall shelves and warm linear LED lighting.',
     features: ['Integrated dining extension table', 'Warm 3000K concealed LEDs', 'German Hafele cutlery organizers', 'Zero on-site carpentry assembly'],
-    image: '/images/catalogue/kkk_103_magnetic_grey.jpg',
+    image: '/images/catalogue/kitchen-03.webp',
     imageAlt: 'Kumar Kitchen King KKK-103 Magnetic Grey modern modular kitchen with island table',
   },
   {
@@ -422,7 +423,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#D7CEBE',
     description: 'Subtle proportioned Shaker panels with solid timber door rails, bespoke brass cup handles, and fluted glass display cabinets.',
     features: ['Solid core moisture-resistant frame', 'Brushed warm brass hardware', 'Corner carousel pull-out solutions', 'Factory spray finish'],
-    image: '/images/catalogue/kkk_124_craftsman_shaker.jpg',
+    image: '/images/catalogue/kitchen-04.webp',
     imageAlt: 'Kumar Kitchen King KKK-124 Craftsman Shaker kitchen in Cashmere Greige',
   },
   {
@@ -434,7 +435,7 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#7C6E5C',
     description: 'English country-inspired modular arrangement with soft arched rails, plate racks, and natural stone worktops.',
     features: ['Solid oak accent rails', 'Integrated spice pull-outs', 'Appliance garage with bi-fold doors', 'Hettich Sensys hinges'],
-    image: '/images/catalogue/kkk_142_tudor_arch.jpg',
+    image: '/images/catalogue/kitchen-05.webp',
     imageAlt: 'Kumar Kitchen King KKK-142 Tudor arched cabinet door style',
   },
   {
@@ -446,20 +447,20 @@ export const KITCHEN_CATALOGUE_ITEMS: KitchenProductItem[] = [
     colorHex: '#F2EFEB',
     description: 'Delicate stepped molding around door perimeters, crown moldings, and open wine rack displays.',
     features: ['Stepped architectural beading', 'Soft-close full extension slides', 'Corian/Quartz sink integration', 'Custom under-counter pull-outs'],
-    image: '/images/catalogue/kkk_150_french_classic.jpg',
+    image: '/images/catalogue/kitchen-06.webp',
     imageAlt: 'Kumar Kitchen King KKK-150 French provincial kitchen cabinets with crown moldings',
   },
   {
     code: 'KKK-168',
-    name: 'Popular Cabinet Doors Series (KKK-159 to 176)',
+    name: 'Popular Cabinet Doors Series (KKK-157 to KKK-176)',
     style: 'Popular Cabinet Doors',
     finish: 'Custom Spec (Acrylic / PU / Laminate)',
     colorName: 'Custom Colour Range',
     colorHex: '#B8793A',
-    description: 'Extensive catalogue collection spanning codes KKK-159 through KKK-176. Precision custom-sized for replacement or new installations.',
-    features: ['18 distinct profile cuts', 'Available in all 20 Greiges colors', 'Matching drawer fronts and dummy panels', 'Standard 18mm & 22mm thickness'],
-    image: '/images/catalogue/kkk_popular_cabinet_doors.jpg',
-    imageAlt: 'Kumar Kitchen King popular cabinet door profile collection KKK-159 to KKK-176',
+    description: 'Extensive catalogue collection spanning codes KKK-157 through KKK-176. Precision custom-sized for replacement or new installations.',
+    features: ['20 distinct profile cuts', 'Available in all 20 Greiges colors', 'Matching drawer fronts and dummy panels', 'Standard 18mm & 22mm thickness'],
+    image: '/images/catalogue/kitchen-07.webp',
+    imageAlt: 'Kumar Kitchen King popular cabinet door profile collection KKK-157 to KKK-176',
   },
 ];
 
@@ -496,15 +497,28 @@ export const KITCHEN_FEATURE_HIGHLIGHTS = [
 // ============================================================================
 export const DOORS_CATALOGUE: DoorProductItem[] = [
   {
+    id: 'grand-villa-entrance',
+    name: 'Grand Villa Entrance Double Doors',
+    category: 'Grand Entrance',
+    description: 'Symmetrical floor-to-ceiling natural Burma Teak double pivot doors with matching timber soffit ceiling, warm ambient illumination, and integrated sidelight glass panels.',
+    woodOptions: ['Burma Teak', 'American Walnut', 'Kiln-Seasoned Hardwood'],
+    dimensions: 'Custom heights up to 10ft (Double Pivot)',
+    // TODO: Client to confirm real door product prices
+    pricingNote: 'Request custom quotation based on architectural site measurement.',
+    image: '/images/doors/luxury-villa-entrance-01.webp',
+    imageAlt: 'Symmetrical modern luxury villa entrance with solid teak double pivot doors, warm ambient lanterns, and stone pathway',
+  },
+  {
     id: 'solid-wood-panel',
     name: 'Solid Wood Panel Doors',
     category: 'Solid Wood Panel',
     description: 'Seasoned Burma Teak, natural Walnut, and White Oak panel doors constructed with traditional mortise-and-tenon joints for lifelong dimensional stability.',
     woodOptions: ['Burma Teak', 'American Walnut', 'White Oak', 'Champagne Ash'],
     dimensions: 'Custom heights up to 9ft (Single & Double Leaf)',
-    pricingNote: 'TODO: Client to confirm real door product prices. Request custom quote.',
-    image: '/images/doors/entrance-doors-luxury.jpg',
-    imageAlt: 'Door World solid wood raised panel entrance door in natural teak finish with stone facade and lanterns',
+    // TODO: Client to confirm real door product prices
+    pricingNote: 'Request custom quotation based on architectural site measurement.',
+    image: '/images/doors/coffered-panel-double-door-03.webp',
+    imageAlt: 'Classic double solid wood doors with coffered raised square panels set inside a carved timber frame',
   },
   {
     id: 'carved-designer-doors',
@@ -513,9 +527,10 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     description: 'Precision CNC 3D carved motifs, traditional Indian heritage carvings, geometric fluted textures, and bespoke architectural entrance statements.',
     woodOptions: ['Selected Seasoned Teak', 'High-Density Engineered Hardwood'],
     dimensions: 'Standard 8ft x 4ft & Bespoke Villa Sizes',
-    pricingNote: 'TODO: Client to confirm real door product prices. Request custom quote.',
-    image: '/images/catalogue/door_designer_carved.jpg',
-    imageAlt: 'Door World handcrafted carved wooden main entrance double doors',
+    // TODO: Client to confirm real door product prices
+    pricingNote: 'Request custom quotation based on architectural site measurement.',
+    image: '/images/doors/carved-lattice-teak-door-02.webp',
+    imageAlt: 'Handcrafted teak double entrance door featuring intricate geometric lattice panels, central relief carvings, and timber surround',
   },
   {
     id: 'laminated-decorative-doors',
@@ -524,9 +539,10 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     description: 'Heavy-duty flush doors pressed with high-pressure designer laminates from Stylam, Merino, and Greenlam. Scratch, moisture, and termite resistant.',
     woodOptions: ['Solid Tubular Core', 'Kiln-Dried Hardwood Pine Frame'],
     dimensions: '7ft x 3ft, 7ft x 3.25ft, 8ft x 3.5ft',
-    pricingNote: 'TODO: Client to confirm real door product prices. Request custom quote.',
-    image: '/images/catalogue/door_laminated_decorative.jpg',
-    imageAlt: 'Door World contemporary laminated interior flush door with metal inlay',
+    // TODO: Client to confirm real door product prices
+    pricingNote: 'Request custom quotation based on architectural site measurement.',
+    image: '/images/doors/chevron-textured-interior-door-07.webp',
+    imageAlt: 'Contemporary walnut veneer flush door with precision chevron routered texture and vertical frame',
   },
   {
     id: 'timber-frames-chaukhat',
@@ -535,9 +551,10 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     description: 'Kiln-seasoned hardwood door frames precision planed and rebated for air-tight gasket seals and heavy solid wood door hanging.',
     woodOptions: ['Malaysian Sal Wood', 'Teak Wood', 'Red Miranti', 'Marandi'],
     dimensions: 'Section sizes: 4"x2.5", 5"x2.5", 6"x2.5"',
-    pricingNote: 'TODO: Client to confirm real chaukhat running-foot rates.',
-    image: '/images/catalogue/door_chaukhat_frames.jpg',
-    imageAlt: 'Door World solid timber chaukhat door frame in warehouse gallery',
+    // TODO: Client to confirm real chaukhat running-foot rates
+    pricingNote: 'Request custom quotation based on running-foot specification.',
+    image: '/images/doors/sunburst-radial-pivot-door-08.webp',
+    imageAlt: 'Architectural sunburst radial teak pivot door with brass crescent handle in natural stone and timber frame casing',
   },
   {
     id: 'architectural-hardware',
@@ -546,8 +563,9 @@ export const DOORS_CATALOGUE: DoorProductItem[] = [
     description: 'Heavy solid brass pull handles, stainless steel ball-bearing hinges, digital smart locks, and magnetic door stoppers from Hafele, Blum, and Dorset.',
     woodOptions: ['Solid Brass (Antique, Satin Gold, Rose Gold)', 'SS-304 Matte Black'],
     dimensions: 'Various specifications for standard & pivot installations',
-    pricingNote: 'TODO: Client to confirm hardware catalog pricing.',
-    image: '/images/catalogue/door_brass_hardware.jpg',
+    // TODO: Client to confirm hardware catalog pricing
+    pricingNote: 'Request specification & price list for locks and handles.',
+    image: '/images/doors/hardware-placeholder.webp',
     imageAlt: 'Architectural brass handles and locks for luxury wooden entrance doors',
   },
 ];
@@ -650,34 +668,88 @@ export const PROCESS_STEPS: ProcessStep[] = [
 // ============================================================================
 export const GALLERY_ITEMS: GalleryImage[] = [
   {
-    id: 'gal-1',
+    id: 'gal-door-1',
+    title: 'Circular Medallion Solid Teak Doors',
+    category: 'Doors',
+    tag: 'Handcrafted Relief',
+    image: '/images/doors/circular-medallion-carved-door-04.webp',
+    imageAlt: 'Solid wood double entrance doors with a carved circular medallion center and antique brass pull handles',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-door-2',
+    title: 'Organic Wave Sculpted Entrance Door',
+    category: 'Doors',
+    tag: 'Architectural Sculptural',
+    image: '/images/doors/artistic-wave-carved-door-05.webp',
+    imageAlt: 'Contemporary designer entrance door with organic wave groove carvings and custom sculpted wooden handle in marble surround',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-door-3',
+    title: 'Chevron Fluted Walnut Entrance Door',
+    category: 'Doors',
+    tag: 'Textured Walnut',
+    image: '/images/doors/chevron-fluted-walnut-door-06.webp',
+    imageAlt: 'Modern natural walnut door with horizontal grain panels and central chevron fluted texture',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-door-4',
+    title: 'Bleached Ash Fluted Interior Door',
+    category: 'Doors',
+    tag: 'Contemporary Fluted',
+    image: '/images/doors/fluted-acoustic-interior-door-09.webp',
+    imageAlt: 'Minimalist luxury interior door with bottom fluted relief, textured border, and integrated vertical jamb lighting',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-door-5',
+    title: 'Carved Floral Acanthus Sliding Door',
+    category: 'Doors',
+    tag: 'Barn Sliding System',
+    image: '/images/doors/carved-floral-sliding-barn-door-10.webp',
+    imageAlt: 'Matte black wooden sliding barn door with deep traditional floral acanthus carvings on steel roller track',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-door-6',
+    title: 'Classic Three-Panel Espresso Door',
+    category: 'Doors',
+    tag: 'Molded Profiles',
+    image: '/images/doors/classic-three-panel-espresso-door-12.webp',
+    imageAlt: 'Dark espresso finished three-panel interior door with clean molded profiles and silver lever handle',
+    aspect: 'tall',
+  },
+  {
+    id: 'gal-kitchen-1',
     title: 'High Reflective White Modular Island',
     category: 'Kitchens',
     tag: 'Designer Series KKK-101',
-    image: '/images/catalogue/kitchen_hero_pu_lacquer.jpg',
+    image: '/images/catalogue/kitchen-01.webp',
     imageAlt: 'European style modular kitchen island with slatted glass cabinets and LED lighting',
     aspect: 'tall',
   },
   {
-    id: 'gal-2',
-    title: 'Solid Teak Double Entrance Pivot Doors',
-    category: 'Doors',
-    tag: 'Door World Signature',
-    image: '/images/doors/entrance-doors-luxury.jpg',
-    imageAlt: 'Solid Burma teak double entrance doors with architectural stone facade, chaukhat and ambient lanterns',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-3',
+    id: 'gal-kitchen-2',
     title: 'Magnetic Grey & Natural Wood Console Suite',
     category: 'Kitchens',
     tag: 'Designer Series KKK-103',
-    image: '/images/catalogue/kkk_103_magnetic_grey.jpg',
+    image: '/images/catalogue/kitchen-03.webp',
     imageAlt: 'Magnetic grey modern modular kitchen with island breakfast table',
     aspect: 'wide',
   },
   {
-    id: 'gal-4',
+    id: 'gal-kitchen-3',
+    title: 'Cashmere Greige Craftsman Shaker Kitchen',
+    category: 'Kitchens',
+    tag: 'Designer Series KKK-124',
+    image: '/images/catalogue/kitchen-04.webp',
+    imageAlt: 'Craftsman Shaker modular kitchen in Cashmere Greige PU finish',
+    aspect: 'wide',
+  },
+  {
+    id: 'gal-wardrobe-1',
     title: 'Walk-In Wardrobe with Tinted Glass Shutters',
     category: 'Wardrobes',
     tag: 'Custom Interior Joinery',
@@ -686,16 +758,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     aspect: 'square',
   },
   {
-    id: 'gal-5',
-    title: 'Carved 3D Teak Main Entry Door',
-    category: 'Doors',
-    tag: 'Door World Carved Collection',
-    image: '/images/catalogue/door_designer_carved.jpg',
-    imageAlt: 'Carved designer wooden door for luxury villa entrance',
-    aspect: 'tall',
-  },
-  {
-    id: 'gal-6',
+    id: 'gal-interior-1',
     title: 'Fluted Bathroom Vanity with Quartz Basin',
     category: 'Interiors',
     tag: 'Vanities & Consoles',
@@ -704,16 +767,7 @@ export const GALLERY_ITEMS: GalleryImage[] = [
     aspect: 'square',
   },
   {
-    id: 'gal-7',
-    title: 'Cashmere Greige Craftsman Shaker Kitchen',
-    category: 'Kitchens',
-    tag: 'Designer Series KKK-124',
-    image: '/images/catalogue/kkk_124_craftsman_shaker.jpg',
-    imageAlt: 'Craftsman Shaker modular kitchen in Cashmere Greige PU finish',
-    aspect: 'wide',
-  },
-  {
-    id: 'gal-8',
+    id: 'gal-interior-2',
     title: 'Handcrafted Pooja Room Temple Sanctuary',
     category: 'Interiors',
     tag: 'Curtain Temples',
