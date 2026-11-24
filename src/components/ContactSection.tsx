@@ -1,7 +1,9 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
+  CheckCircle2,
   Clock,
+  Loader2,
   MapPin,
   MessageCircle,
   Navigation,
@@ -15,6 +17,7 @@ import {
   DOOR_TYPE_OPTIONS,
 } from '../data/doorWorldData';
 import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
+import { submitEnquiry } from '../services/enquiryService';
 import { LinkRollText, MagneticButton } from './MagneticButton';
 
 interface ContactSectionProps {
@@ -36,11 +39,15 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
   const [message, setMessage] = useState('');
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submittedData, setSubmittedData] = useState<{
     name: string;
     phone: string;
     doorType: string;
     message: string;
+    referenceId: string;
+    savedToDatabase: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -81,7 +88,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
     return nextErrors;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -90,15 +97,40 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
     }
 
     setErrors({});
-    setSubmittedData({
-      name: name.trim(),
-      phone: phone.trim(),
-      doorType,
-      message: message.trim(),
-    });
-    setName('');
-    setPhone('');
-    setMessage('');
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const submissionName = name.trim();
+    const submissionPhone = phone.trim();
+    const submissionMessage = message.trim();
+
+    try {
+      const result = await submitEnquiry({
+        name: submissionName,
+        phone: submissionPhone,
+        doorType,
+        message: submissionMessage,
+        source: 'contact_section',
+      });
+
+      setSubmittedData({
+        name: submissionName,
+        phone: submissionPhone,
+        doorType,
+        message: submissionMessage,
+        referenceId: result.referenceId,
+        savedToDatabase: result.savedToDatabase,
+      });
+
+      setName('');
+      setPhone('');
+      setMessage('');
+    } catch (err: unknown) {
+      console.warn('[Door World] Submission error caught:', err);
+      setSubmitError('Unable to save to database. You can still message us directly on WhatsApp below.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -217,34 +249,24 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                 >
                   <div className="flex items-start gap-4 mb-5">
                     <div className="w-11 h-11 rounded-full bg-[#0F3B33] flex items-center justify-center shrink-0">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-5 h-5 text-[#E6C98B]"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <motion.path
-                          d="M5 13l4 4L19 7"
-                          initial={prefersReducedMotion ? false : { pathLength: 0 }}
-                          animate={{ pathLength: 1 }}
-                          transition={{ duration: 0.5, delay: 0.1 }}
-                        />
-                      </svg>
+                      <CheckCircle2 className="w-6 h-6 text-[#E6C98B]" aria-hidden="true" />
                     </div>
                     <div>
-                      <h4 className="font-display text-2xl font-semibold text-[#0E0C0A]">
-                        Enquiry Prepared for {submittedData.name}
-                      </h4>
-                      <p className="text-sm text-[#8A7F73] mt-1 leading-relaxed">
-                        Regarding{' '}
-                        <span className="text-[#0E0C0A] font-medium">
-                          {submittedData.doorType}
+                      <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                        <span className="text-[10px] uppercase font-mono tracking-widest bg-[#0F3B33] text-[#E6C98B] px-2.5 py-0.5 rounded-[3px] font-semibold">
+                          Ref: {submittedData.referenceId}
                         </span>
-                        . Send directly to {BUSINESS_INFO.contactPerson} on WhatsApp for immediate wholesale pricing.
+                        {submittedData.savedToDatabase && (
+                          <span className="text-[10px] uppercase tracking-wider text-[#1B5C4F] font-semibold bg-[#1B5C4F]/10 px-2 py-0.5 rounded-[3px]">
+                            Saved in Showroom CRM
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="font-display text-2xl font-semibold text-[#0E0C0A]">
+                        Enquiry Received for {submittedData.name}
+                      </h4>
+                      <p className="text-sm text-[#8A7F73] mt-1.5 leading-relaxed">
+                        Regarding <span className="text-[#0E0C0A] font-medium">{submittedData.doorType}</span>. {submittedData.savedToDatabase ? 'Your enquiry is securely recorded in our showroom system. Send directly to ' : 'Send directly to '}{BUSINESS_INFO.contactPerson} on WhatsApp for immediate priority pricing.
                       </p>
                     </div>
                   </div>
@@ -252,14 +274,14 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                   <div className="flex flex-wrap items-center gap-4">
                     <a
                       href={buildWhatsAppUrl(
-                        `Hello ${BUSINESS_INFO.contactPerson}, my name is ${submittedData.name} (${submittedData.phone}). I am enquiring about ${submittedData.doorType}: ${submittedData.message}`
+                        `Hello ${BUSINESS_INFO.contactPerson}, my name is ${submittedData.name} (${submittedData.phone}). Ref: ${submittedData.referenceId}. I am enquiring about ${submittedData.doorType}: ${submittedData.message}`
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-[#0F3B33] hover:bg-[#1B5C4F] text-[#FBF8F3] text-xs uppercase tracking-[0.2em] font-semibold px-5 py-3.5 rounded-[4px] transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 text-[#E6C98B]" aria-hidden="true" />
-                      <span>Send via WhatsApp</span>
+                      <span>Chat on WhatsApp (Ref: {submittedData.referenceId})</span>
                     </a>
 
                     <button
@@ -419,14 +441,32 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                     )}
                   </div>
 
+                  {submitError && (
+                    <div className="p-3 bg-red-50 border border-red-200 rounded-[4px] text-xs text-red-700">
+                      {submitError}
+                    </div>
+                  )}
+
                   <div className="pt-2">
                     <MagneticButton
                       type="submit"
+                      disabled={isSubmitting}
                       wrapperClassName="w-full sm:w-auto inline-block"
-                      className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-3 bg-[#B8733B] hover:bg-[#0E0C0A] text-[#FBF8F3] text-xs uppercase tracking-[0.22em] font-semibold px-7 py-4 rounded-[4px] transition-colors duration-200 cursor-pointer"
+                      className={`w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-3 bg-[#B8733B] hover:bg-[#0E0C0A] text-[#FBF8F3] text-xs uppercase tracking-[0.22em] font-semibold px-7 py-4 rounded-[4px] transition-colors duration-200 ${
+                        isSubmitting ? 'opacity-70 cursor-wait' : 'cursor-pointer'
+                      }`}
                     >
-                      <Send className="w-3.5 h-3.5 text-[#E6C98B]" aria-hidden="true" />
-                      <LinkRollText text="Send Enquiry" />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 text-[#E6C98B] animate-spin" aria-hidden="true" />
+                          <span>Saving Enquiry...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-3.5 h-3.5 text-[#E6C98B]" aria-hidden="true" />
+                          <LinkRollText text="Send Enquiry" />
+                        </>
+                      )}
                     </MagneticButton>
                   </div>
                 </form>

@@ -24,6 +24,7 @@ interface MagneticButtonProps {
   href?: string;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
   target?: string;
   rel?: string;
   ariaLabel?: string;
@@ -37,6 +38,7 @@ export function MagneticButton({
   href,
   onClick,
   type = 'button',
+  disabled = false,
   target,
   rel,
   ariaLabel,
@@ -94,6 +96,7 @@ export function MagneticButton({
       ) : (
         <button
           type={type}
+          disabled={disabled}
           aria-label={ariaLabel}
           onClick={onClick}
           data-cursor="grow"

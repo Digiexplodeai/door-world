@@ -9,6 +9,7 @@ import {
   WOOD_FINISHES,
 } from '../data/doorWorldData';
 import { useMotionCapabilities } from '../hooks/useMotionCapabilities';
+import { submitEnquiry } from '../services/enquiryService';
 import { LinkRollText, MagneticButton } from './MagneticButton';
 import { SafeImage } from './SafeImage';
 
@@ -21,6 +22,24 @@ export function DoorConfigurator() {
   const quoteHref = buildWhatsAppUrl(
     `Hello ${BUSINESS_INFO.contactPerson}, I configured a door on Door World:\n• Wood Finish: ${selectedFinish.name}\n• Door Style: ${selectedStyle.name}\n• Size: ${selectedSize.name} (${selectedSize.dimensions})\nPlease share wholesale pricing and availability.`
   );
+
+  const handleQuoteClick = () => {
+    submitEnquiry({
+      name: 'Custom Studio Visitor',
+      phone: 'Pending WhatsApp',
+      doorType: `${selectedFinish.name} - ${selectedStyle.name}`,
+      message: `Studio Config: Finish: ${selectedFinish.name}, Style: ${selectedStyle.name}, Size: ${selectedSize.name} (${selectedSize.dimensions})`,
+      source: 'door_configurator',
+      metadata: {
+        finish: selectedFinish.name,
+        style: selectedStyle.name,
+        size: selectedSize.name,
+        dimensions: selectedSize.dimensions,
+      },
+    }).catch((err) => {
+      console.warn('[Door World] Non-blocking quote log warning:', err);
+    });
+  };
 
   return (
     <section
@@ -277,6 +296,7 @@ export function DoorConfigurator() {
                   href={quoteHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleQuoteClick}
                   wrapperClassName="w-full sm:w-auto inline-block"
                   className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-3 bg-[#B8733B] hover:bg-[#E6C98B] text-[#FBF8F3] hover:text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-semibold px-7 py-4 rounded-[4px] transition-colors duration-200 whitespace-nowrap"
                 >
