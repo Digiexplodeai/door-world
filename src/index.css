@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+:root {
+  --dw-ink: #0E0C0A;
+  --dw-espresso: #1C1511;
+  --dw-teak: #B8733B;
+  --dw-gold: #E6C98B;
+  --dw-ivory: #FBF8F3;
+  --dw-sand: #F1E8DA;
+  --dw-emerald: #0F3B33;
+  --dw-emerald-light: #1B5C4F;
+  --dw-muted: #8A7F73;
+
+  /* Strict Editorial Type Scale Tokens */
+  --text-hero: clamp(2.5rem, 6vw, 5.5rem);
+  --text-h2: clamp(2rem, 4.2vw, 3.75rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-statement: clamp(1.5rem, 2.6vw, 2.5rem);
+  --text-body: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+  --text-eyebrow: 0.72rem;
+  --text-stat: clamp(3rem, 6vw, 5.5rem);
+  --text-marquee: clamp(1.5rem, 3.2vw, 3rem);
+  --text-footer-wordmark: clamp(3rem, 11vw, 10rem);
+  --text-section-num: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-ink: #0E0C0A;
+  --color-espresso: #1C1511;
+  --color-teak: #B8733B;
+  --color-champagne: #E6C98B;
+  --color-ivory: #FBF8F3;
+  --color-sand: #F1E8DA;
+  --color-emerald-deep: #0F3B33;
+  --color-emerald-light: #1B5C4F;
+  --color-muted: #8A7F73;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--dw-ink);
+    background-color: var(--dw-ink);
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+    background-color: var(--dw-ink);
+    color: var(--dw-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-serif);
+  }
+
+  :focus-visible {
+    outline: 2px solid #E6C98B;
+    outline-offset: 3px;
+  }
+}
+
+/* Global Type Scale Classes */
+.type-hero {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.type-h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h2);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.type-h3 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.type-statement {
+  font-family: var(--font-serif);
+  font-size: var(--text-statement);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  max-width: min(100%, 30ch);
+}
+
+.type-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+.type-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  line-height: 1.3;
+}
+
+.type-stat {
+  font-family: var(--font-serif);
+  font-size: var(--text-stat);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.type-marquee {
+  font-family: var(--font-serif);
+  font-size: var(--text-marquee);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.type-footer-wordmark {
+  font-family: var(--font-serif);
+  font-size: var(--text-footer-wordmark);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.type-section-num {
+  font-family: var(--font-serif);
+  font-size: var(--text-section-num);
+  line-height: 1;
+}
+
+/* Warm architectural color grade + subtle film-grain overlay for all photography */
+.editorial-photo {
+  filter: contrast(1.04) saturate(1.06) sepia(0.06);
+}
+
+.film-grain-overlay {
+  background-image: radial-gradient(rgba(251, 248, 243, 0.25) 0.6px, transparent 0.6px),
+    radial-gradient(rgba(14, 12, 10, 0.35) 0.6px, transparent 0.6px);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  opacity: 0.032;
+  pointer-events: none;
+}
+
+/* Outlined typography */
+.text-stroke-gold {
+  -webkit-text-stroke: 1px rgba(230, 201, 139, 0.45);
+  color: transparent;
+}
+
+.text-stroke-teak {
+  -webkit-text-stroke: 1px rgba(184, 115, 59, 0.38);
+  color: transparent;
+}
+
+.text-stroke-ivory {
+  -webkit-text-stroke: 1px rgba(251, 248, 243, 0.8);
+  color: transparent;
+}
+
+/* Subtle wood-grain hairline pattern for door panels */
+.wood-leaf-texture {
+  background-color: #1C1511;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(230, 201, 139, 0.04) 0px,
+      rgba(230, 201, 139, 0.04) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    linear-gradient(160deg, #2A1D16 0%, #1C1511 48%, #0E0C0A 100%);
+}
+
+/* Hide native scrollbars for mobile horizontal carousels */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile-only Typography Overrides (max-width: 767px) — Desktop stays untouched */
+@media (max-width: 767px) {
+  :root {
+    --text-hero: clamp(2.05rem, 9.5vw, 2.6rem);
+    --text-h2: clamp(1.65rem, 6.2vw, 2.1rem);
+    --text-h3: clamp(1.125rem, 4.4vw, 1.35rem);
+    --text-statement: clamp(1.18rem, 4.8vw, 1.45rem);
+    --text-body: 0.96875rem;
+    --text-stat: clamp(2.15rem, 8.5vw, 2.9rem);
+    --text-marquee: clamp(1.05rem, 4.2vw, 1.4rem);
+    --text-footer-wordmark: clamp(1.85rem, 12.2vw, 3.1rem);
+    --text-section-num: clamp(2rem, 8vw, 2.5rem);
+  }
+}
+
+/* Link Roll hover micro-interaction (desktop hover devices only) */
+.link-roll {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.link-roll-inner {
+  display: inline-block;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-roll-clone {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: inline-block;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .link-roll-inner,
+  .link-roll:hover .link-roll-inner {
+    transform: translateY(-100%);
+  }
+
+  .group:hover .link-roll-clone,
+  .link-roll:hover .link-roll-clone {
+    transform: translateY(-100%);
+  }
+
+  .btn-shine-target:hover .btn-shine-bar {
+    animation: shine-sweep 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* Magnetic button & pill shimmer sweep */
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+@keyframes subtle-shimmer {
+  0%, 100% {
+    transform: translateX(-140%) skewX(-20deg);
+  }
+  45%, 55% {
+    transform: translateX(260%) skewX(-20deg);
+  }
+}
+
+.animate-pill-shimmer {
+  animation: subtle-shimmer 4.5s ease-in-out infinite;
+}
+
+/* Circular SVG badge slow spin */
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-badge-spin {
+  animation: slow-spin 18s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-roll-inner,
+  .link-roll-clone {
+    transition: none;
+  }
+  .group:hover .link-roll-inner,
+  .link-roll:hover .link-roll-inner,
+  .group:hover .link-roll-clone,
+  .link-roll:hover .link-roll-clone {
+    transform: none;
+  }
+  .btn-shine-target:hover .btn-shine-bar,
+  .animate-pill-shimmer,
+  .animate-badge-spin {
+    animation: none;
+  }
+}

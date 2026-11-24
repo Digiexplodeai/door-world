@@ -1,0 +1,6 @@
+{
+  "name": "Door World",
+  "description": "Wholesaler and retailer of solid wooden doors, designer carved doors, laminated doors, timber frames, and architectural door hardware in Kharar, Punjab.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
