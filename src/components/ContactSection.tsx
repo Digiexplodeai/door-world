@@ -3,7 +3,11 @@ import { motion } from 'motion/react';
 import {
   CheckCircle2,
   Clock,
+  CookingPot,
+  DoorOpen,
+  Layers,
   Loader2,
+  Mail,
   MapPin,
   MessageCircle,
   Navigation,
@@ -22,20 +26,23 @@ import { submitEnquiry } from '../services/enquiryService';
 import { LinkRollText, MagneticButton } from './MagneticButton';
 
 interface ContactSectionProps {
-  preselectedDoorType: string;
+  preselectedDoorType?: string;
 }
 
 interface FormErrors {
   name?: string;
   phone?: string;
+  email?: string;
   doorType?: string;
   message?: string;
 }
 
-export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
+export function ContactSection({ preselectedDoorType = '' }: ContactSectionProps) {
   const { prefersReducedMotion } = useMotionCapabilities();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [interestedIn, setInterestedIn] = useState<'Doors' | 'Kitchen' | 'Both'>('Both');
   const [doorType, setDoorType] = useState<string>(DOOR_TYPE_OPTIONS[0]);
   const [message, setMessage] = useState('');
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -45,6 +52,8 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
   const [submittedData, setSubmittedData] = useState<{
     name: string;
     phone: string;
+    email: string;
+    interestedIn: string;
     doorType: string;
     message: string;
     referenceId: string;
@@ -53,11 +62,19 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
 
   useEffect(() => {
     if (!preselectedDoorType) return;
+    const lower = preselectedDoorType.toLowerCase();
+
+    if (lower.includes('kitchen')) {
+      setInterestedIn('Kitchen');
+    } else if (lower.includes('door') || lower.includes('chaukhat')) {
+      setInterestedIn('Doors');
+    }
+
     const matched = DOOR_TYPE_OPTIONS.find(
       (opt) =>
-        opt.toLowerCase() === preselectedDoorType.toLowerCase() ||
-        opt.toLowerCase().includes(preselectedDoorType.toLowerCase()) ||
-        preselectedDoorType.toLowerCase().includes(opt.toLowerCase().replace(' (chaukhat)', ''))
+        opt.toLowerCase() === lower ||
+        opt.toLowerCase().includes(lower) ||
+        lower.includes(opt.toLowerCase().replace(' (chaukhat)', ''))
     );
     if (matched) {
       setDoorType(matched);
@@ -65,7 +82,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
       setMessage((prev) =>
         prev
           ? prev
-          : `Interested in: ${preselectedDoorType}. Please share sizes and wholesale pricing.`
+          : `Interested in: ${preselectedDoorType}. Please share catalogue, sizes, and pricing estimate.`
       );
     }
   }, [preselectedDoorType]);
@@ -79,12 +96,18 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
     if (digitsOnly.length < 10 || digitsOnly.length > 13) {
       nextErrors.phone = 'Please enter a valid 10-digit mobile number.';
     }
+    if (email.trim().length > 0) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.trim())) {
+        nextErrors.email = 'Please enter a valid email address (e.g. name@example.com).';
+      }
+    }
     if (!doorType) {
-      nextErrors.doorType = 'Please select a door category.';
+      nextErrors.doorType = 'Please select a requirement category.';
     }
     if (message.trim().length < 8) {
       nextErrors.message =
-        'Please share a short note on quantity, approximate size, or requirement.';
+        'Please share a short note on quantity, layout, size, or requirement.';
     }
     return nextErrors;
   };
@@ -103,12 +126,15 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
 
     const submissionName = name.trim();
     const submissionPhone = phone.trim();
+    const submissionEmail = email.trim();
     const submissionMessage = message.trim();
 
     try {
       const result = await submitEnquiry({
         name: submissionName,
         phone: submissionPhone,
+        email: submissionEmail,
+        interestedIn,
         doorType,
         message: submissionMessage,
         source: 'contact_section',
@@ -117,6 +143,8 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
       setSubmittedData({
         name: submissionName,
         phone: submissionPhone,
+        email: submissionEmail,
+        interestedIn,
         doorType,
         message: submissionMessage,
         referenceId: result.referenceId,
@@ -125,6 +153,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
 
       setName('');
       setPhone('');
+      setEmail('');
       setMessage('');
     } catch (err: unknown) {
       console.warn('[Door World] Submission error caught:', err);
@@ -272,7 +301,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                         Enquiry Received for {submittedData.name}
                       </h4>
                       <p className="text-sm text-[#8A7F73] mt-1.5 leading-relaxed">
-                        Regarding <span className="text-[#0E0C0A] font-medium">{submittedData.doorType}</span>. {submittedData.savedToDatabase ? 'Your enquiry is securely recorded in our showroom system. Send directly to ' : 'Send directly to '}{BUSINESS_INFO.contactPerson} on WhatsApp for immediate priority pricing.
+                        Interested in: <span className="text-[#0E0C0A] font-semibold">{submittedData.interestedIn}</span> ({submittedData.doorType}). {submittedData.savedToDatabase ? 'Your enquiry is securely recorded in our showroom system. Send directly to ' : 'Send directly to '}{BUSINESS_INFO.contactPerson} on WhatsApp for immediate priority pricing.
                       </p>
                     </div>
                   </div>
@@ -280,7 +309,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                   <div className="flex flex-wrap items-center gap-4">
                     <a
                       href={buildWhatsAppUrl(
-                        `Hello ${BUSINESS_INFO.contactPerson}, my name is ${submittedData.name} (${submittedData.phone}). Ref: ${submittedData.referenceId}. I am enquiring about ${submittedData.doorType}: ${submittedData.message}`
+                        `Hello ${BUSINESS_INFO.contactPerson}, my name is ${submittedData.name} (${submittedData.phone}, ${submittedData.email || 'no email'}). Ref: ${submittedData.referenceId}. I am enquiring for ${submittedData.interestedIn} (${submittedData.doorType}): ${submittedData.message}`
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -301,6 +330,33 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                  {/* Interested In: Doors / Kitchen / Both Selector */}
+                  <div>
+                    <label className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-[#B8733B] mb-2">
+                      Interested In
+                    </label>
+                    <div className="grid grid-cols-3 gap-3">
+                      {(['Doors', 'Kitchen', 'Both'] as const).map((type) => {
+                        const isSelected = interestedIn === type;
+                        return (
+                          <button
+                            key={type}
+                            type="button"
+                            onClick={() => setInterestedIn(type)}
+                            className={`py-2.5 px-3 rounded-[4px] text-xs uppercase tracking-[0.16em] font-semibold transition-all cursor-pointer border text-center ${
+                              isSelected
+                                ? 'bg-[#0E0C0A] text-[#FBF8F3] border-[#0E0C0A] shadow-sm'
+                                : 'bg-[#FBF8F3] text-[#6E6358] border-[#B8793A]/30 hover:border-[#B8793A]'
+                            }`}
+                          >
+                            {type}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Name and Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="relative">
                       <input
@@ -324,7 +380,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                         htmlFor="enquiry-name"
                         className="pointer-events-none absolute left-0 top-3.5 text-sm text-[#8A7F73] transition-all duration-200 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:uppercase peer-focus:tracking-[0.22em] peer-focus:text-[#B8733B] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.22em] peer-[:not(:placeholder-shown)]:text-[#0E0C0A]"
                       >
-                        Your Name
+                        Your Name *
                       </label>
                       <motion.span
                         aria-hidden="true"
@@ -362,7 +418,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                         htmlFor="enquiry-phone"
                         className="pointer-events-none absolute left-0 top-3.5 text-sm text-[#8A7F73] transition-all duration-200 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:uppercase peer-focus:tracking-[0.22em] peer-focus:text-[#B8733B] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.22em] peer-[:not(:placeholder-shown)]:text-[#0E0C0A]"
                       >
-                        Phone / WhatsApp
+                        Phone / WhatsApp *
                       </label>
                       <motion.span
                         aria-hidden="true"
@@ -379,12 +435,52 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                     </div>
                   </div>
 
+                  {/* Email Field */}
+                  <div className="relative">
+                    <input
+                      id="enquiry-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      value={email}
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (errors.email) setErrors((p) => ({ ...p, email: undefined }));
+                      }}
+                      placeholder=" "
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? 'email-error' : undefined}
+                      className="peer w-full pt-5 pb-2.5 bg-transparent border-b border-[#0E0C0A]/25 text-sm text-[#0E0C0A] focus:outline-none"
+                    />
+                    <label
+                      htmlFor="enquiry-email"
+                      className="pointer-events-none absolute left-0 top-3.5 text-sm text-[#8A7F73] transition-all duration-200 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:uppercase peer-focus:tracking-[0.22em] peer-focus:text-[#B8733B] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.22em] peer-[:not(:placeholder-shown)]:text-[#0E0C0A]"
+                    >
+                      Email Address (Optional)
+                    </label>
+                    <motion.span
+                      aria-hidden="true"
+                      initial={false}
+                      animate={{ scaleX: focusedField === 'email' ? 1 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="origin-left absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#B8733B]"
+                    />
+                    {errors.email && (
+                      <p id="email-error" className="text-xs text-red-700 mt-1.5 font-medium">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Product Requirement Category */}
                   <div className="relative">
                     <label
                       htmlFor="enquiry-door-type"
                       className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-[#B8733B] mb-1"
                     >
-                      Door Type / Category
+                      Specific Product or Category
                     </label>
                     <select
                       id="enquiry-door-type"
@@ -393,7 +489,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                       onFocus={() => setFocusedField('doorType')}
                       onBlur={() => setFocusedField(null)}
                       onChange={(e) => setDoorType(e.target.value)}
-                      className="w-full py-2.5 bg-transparent border-b border-[#0E0C0A]/25 text-sm text-[#0E0C0A] focus:outline-none"
+                      className="w-full py-2.5 bg-transparent border-b border-[#0E0C0A]/25 text-sm text-[#0E0C0A] focus:outline-none cursor-pointer"
                     >
                       {DOOR_TYPE_OPTIONS.map((option) => (
                         <option key={option} value={option}>
@@ -410,6 +506,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                     />
                   </div>
 
+                  {/* Message */}
                   <div className="relative">
                     <textarea
                       id="enquiry-message"
@@ -431,7 +528,7 @@ export function ContactSection({ preselectedDoorType }: ContactSectionProps) {
                       htmlFor="enquiry-message"
                       className="pointer-events-none absolute left-0 top-3.5 text-sm text-[#8A7F73] transition-all duration-200 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-semibold peer-focus:uppercase peer-focus:tracking-[0.22em] peer-focus:text-[#B8733B] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.22em] peer-[:not(:placeholder-shown)]:text-[#0E0C0A]"
                     >
-                      Quantity, Sizes &amp; Requirement
+                      Quantity, Room Layout, Sizes &amp; Requirement *
                     </label>
                     <motion.span
                       aria-hidden="true"

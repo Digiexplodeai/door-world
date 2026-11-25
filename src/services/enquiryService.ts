@@ -3,6 +3,8 @@ import { isSupabaseConfigured, supabase, EnquiryInsert } from '../lib/supabase';
 export interface SubmitEnquiryParams {
   name: string;
   phone: string;
+  email?: string;
+  interestedIn?: 'Doors' | 'Kitchen' | 'Both' | string;
   doorType: string;
   message: string;
   source?: string;
@@ -46,6 +48,8 @@ export async function submitEnquiry(params: SubmitEnquiryParams): Promise<Submit
     source: params.source || 'contact_section',
     metadata: {
       ...params.metadata,
+      email: params.email?.trim() || null,
+      interestedIn: params.interestedIn || 'Both',
       referenceId,
       submittedAt: new Date().toISOString(),
       userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'unknown',

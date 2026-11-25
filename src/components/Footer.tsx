@@ -63,22 +63,52 @@ export const Footer: FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Col 3 (2 cols): Core Services */}
+          {/* Col 3 (2 cols): Core Solutions */}
           <div className="lg:col-span-2 space-y-3">
             <p className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#B8793A] font-bold">
-              Our Services
+              Collections
             </p>
             <ul className="space-y-2 text-xs text-[#8E8275]">
-              {SHOWROOM_SERVICES.slice(0, 6).map((svc) => (
-                <li key={svc.id}>
-                  <Link
-                    to={svc.id === 'kitchens' ? '/kitchens' : svc.id === 'doors' ? '/doors' : '/services'}
-                    className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
-                  >
-                    {svc.title}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  to="/kitchen"
+                  className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
+                >
+                  Modular Kitchens
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/doors"
+                  className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
+                >
+                  Solid Wood Doors
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/doors#carved-entrance"
+                  className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
+                >
+                  Carved Designer Doors
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/kitchen#styles"
+                  className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
+                >
+                  European Cabinetry
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/doors#chaukhats"
+                  className="hover:text-[#F7F3EC] transition-colors text-left cursor-pointer min-h-[32px] inline-flex items-center"
+                >
+                  Timber Chaukhats
+                </Link>
+              </li>
             </ul>
           </div>
 

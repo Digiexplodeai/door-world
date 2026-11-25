@@ -21,8 +21,12 @@ export type DoorCategory =
   | 'Fluted & Textured Doors'
   | 'Glass & Lattice Doors'
   | 'Leather-Finish Doors'
+  | 'Laminated Doors'
+  | 'Door Frames / Chaukhats'
+  | 'Hardware'
   | 'Colour Options'
-  | 'Interiors';
+  | 'Interiors'
+  | string;
 
 // ============================================================================
 // 1. ALL VERIFIED DOOR IMAGES BY CATEGORY
@@ -348,6 +352,95 @@ export const INTERIORS_WALL_PANELLING: DoorItem[] = [
   },
 ];
 
+export const LAMINATED_DOORS: DoorItem[] = [
+  {
+    id: 'beige-textured-modern-door',
+    title: 'Textured Architectural Laminated Door',
+    category: 'Laminated Doors',
+    image: '/images/doors/web/modern-designer/31-beige-textured-modern-door.webp',
+    alt: 'Warm beige textured architectural laminated door',
+    description: 'High-pressure decorative textured laminate hot-pressed over high-density water-resistant HDHMR core.',
+  },
+  {
+    id: 'charcoal-woven-accent-door',
+    title: 'Woven Geometric Laminated Door',
+    category: 'Laminated Doors',
+    image: '/images/doors/web/modern-designer/20-charcoal-woven-accent-door.webp',
+    alt: 'Charcoal modern door with woven geometric textured face',
+    description: 'Embossed synchronized woven laminate surface with 4-side solid teakwood edge lipping.',
+  },
+  {
+    id: 'brown-tufted-door',
+    title: 'Acoustic Leather-Finish Laminated Door',
+    category: 'Laminated Doors',
+    image: '/images/doors/web/leather-look/26-brown-tufted-door.webp',
+    alt: 'Luxury rich brown tufted leatherette door for sound-dampened spaces',
+    description: 'Heavy acoustic tufted leatherette face bonded over insulated solid core with anti-warp frame.',
+  },
+  {
+    id: 'charcoal-tufted-door',
+    title: 'Charcoal Velvet Acoustic Door',
+    category: 'Laminated Doors',
+    image: '/images/doors/web/leather-look/48-charcoal-tufted-door.webp',
+    alt: 'Charcoal tufted architectural door with acoustic padding',
+    description: 'Contemporary square tufted architectural laminate face ideal for executive cabins and media rooms.',
+  },
+];
+
+export const CHAUKHAT_FRAME_ITEMS: DoorItem[] = [
+  {
+    id: 'chaukhat-6in-aluminium',
+    title: '6" Sal Wood Frame with Aluminium Filling',
+    category: 'Door Frames / Chaukhats',
+    image: '/images/doors/web/wall-panelling/22-wood-panelled-corridor.webp',
+    alt: '6 inch seasoned Sal wood chaukhat frame with aluminium core filling',
+    description: 'Heavy architectural 6-inch solid timber jamb reinforced with central aluminium core filling to prevent warping in humid climates.',
+  },
+  {
+    id: 'chaukhat-teak-rebated',
+    title: 'Solid Burma Teak Rebated Chaukhat',
+    category: 'Door Frames / Chaukhats',
+    image: '/images/doors/web/wall-panelling/35-decorative-wood-wall-panelling.webp',
+    alt: 'Solid Burma Teak rebated door frame with integrated rubber acoustic seals',
+    description: 'Precision-rebated 100% kiln-seasoned Burma Teak frame with pre-routed acoustic and dust-exclusion rubber gaskets.',
+  },
+  {
+    id: 'chaukhat-corridor-lining',
+    title: 'Full-Architrave Timber Wall Lining Frame',
+    category: 'Door Frames / Chaukhats',
+    image: '/images/doors/web/wall-panelling/53-dark-patterned-wall-panelling.webp',
+    alt: 'Full wall depth timber door frame and architrave lining',
+    description: 'Custom-depth jamb extensions covering complete 9" or 12" brick walls with matching flush architraves.',
+  },
+];
+
+export const HARDWARE_ITEMS: DoorItem[] = [
+  {
+    id: 'hardware-heavy-pivot',
+    title: 'Architectural Heavy-Duty Floor Pivot System',
+    category: 'Hardware',
+    image: '/images/doors/web/modern-designer/34-dark-brass-accent-door.webp',
+    alt: 'Concealed heavy-duty floor pivot hinge for grand entrance doors up to 250 kg',
+    description: 'German-engineered 360-degree floor spring pivot mechanism rated for 250 kg grand doors with 90-degree hold-open.',
+  },
+  {
+    id: 'hardware-brass-pull',
+    title: 'Full-Height Antiqued Brass Entrance Pull Handles',
+    category: 'Hardware',
+    image: '/images/doors/web/fluted-textured/10-dark-textured-gold-accent-door.webp',
+    alt: 'Solid cast brass 36-inch architectural entrance pull handle in aged patina',
+    description: 'Hand-finished solid forged brass pull handles with concealed through-bolt fixings and protective satin clear coat.',
+  },
+  {
+    id: 'hardware-mortise-lock',
+    title: 'Multi-Point European Mortise Security Lock',
+    category: 'Hardware',
+    image: '/images/doors/web/modern-designer/16-light-wood-metal-accent-door.webp',
+    alt: 'High-security multi-point mortise lock body with computerized dimple cylinder',
+    description: 'Triple-deadbolt hardened steel mortise mechanism with anti-drill Euro cylinder and magnetic silent latching.',
+  },
+];
+
 // ============================================================================
 // 2. HOME FEATURED DOORS (EXACTLY 4 CARDS)
 // ============================================================================
@@ -366,45 +459,45 @@ export const HERO_DOOR_IMAGE = '/images/doors/web/cnc-carved/17-radial-carved-wo
 export const OG_DOOR_IMAGE = '/images/doors/web/double-entrance/47-radial-grid-double-door.webp';
 
 // ============================================================================
-// 3. COMPLETE DOORS CATALOGUE (ALL CATEGORIES GROUPED)
+// 3. COMPLETE DOORS CATALOGUE (6 CORE REQUESTED CATEGORIES)
 // ============================================================================
 
 export const ALL_DOOR_CATEGORIES = [
   {
-    id: 'carved-entrance',
-    title: 'Carved & Entrance Doors',
-    subtitle: 'Grand Double Portals & 3D CNC Architectural Relief',
-    doors: CARVED_ENTRANCE_DOORS,
-  },
-  {
-    id: 'classic-panel',
-    title: 'Classic Panel Doors',
-    subtitle: 'Timeless Molded Bevels & Fluted Profiles',
+    id: 'solid-wood-panel',
+    title: 'Solid Wood Panel',
+    subtitle: 'Classic Molded Bevels, Geometric Grids & Kiln-Seasoned Oak/Teak',
     doors: CLASSIC_PANEL_DOORS,
   },
   {
-    id: 'modern-designer',
-    title: 'Modern Designer Doors',
-    subtitle: 'Architectural Grids, Metal Accents & Woven Textures',
-    doors: MODERN_DESIGNER_DOORS,
+    id: 'carved-designer',
+    title: 'Carved Designer',
+    subtitle: 'Grand Double Portals, 3D CNC Carvings & Sculpted Reliefs',
+    doors: CARVED_ENTRANCE_DOORS,
   },
   {
-    id: 'fluted-textured',
-    title: 'Fluted & Textured Doors',
-    subtitle: 'Continuous Linear Fluting & Sculpted Oval Reliefs',
-    doors: FLUTED_TEXTURED_DOORS,
-  },
-  {
-    id: 'glass-lattice',
-    title: 'Glass & Lattice Doors',
-    subtitle: 'Tempered Glass Inserts & CNC Geometric Grilles',
+    id: 'glass-and-lattice',
+    title: 'Glass & Lattice',
+    subtitle: 'Tempered Security Glass Inserts & CNC Geometric Fretwork',
     doors: GLASS_LATTICE_DOORS,
   },
   {
-    id: 'leather-finish',
-    title: 'Leather-Finish Doors',
-    subtitle: 'Tufted Acoustic Upholstery & Tactile Luxury',
-    doors: LEATHER_LOOK_DOORS,
+    id: 'laminated',
+    title: 'Laminated',
+    subtitle: 'Synchronized Textured Grain, Acoustic Tufting & High-Wear Surfaces',
+    doors: LAMINATED_DOORS,
+  },
+  {
+    id: 'door-frames-chaukhats',
+    title: 'Door Frames / Chaukhats',
+    subtitle: '6-Inch Frames with Aluminium Filling, Sal Wood & Acoustic Rebates',
+    doors: CHAUKHAT_FRAME_ITEMS,
+  },
+  {
+    id: 'hardware',
+    title: 'Hardware',
+    subtitle: 'Architectural Pivot Systems, Forged Brass Handles & Multi-Point Locks',
+    doors: HARDWARE_ITEMS,
   },
 ];
 
@@ -416,6 +509,9 @@ export const ALL_DOORS: DoorItem[] = [
   ...FLUTED_TEXTURED_DOORS,
   ...GLASS_LATTICE_DOORS,
   ...LEATHER_LOOK_DOORS,
+  ...LAMINATED_DOORS,
+  ...CHAUKHAT_FRAME_ITEMS,
+  ...HARDWARE_ITEMS,
 ];
 
 // ============================================================================
@@ -457,6 +553,48 @@ export const DOOR_SPECIFICATIONS = [
     label: 'Machining & Forming',
     value: 'Hot Press with Precision CNC Design',
     note: 'Deep relief dimensional routing',
+  },
+];
+
+export const DOOR_MATERIALS = [
+  {
+    name: 'Kiln-Seasoned Burma Teak',
+    badge: '100% Warp-Free',
+    description: 'Equilibrium moisture reduced to 10–12%. Naturally resistant to termites, humidity swings, and decay.',
+  },
+  {
+    name: 'American Walnut & White Oak',
+    badge: 'Architectural Veneer',
+    description: 'Book-matched crown and rift-cut veneers bonded over heavy-duty acoustic solid substrates.',
+  },
+  {
+    name: 'High-Density HDHMR Core',
+    badge: 'Moisture Sealed',
+    description: 'Ultra-flat structural face calibrated on European wide-belt sanders for 0.1mm tolerance.',
+  },
+  {
+    name: 'Seasoned Red Miranti & Sal Timber',
+    badge: 'Heavy Framing',
+    description: 'Dense structural timber for 6-inch architectural chaukhats with integrated aluminium core anti-twist bar.',
+  },
+];
+
+export const DOOR_SIZES_CUSTOMIZATION = [
+  {
+    title: 'Standard Heights & Widths',
+    specs: '7ft (84") · 8ft (96") · 9ft (108") · Custom up to 10ft / 12ft Grand Pivot leaves',
+  },
+  {
+    title: 'Calibrated Thickness',
+    specs: 'Standard 40 mm Interior Leaf · Heavy 50 mm Main Entrance Double Leaf',
+  },
+  {
+    title: 'Frame / Chaukhat Profiles',
+    specs: '5"x2.5", 6"x2.5", 6"x3" with central aluminium reinforcement channel and acoustic rubber gasket',
+  },
+  {
+    title: 'Factory Customization',
+    specs: 'Custom 3D CAD patterns, brass/metal groove inlays, glass lite cutouts, and pre-mortised lock pockets',
   },
 ];
 

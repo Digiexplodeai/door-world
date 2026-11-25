@@ -171,15 +171,13 @@ export function buildWhatsAppUrl(message: string): string {
   return `https://wa.me/91${phone}?text=${encodeURIComponent(message.trim())}`;
 }
 
-// Navigation Links
+// Navigation Links (Exactly 5 items per brief)
 export const NAV_LINKS: NavLinkItem[] = [
   { label: 'Home', href: '/', sectionId: 'home', numeral: '01' },
-  { label: 'Kitchens', href: '/kitchens', sectionId: 'kitchens', numeral: '02' },
-  { label: 'Doors', href: '/doors', sectionId: 'doors', numeral: '03' },
-  { label: 'Services', href: '/services', sectionId: 'services', numeral: '04' },
-  { label: 'Gallery', href: '/gallery', sectionId: 'gallery', numeral: '05' },
-  { label: 'About', href: '/about', sectionId: 'about', numeral: '06' },
-  { label: 'Contact', href: '/contact', sectionId: 'contact', numeral: '07' },
+  { label: 'About', href: '/about', sectionId: 'about', numeral: '02' },
+  { label: 'Kitchen', href: '/kitchen', sectionId: 'kitchen', numeral: '03' },
+  { label: 'Doors', href: '/doors', sectionId: 'doors', numeral: '04' },
+  { label: 'Contact / Inquiry', href: '/contact', sectionId: 'contact', numeral: '05' },
 ];
 
 // Announcement bar messages

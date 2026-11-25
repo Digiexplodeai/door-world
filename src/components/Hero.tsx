@@ -1,62 +1,62 @@
 import { FC } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Phone, ShieldCheck, Compass, Sparkles } from 'lucide-react';
+import { ArrowRight, Phone, ShieldCheck, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SITE_DATA } from '../data/site';
 import { SITE_IMAGES } from '../data/images';
-import { LinkRollText, MagneticButton } from './MagneticButton';
 
 interface HeroProps {
-  onExploreClick?: () => void;
-  onQuoteClick?: () => void;
+  onExploreDoors?: () => void;
+  onExploreKitchens?: () => void;
 }
 
-export const Hero: FC<HeroProps> = ({ onExploreClick, onQuoteClick }) => {
+export const Hero: FC<HeroProps> = () => {
   const { contact } = SITE_DATA.business;
 
   return (
     <section
       id="home"
       aria-label="Kumar Kitchen King and Door World Entrance"
-      className="relative w-full min-h-[92vh] lg:min-h-[96vh] flex items-center justify-center overflow-hidden bg-[#0E0C0A] text-[#FBF8F3] pt-28 pb-20 lg:pt-36 lg:pb-24"
+      className="relative w-full min-h-[90vh] lg:min-h-[94vh] flex items-center justify-center overflow-hidden bg-[#0E0C0A] text-[#FBF8F3] pt-28 pb-16 lg:pt-36 lg:pb-24"
     >
-      {/* Background Architectural Image (Immediate Load, Crisp Quality, Zero Black State) */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden bg-[#120D09]">
+      {/* Background Architectural Image (Crisp, Clearly Visible with Balanced Scrim) */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden bg-[#140F0B]">
         <img
           src={SITE_IMAGES.hero.background}
           alt="Radial carved wood entrance door by Door World"
-          fetchPriority="high"
+          // @ts-expect-error React 18/19 fetchPriority
+          fetchpriority="high"
           loading="eager"
-          decoding="async"
+          decoding="sync"
+          onError={(e) => {
+            // Graceful fallback if background file is missing
+            e.currentTarget.style.opacity = '0';
+          }}
           className="w-full h-full object-cover object-center scale-[1.02] transform transition-transform duration-1000 ease-out"
         />
 
-        {/* Dark Gradient Scrim (55-70% black, stronger behind text on the left) */}
+        {/* Balanced Architectural Scrim: Leaves door rich and visible while keeping headline sharp */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[#0E0C0A]/60 bg-gradient-to-r from-[#0E0C0A]/90 via-[#0E0C0A]/70 to-[#0E0C0A]/45"
-        />
-        {/* Subtle Top & Bottom Architectural Blending Gradients */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0E0C0A]/95 via-[#0E0C0A]/40 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-[#0E0C0A]/90 via-[#0E0C0A]/60 to-[#0E0C0A]/30"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0E0C0A] via-[#0E0C0A]/60 to-transparent"
+          className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#0E0C0A] to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0E0C0A]/85 to-transparent"
         />
       </div>
 
       {/* Hero Foreground Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-12 flex flex-col justify-between">
         {/* Top Eyebrow Badge */}
-        <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-[4px] bg-[#0E0C0A]/85 backdrop-blur-md border border-[#B8793A]/40 text-[#B8793A] type-eyebrow font-bold uppercase tracking-[0.2em] w-fit mb-6 shadow-xl"
-        >
+        <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-[4px] bg-[#0E0C0A]/85 backdrop-blur-md border border-[#B8793A]/40 text-[#B8793A] type-eyebrow font-bold uppercase tracking-[0.2em] w-fit mb-6 shadow-xl">
           <span className="w-2 h-2 rounded-full bg-[#B8793A] animate-pulse" aria-hidden="true" />
           <span className="text-[11px] sm:text-xs">Kumar Kitchen King · Sector 82, JLPL Mohali &amp; Yamuna Nagar</span>
-        </motion.div>
+        </div>
 
         {/* Main Editorial Headline */}
         <div className="max-w-2xl lg:max-w-3xl py-2">
@@ -91,33 +91,27 @@ export const Hero: FC<HeroProps> = ({ onExploreClick, onQuoteClick }) => {
             </span>
           </div>
 
-          {/* Action CTAs */}
+          {/* Action CTAs: Exactly Two Prominent Buttons */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <Link
-              to="/contact"
+              to="/doors"
               className="min-h-[50px] inline-flex items-center justify-center gap-3 bg-[#B8793A] hover:bg-[#D49557] text-[#0E0C0A] text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded-[4px] shadow-lg shadow-[#B8793A]/25 transition-all cursor-pointer"
             >
-              <span>Get Free Estimate</span>
+              <span>Explore Doors</span>
               <ArrowRight className="w-4 h-4 text-[#0E0C0A]" aria-hidden="true" />
             </Link>
 
             <Link
-              to="/kitchens"
-              className="min-h-[50px] inline-flex items-center justify-center gap-3 border border-[#B8793A]/50 hover:border-[#B8793A] bg-[#171412]/80 hover:bg-[#171412] backdrop-blur-md text-[#FBF8F3] hover:text-[#B8793A] text-xs uppercase tracking-[0.2em] font-bold px-7 py-4 rounded-[4px] transition-all cursor-pointer"
+              to="/kitchen"
+              className="min-h-[50px] inline-flex items-center justify-center gap-3 border border-[#B8793A]/60 hover:border-[#B8793A] bg-[#171412]/85 hover:bg-[#1F1914] backdrop-blur-md text-[#FBF8F3] hover:text-[#B8793A] text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded-[4px] transition-all cursor-pointer"
             >
               <span>Explore Kitchens</span>
-            </Link>
-
-            <Link
-              to="/doors"
-              className="min-h-[50px] inline-flex items-center justify-center gap-3 border border-[#2A241F] hover:border-[#B8793A] bg-[#0E0C0A]/70 hover:bg-[#0E0C0A] text-[#E8DFC8] hover:text-[#FBF8F3] text-xs uppercase tracking-[0.2em] font-bold px-7 py-4 rounded-[4px] transition-all cursor-pointer"
-            >
-              <span>Explore Doors</span>
+              <ArrowRight className="w-4 h-4 text-[#B8793A]" aria-hidden="true" />
             </Link>
 
             <a
               href={`tel:+91${contact.primaryPhone}`}
-              className="min-h-[50px] hidden xl:inline-flex items-center justify-center gap-2.5 text-[#E8DFC8] hover:text-[#B8793A] text-xs uppercase tracking-[0.18em] font-semibold px-4 py-4 transition-colors"
+              className="min-h-[50px] hidden xl:inline-flex items-center justify-center gap-2.5 text-[#E8DFC8] hover:text-[#B8793A] text-xs uppercase tracking-[0.18em] font-semibold px-4 py-4 transition-colors ml-2"
             >
               <Phone className="w-4 h-4 text-[#B8793A]" />
               <span>Call: {contact.primaryPhoneDisplay}</span>
@@ -139,9 +133,8 @@ export const Hero: FC<HeroProps> = ({ onExploreClick, onQuoteClick }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-[#B8793A] font-mono text-[11px] uppercase tracking-wider">
-            <Compass className="w-4 h-4 animate-spin" style={{ animationDuration: '18s' }} />
-            <span>Visit Mohali Showroom · Mon - Sat</span>
+          <div className="text-[11px] font-mono text-[#D4C9B8] hidden sm:block">
+            <span>Direct Manufacturer Pricing · Warranty Certified</span>
           </div>
         </div>
       </div>

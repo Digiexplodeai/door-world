@@ -80,13 +80,15 @@ export const Navbar: FC<NavbarProps> = ({ hasAnnouncement }) => {
           {/* Desktop Navigation Links */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden xl:flex items-center gap-7 text-[12px] uppercase tracking-[0.18em] font-medium text-[#F7F3EC]"
+            className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12px] uppercase tracking-[0.18em] font-medium text-[#F7F3EC]"
           >
             {NAV_LINKS.map((item) => {
               const isItemActive =
                 item.href === '/'
                   ? location.pathname === '/'
-                  : location.pathname.startsWith(item.href);
+                  : location.pathname.startsWith(item.href) ||
+                    (item.href === '/kitchen' && location.pathname.startsWith('/kitchens')) ||
+                    (item.href === '/contact' && location.pathname.startsWith('/inquiry'));
 
               return (
                 <NavLink
@@ -137,7 +139,7 @@ export const Navbar: FC<NavbarProps> = ({ hasAnnouncement }) => {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu-drawer"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="xl:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-[4px] text-[#F7F3EC] hover:text-[#B8793A] bg-[#171412] border border-[#2A241F] cursor-pointer"
+            className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-[4px] text-[#F7F3EC] hover:text-[#B8793A] bg-[#171412] border border-[#2A241F] cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -153,7 +155,7 @@ export const Navbar: FC<NavbarProps> = ({ hasAnnouncement }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-[#0E0C0A]/98 backdrop-blur-2xl xl:hidden flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-[#0E0C0A]/98 backdrop-blur-2xl lg:hidden flex flex-col justify-between pt-24 pb-8 px-6 overflow-y-auto"
           >
             <div className="space-y-4">
               <p className="text-[10px] uppercase font-mono font-bold tracking-[0.22em] text-[#B8793A] pb-2 border-b border-[#2A241F]">
@@ -164,7 +166,9 @@ export const Navbar: FC<NavbarProps> = ({ hasAnnouncement }) => {
                   const isItemActive =
                     item.href === '/'
                       ? location.pathname === '/'
-                      : location.pathname.startsWith(item.href);
+                      : location.pathname.startsWith(item.href) ||
+                        (item.href === '/kitchen' && location.pathname.startsWith('/kitchens')) ||
+                        (item.href === '/contact' && location.pathname.startsWith('/inquiry'));
 
                   return (
                     <NavLink
